@@ -2,15 +2,16 @@ use std::sync::Arc;
 
 use breez_sdk_common::input::InputType;
 use breez_sdk_spark::{
-    CheckLightningAddressRequest, ClaimDepositRequest, ClaimDepositResponse, Config,
-    ConnectRequest, GetInfoRequest, GetInfoResponse, GetPaymentRequest, GetPaymentResponse,
-    GetTokensMetadataRequest, GetTokensMetadataResponse, LightningAddressInfo,
-    ListFiatCurrenciesResponse, ListFiatRatesResponse, ListPaymentsRequest, ListPaymentsResponse,
-    ListUnclaimedDepositsRequest, ListUnclaimedDepositsResponse, LnurlPayRequest, LnurlPayResponse,
-    LogEntry, Logger, Network, PrepareLnurlPayRequest, PrepareLnurlPayResponse,
-    PrepareSendPaymentRequest, PrepareSendPaymentResponse, ReceivePaymentRequest,
-    ReceivePaymentResponse, RefundDepositRequest, RefundDepositResponse,
-    RegisterLightningAddressRequest, SdkError, SdkEvent, SendPaymentRequest, SendPaymentResponse,
+    CheckLightningAddressRequest, CheckMessageRequest, CheckMessageResponse, ClaimDepositRequest,
+    ClaimDepositResponse, Config, ConnectRequest, GetInfoRequest, GetInfoResponse,
+    GetPaymentRequest, GetPaymentResponse, GetTokensMetadataRequest, GetTokensMetadataResponse,
+    LightningAddressInfo, ListFiatCurrenciesResponse, ListFiatRatesResponse, ListPaymentsRequest,
+    ListPaymentsResponse, ListUnclaimedDepositsRequest, ListUnclaimedDepositsResponse,
+    LnurlPayRequest, LnurlPayResponse, LnurlWithdrawRequest, LnurlWithdrawResponse, LogEntry,
+    Logger, Network, PrepareLnurlPayRequest, PrepareLnurlPayResponse, PrepareSendPaymentRequest,
+    PrepareSendPaymentResponse, ReceivePaymentRequest, ReceivePaymentResponse,
+    RefundDepositRequest, RefundDepositResponse, RegisterLightningAddressRequest, SdkError,
+    SdkEvent, SendPaymentRequest, SendPaymentResponse, SignMessageRequest, SignMessageResponse,
     Storage, SyncWalletRequest, SyncWalletResponse, WaitForPaymentRequest, WaitForPaymentResponse,
 };
 use flutter_rust_bridge::frb;
@@ -66,7 +67,7 @@ impl BreezSdk {
     }
 
     pub async fn parse(&self, input: &str) -> Result<InputType, SdkError> {
-        Ok(self.inner.parse(input).await?)
+        self.inner.parse(input).await
     }
 
     pub async fn get_info(&self, request: GetInfoRequest) -> Result<GetInfoResponse, SdkError> {
@@ -89,6 +90,13 @@ impl BreezSdk {
 
     pub async fn lnurl_pay(&self, request: LnurlPayRequest) -> Result<LnurlPayResponse, SdkError> {
         self.inner.lnurl_pay(request).await
+    }
+
+    pub async fn lnurl_withdraw(
+        &self,
+        request: LnurlWithdrawRequest,
+    ) -> Result<LnurlWithdrawResponse, SdkError> {
+        self.inner.lnurl_withdraw(request).await
     }
 
     pub async fn prepare_send_payment(
@@ -189,5 +197,19 @@ impl BreezSdk {
         request: GetTokensMetadataRequest,
     ) -> Result<GetTokensMetadataResponse, SdkError> {
         self.inner.get_tokens_metadata(request).await
+    }
+
+    pub async fn sign_message(
+        &self,
+        request: SignMessageRequest,
+    ) -> Result<SignMessageResponse, SdkError> {
+        self.inner.sign_message(request).await
+    }
+
+    pub async fn check_message(
+        &self,
+        request: CheckMessageRequest,
+    ) -> Result<CheckMessageResponse, SdkError> {
+        self.inner.check_message(request).await
     }
 }

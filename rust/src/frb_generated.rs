@@ -39,7 +39,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.9.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -533979468;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1727701405;
 
 // Section: executor
 
@@ -165,6 +165,64 @@ fn wire__crate__sdk__BreezSdk_check_lightning_address_available_impl(
                             api_request,
                         )
                         .await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__sdk__BreezSdk_check_message_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "BreezSdk_check_message",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_that = <RustOpaqueMoi<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BreezSdk>,
+            >>::sse_decode(&mut deserializer);
+            let api_request = <crate::models::CheckMessageRequest>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, crate::errors::SdkError>(
+                    (move || async move {
+                        let mut api_that_guard = None;
+                        let decode_indices_ =
+                            flutter_rust_bridge::for_generated::lockable_compute_decode_order(
+                                vec![flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                                    &api_that, 0, false,
+                                )],
+                            );
+                        for i in decode_indices_ {
+                            match i {
+                                0 => {
+                                    api_that_guard =
+                                        Some(api_that.lockable_decode_async_ref().await)
+                                }
+                                _ => unreachable!(),
+                            }
+                        }
+                        let api_that_guard = api_that_guard.unwrap();
+                        let output_ok =
+                            crate::sdk::BreezSdk::check_message(&*api_that_guard, api_request)
+                                .await?;
                         Ok(output_ok)
                     })()
                     .await,
@@ -863,6 +921,64 @@ fn wire__crate__sdk__BreezSdk_lnurl_pay_impl(
         },
     )
 }
+fn wire__crate__sdk__BreezSdk_lnurl_withdraw_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "BreezSdk_lnurl_withdraw",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_that = <RustOpaqueMoi<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BreezSdk>,
+            >>::sse_decode(&mut deserializer);
+            let api_request = <crate::models::LnurlWithdrawRequest>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, crate::errors::SdkError>(
+                    (move || async move {
+                        let mut api_that_guard = None;
+                        let decode_indices_ =
+                            flutter_rust_bridge::for_generated::lockable_compute_decode_order(
+                                vec![flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                                    &api_that, 0, false,
+                                )],
+                            );
+                        for i in decode_indices_ {
+                            match i {
+                                0 => {
+                                    api_that_guard =
+                                        Some(api_that.lockable_decode_async_ref().await)
+                                }
+                                _ => unreachable!(),
+                            }
+                        }
+                        let api_that_guard = api_that_guard.unwrap();
+                        let output_ok =
+                            crate::sdk::BreezSdk::lnurl_withdraw(&*api_that_guard, api_request)
+                                .await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
 fn wire__crate__sdk__BreezSdk_parse_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
@@ -1325,6 +1441,64 @@ fn wire__crate__sdk__BreezSdk_send_payment_impl(
                         let api_that_guard = api_that_guard.unwrap();
                         let output_ok =
                             crate::sdk::BreezSdk::send_payment(&*api_that_guard, api_request)
+                                .await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__sdk__BreezSdk_sign_message_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "BreezSdk_sign_message",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_that = <RustOpaqueMoi<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BreezSdk>,
+            >>::sse_decode(&mut deserializer);
+            let api_request = <crate::models::SignMessageRequest>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, crate::errors::SdkError>(
+                    (move || async move {
+                        let mut api_that_guard = None;
+                        let decode_indices_ =
+                            flutter_rust_bridge::for_generated::lockable_compute_decode_order(
+                                vec![flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                                    &api_that, 0, false,
+                                )],
+                            );
+                        for i in decode_indices_ {
+                            match i {
+                                0 => {
+                                    api_that_guard =
+                                        Some(api_that.lockable_decode_async_ref().await)
+                                }
+                                _ => unreachable!(),
+                            }
+                        }
+                        let api_that_guard = api_that_guard.unwrap();
+                        let output_ok =
+                            crate::sdk::BreezSdk::sign_message(&*api_that_guard, api_request)
                                 .await?;
                         Ok(output_ok)
                     })()
@@ -1888,6 +2062,16 @@ const _: fn() = || {
         let _: String = CheckLightningAddressRequest.username;
     }
     {
+        let CheckMessageRequest = None::<crate::models::CheckMessageRequest>.unwrap();
+        let _: String = CheckMessageRequest.message;
+        let _: String = CheckMessageRequest.pubkey;
+        let _: String = CheckMessageRequest.signature;
+    }
+    {
+        let CheckMessageResponse = None::<crate::models::CheckMessageResponse>.unwrap();
+        let _: bool = CheckMessageResponse.is_valid;
+    }
+    {
         let ClaimDepositRequest = None::<crate::models::ClaimDepositRequest>.unwrap();
         let _: String = ClaimDepositRequest.txid;
         let _: u32 = ClaimDepositRequest.vout;
@@ -2043,6 +2227,9 @@ const _: fn() = || {
         crate::models::InputType::SparkAddress(field0) => {
             let _: crate::models::SparkAddressDetails = field0;
         }
+        crate::models::InputType::SparkInvoice(field0) => {
+            let _: crate::models::SparkInvoiceDetails = field0;
+        }
     }
     {
         let LightningAddressDetails = None::<crate::models::LightningAddressDetails>.unwrap();
@@ -2128,6 +2315,16 @@ const _: fn() = || {
         let _: Option<crate::models::SuccessActionProcessed> = LnurlPayResponse.success_action;
     }
     {
+        let LnurlWithdrawInfo = None::<crate::models::LnurlWithdrawInfo>.unwrap();
+        let _: String = LnurlWithdrawInfo.withdraw_url;
+    }
+    {
+        let LnurlWithdrawRequest = None::<crate::models::LnurlWithdrawRequest>.unwrap();
+        let _: u64 = LnurlWithdrawRequest.amount_sats;
+        let _: crate::models::LnurlWithdrawRequestDetails = LnurlWithdrawRequest.withdraw_request;
+        let _: Option<u32> = LnurlWithdrawRequest.completion_timeout_secs;
+    }
+    {
         let LnurlWithdrawRequestDetails =
             None::<crate::models::LnurlWithdrawRequestDetails>.unwrap();
         let _: String = LnurlWithdrawRequestDetails.callback;
@@ -2135,6 +2332,11 @@ const _: fn() = || {
         let _: String = LnurlWithdrawRequestDetails.default_description;
         let _: u64 = LnurlWithdrawRequestDetails.min_withdrawable;
         let _: u64 = LnurlWithdrawRequestDetails.max_withdrawable;
+    }
+    {
+        let LnurlWithdrawResponse = None::<crate::models::LnurlWithdrawResponse>.unwrap();
+        let _: String = LnurlWithdrawResponse.payment_request;
+        let _: Option<crate::models::Payment> = LnurlWithdrawResponse.payment;
     }
     {
         let LocaleOverrides = None::<crate::models::LocaleOverrides>.unwrap();
@@ -2168,10 +2370,17 @@ const _: fn() = || {
         let _: Option<crate::models::PaymentDetails> = Payment.details;
     }
     match None::<crate::models::PaymentDetails>.unwrap() {
-        crate::models::PaymentDetails::Spark => {}
-        crate::models::PaymentDetails::Token { metadata, tx_hash } => {
+        crate::models::PaymentDetails::Spark { invoice_details } => {
+            let _: Option<crate::models::SparkInvoicePaymentDetails> = invoice_details;
+        }
+        crate::models::PaymentDetails::Token {
+            metadata,
+            tx_hash,
+            invoice_details,
+        } => {
             let _: crate::models::TokenMetadata = metadata;
             let _: String = tx_hash;
+            let _: Option<crate::models::SparkInvoicePaymentDetails> = invoice_details;
         }
         crate::models::PaymentDetails::Lightning {
             description,
@@ -2180,6 +2389,7 @@ const _: fn() = || {
             payment_hash,
             destination_pubkey,
             lnurl_pay_info,
+            lnurl_withdraw_info,
         } => {
             let _: Option<String> = description;
             let _: Option<String> = preimage;
@@ -2187,6 +2397,7 @@ const _: fn() = || {
             let _: String = payment_hash;
             let _: String = destination_pubkey;
             let _: Option<crate::models::LnurlPayInfo> = lnurl_pay_info;
+            let _: Option<crate::models::LnurlWithdrawInfo> = lnurl_withdraw_info;
         }
         crate::models::PaymentDetails::Withdraw { tx_id } => {
             let _: String = tx_id;
@@ -2235,6 +2446,19 @@ const _: fn() = || {
     }
     match None::<crate::models::ReceivePaymentMethod>.unwrap() {
         crate::models::ReceivePaymentMethod::SparkAddress => {}
+        crate::models::ReceivePaymentMethod::SparkInvoice {
+            amount,
+            token_identifier,
+            expiry_time,
+            description,
+            sender_public_key,
+        } => {
+            let _: Option<u128> = amount;
+            let _: Option<String> = token_identifier;
+            let _: Option<u64> = expiry_time;
+            let _: Option<String> = description;
+            let _: Option<String> = sender_public_key;
+        }
         crate::models::ReceivePaymentMethod::BitcoinAddress => {}
         crate::models::ReceivePaymentMethod::Bolt11Invoice {
             description,
@@ -2251,7 +2475,7 @@ const _: fn() = || {
     {
         let ReceivePaymentResponse = None::<crate::models::ReceivePaymentResponse>.unwrap();
         let _: String = ReceivePaymentResponse.payment_request;
-        let _: u64 = ReceivePaymentResponse.fee_sats;
+        let _: u128 = ReceivePaymentResponse.fee;
     }
     {
         let RefundDepositRequest = None::<crate::models::RefundDepositRequest>.unwrap();
@@ -2270,10 +2494,6 @@ const _: fn() = || {
             None::<crate::models::RegisterLightningAddressRequest>.unwrap();
         let _: String = RegisterLightningAddressRequest.username;
         let _: Option<String> = RegisterLightningAddressRequest.description;
-    }
-    {
-        let SatsPaymentDetails = None::<crate::models::SatsPaymentDetails>.unwrap();
-        let _: Option<u64> = SatsPaymentDetails.amount;
     }
     match None::<crate::errors::SdkError>.unwrap() {
         crate::errors::SdkError::SparkError(field0) => {
@@ -2379,6 +2599,15 @@ const _: fn() = || {
             let _: u128 = fee;
             let _: Option<String> = token_identifier;
         }
+        crate::models::SendPaymentMethod::SparkInvoice {
+            spark_invoice_details,
+            fee,
+            token_identifier,
+        } => {
+            let _: crate::models::SparkInvoiceDetails = spark_invoice_details;
+            let _: u128 = fee;
+            let _: Option<String> = token_identifier;
+        }
     }
     match None::<crate::models::SendPaymentOptions>.unwrap() {
         crate::models::SendPaymentOptions::BitcoinAddress { confirmation_speed } => {
@@ -2402,6 +2631,16 @@ const _: fn() = || {
         let _: crate::models::Payment = SendPaymentResponse.payment;
     }
     {
+        let SignMessageRequest = None::<crate::models::SignMessageRequest>.unwrap();
+        let _: String = SignMessageRequest.message;
+        let _: bool = SignMessageRequest.compact;
+    }
+    {
+        let SignMessageResponse = None::<crate::models::SignMessageResponse>.unwrap();
+        let _: String = SignMessageResponse.pubkey;
+        let _: String = SignMessageResponse.signature;
+    }
+    {
         let SilentPaymentAddressDetails =
             None::<crate::models::SilentPaymentAddressDetails>.unwrap();
         let _: String = SilentPaymentAddressDetails.address;
@@ -2409,34 +2648,27 @@ const _: fn() = || {
         let _: crate::models::PaymentRequestSource = SilentPaymentAddressDetails.source;
     }
     {
-        let SparkAddress = None::<crate::models::SparkAddress>.unwrap();
-        let _: String = SparkAddress.identity_public_key;
-        let _: crate::models::BitcoinNetwork = SparkAddress.network;
-        let _: Option<crate::models::SparkInvoiceFields> = SparkAddress.spark_invoice_fields;
-        let _: Option<String> = SparkAddress.signature;
-    }
-    {
         let SparkAddressDetails = None::<crate::models::SparkAddressDetails>.unwrap();
         let _: String = SparkAddressDetails.address;
-        let _: crate::models::SparkAddress = SparkAddressDetails.decoded_address;
+        let _: String = SparkAddressDetails.identity_public_key;
+        let _: crate::models::BitcoinNetwork = SparkAddressDetails.network;
         let _: crate::models::PaymentRequestSource = SparkAddressDetails.source;
     }
-    match None::<crate::models::SparkAddressPaymentType>.unwrap() {
-        crate::models::SparkAddressPaymentType::TokensPayment(field0) => {
-            let _: crate::models::TokensPaymentDetails = field0;
-        }
-        crate::models::SparkAddressPaymentType::SatsPayment(field0) => {
-            let _: crate::models::SatsPaymentDetails = field0;
-        }
+    {
+        let SparkInvoiceDetails = None::<crate::models::SparkInvoiceDetails>.unwrap();
+        let _: String = SparkInvoiceDetails.invoice;
+        let _: String = SparkInvoiceDetails.identity_public_key;
+        let _: crate::models::BitcoinNetwork = SparkInvoiceDetails.network;
+        let _: Option<u128> = SparkInvoiceDetails.amount;
+        let _: Option<String> = SparkInvoiceDetails.token_identifier;
+        let _: Option<u64> = SparkInvoiceDetails.expiry_time;
+        let _: Option<String> = SparkInvoiceDetails.description;
+        let _: Option<String> = SparkInvoiceDetails.sender_public_key;
     }
     {
-        let SparkInvoiceFields = None::<crate::models::SparkInvoiceFields>.unwrap();
-        let _: String = SparkInvoiceFields.id;
-        let _: u32 = SparkInvoiceFields.version;
-        let _: Option<String> = SparkInvoiceFields.memo;
-        let _: Option<String> = SparkInvoiceFields.sender_public_key;
-        let _: Option<u64> = SparkInvoiceFields.expiry_time;
-        let _: Option<crate::models::SparkAddressPaymentType> = SparkInvoiceFields.payment_type;
+        let SparkInvoicePaymentDetails = None::<crate::models::SparkInvoicePaymentDetails>.unwrap();
+        let _: Option<String> = SparkInvoicePaymentDetails.description;
+        let _: String = SparkInvoicePaymentDetails.invoice;
     }
     match None::<crate::models::SuccessAction>.unwrap() {
         crate::models::SuccessAction::Aes { data } => {
@@ -2487,11 +2719,6 @@ const _: fn() = || {
         let _: u32 = TokenMetadata.decimals;
         let _: u128 = TokenMetadata.max_supply;
         let _: bool = TokenMetadata.is_freezable;
-    }
-    {
-        let TokensPaymentDetails = None::<crate::models::TokensPaymentDetails>.unwrap();
-        let _: Option<String> = TokensPaymentDetails.token_identifier;
-        let _: Option<u128> = TokensPaymentDetails.amount;
     }
     {
         let UrlSuccessActionData = None::<crate::models::UrlSuccessActionData>.unwrap();
@@ -2970,6 +3197,30 @@ impl SseDecode for crate::models::CheckLightningAddressRequest {
     }
 }
 
+impl SseDecode for crate::models::CheckMessageRequest {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_message = <String>::sse_decode(deserializer);
+        let mut var_pubkey = <String>::sse_decode(deserializer);
+        let mut var_signature = <String>::sse_decode(deserializer);
+        return crate::models::CheckMessageRequest {
+            message: var_message,
+            pubkey: var_pubkey,
+            signature: var_signature,
+        };
+    }
+}
+
+impl SseDecode for crate::models::CheckMessageResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_isValid = <bool>::sse_decode(deserializer);
+        return crate::models::CheckMessageResponse {
+            is_valid: var_isValid,
+        };
+    }
+}
+
 impl SseDecode for crate::models::ClaimDepositRequest {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -3319,6 +3570,10 @@ impl SseDecode for crate::models::InputType {
             12 => {
                 let mut var_field0 = <crate::models::SparkAddressDetails>::sse_decode(deserializer);
                 return crate::models::InputType::SparkAddress(var_field0);
+            }
+            13 => {
+                let mut var_field0 = <crate::models::SparkInvoiceDetails>::sse_decode(deserializer);
+                return crate::models::InputType::SparkInvoice(var_field0);
             }
             _ => {
                 unimplemented!("");
@@ -3755,6 +4010,31 @@ impl SseDecode for crate::models::LnurlPayResponse {
     }
 }
 
+impl SseDecode for crate::models::LnurlWithdrawInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_withdrawUrl = <String>::sse_decode(deserializer);
+        return crate::models::LnurlWithdrawInfo {
+            withdraw_url: var_withdrawUrl,
+        };
+    }
+}
+
+impl SseDecode for crate::models::LnurlWithdrawRequest {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_amountSats = <u64>::sse_decode(deserializer);
+        let mut var_withdrawRequest =
+            <crate::models::LnurlWithdrawRequestDetails>::sse_decode(deserializer);
+        let mut var_completionTimeoutSecs = <Option<u32>>::sse_decode(deserializer);
+        return crate::models::LnurlWithdrawRequest {
+            amount_sats: var_amountSats,
+            withdraw_request: var_withdrawRequest,
+            completion_timeout_secs: var_completionTimeoutSecs,
+        };
+    }
+}
+
 impl SseDecode for crate::models::LnurlWithdrawRequestDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -3769,6 +4049,18 @@ impl SseDecode for crate::models::LnurlWithdrawRequestDetails {
             default_description: var_defaultDescription,
             min_withdrawable: var_minWithdrawable,
             max_withdrawable: var_maxWithdrawable,
+        };
+    }
+}
+
+impl SseDecode for crate::models::LnurlWithdrawResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_paymentRequest = <String>::sse_decode(deserializer);
+        let mut var_payment = <Option<crate::models::Payment>>::sse_decode(deserializer);
+        return crate::models::LnurlWithdrawResponse {
+            payment_request: var_paymentRequest,
+            payment: var_payment,
         };
     }
 }
@@ -3958,6 +4250,28 @@ impl SseDecode for Option<crate::models::LnurlPayInfo> {
     }
 }
 
+impl SseDecode for Option<crate::models::LnurlWithdrawInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::models::LnurlWithdrawInfo>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<crate::models::Payment> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::models::Payment>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
 impl SseDecode for Option<crate::models::PaymentDetails> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -3982,24 +4296,11 @@ impl SseDecode for Option<crate::models::SendPaymentOptions> {
     }
 }
 
-impl SseDecode for Option<crate::models::SparkAddressPaymentType> {
+impl SseDecode for Option<crate::models::SparkInvoicePaymentDetails> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         if (<bool>::sse_decode(deserializer)) {
-            return Some(<crate::models::SparkAddressPaymentType>::sse_decode(
-                deserializer,
-            ));
-        } else {
-            return None;
-        }
-    }
-}
-
-impl SseDecode for Option<crate::models::SparkInvoiceFields> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        if (<bool>::sse_decode(deserializer)) {
-            return Some(<crate::models::SparkInvoiceFields>::sse_decode(
+            return Some(<crate::models::SparkInvoicePaymentDetails>::sse_decode(
                 deserializer,
             ));
         } else {
@@ -4132,14 +4433,21 @@ impl SseDecode for crate::models::PaymentDetails {
         let mut tag_ = <i32>::sse_decode(deserializer);
         match tag_ {
             0 => {
-                return crate::models::PaymentDetails::Spark;
+                let mut var_invoiceDetails =
+                    <Option<crate::models::SparkInvoicePaymentDetails>>::sse_decode(deserializer);
+                return crate::models::PaymentDetails::Spark {
+                    invoice_details: var_invoiceDetails,
+                };
             }
             1 => {
                 let mut var_metadata = <crate::models::TokenMetadata>::sse_decode(deserializer);
                 let mut var_txHash = <String>::sse_decode(deserializer);
+                let mut var_invoiceDetails =
+                    <Option<crate::models::SparkInvoicePaymentDetails>>::sse_decode(deserializer);
                 return crate::models::PaymentDetails::Token {
                     metadata: var_metadata,
                     tx_hash: var_txHash,
+                    invoice_details: var_invoiceDetails,
                 };
             }
             2 => {
@@ -4150,6 +4458,8 @@ impl SseDecode for crate::models::PaymentDetails {
                 let mut var_destinationPubkey = <String>::sse_decode(deserializer);
                 let mut var_lnurlPayInfo =
                     <Option<crate::models::LnurlPayInfo>>::sse_decode(deserializer);
+                let mut var_lnurlWithdrawInfo =
+                    <Option<crate::models::LnurlWithdrawInfo>>::sse_decode(deserializer);
                 return crate::models::PaymentDetails::Lightning {
                     description: var_description,
                     preimage: var_preimage,
@@ -4157,6 +4467,7 @@ impl SseDecode for crate::models::PaymentDetails {
                     payment_hash: var_paymentHash,
                     destination_pubkey: var_destinationPubkey,
                     lnurl_pay_info: var_lnurlPayInfo,
+                    lnurl_withdraw_info: var_lnurlWithdrawInfo,
                 };
             }
             3 => {
@@ -4314,9 +4625,23 @@ impl SseDecode for crate::models::ReceivePaymentMethod {
                 return crate::models::ReceivePaymentMethod::SparkAddress;
             }
             1 => {
-                return crate::models::ReceivePaymentMethod::BitcoinAddress;
+                let mut var_amount = <Option<u128>>::sse_decode(deserializer);
+                let mut var_tokenIdentifier = <Option<String>>::sse_decode(deserializer);
+                let mut var_expiryTime = <Option<u64>>::sse_decode(deserializer);
+                let mut var_description = <Option<String>>::sse_decode(deserializer);
+                let mut var_senderPublicKey = <Option<String>>::sse_decode(deserializer);
+                return crate::models::ReceivePaymentMethod::SparkInvoice {
+                    amount: var_amount,
+                    token_identifier: var_tokenIdentifier,
+                    expiry_time: var_expiryTime,
+                    description: var_description,
+                    sender_public_key: var_senderPublicKey,
+                };
             }
             2 => {
+                return crate::models::ReceivePaymentMethod::BitcoinAddress;
+            }
+            3 => {
                 let mut var_description = <String>::sse_decode(deserializer);
                 let mut var_amountSats = <Option<u64>>::sse_decode(deserializer);
                 return crate::models::ReceivePaymentMethod::Bolt11Invoice {
@@ -4345,10 +4670,10 @@ impl SseDecode for crate::models::ReceivePaymentResponse {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut var_paymentRequest = <String>::sse_decode(deserializer);
-        let mut var_feeSats = <u64>::sse_decode(deserializer);
+        let mut var_fee = <u128>::sse_decode(deserializer);
         return crate::models::ReceivePaymentResponse {
             payment_request: var_paymentRequest,
-            fee_sats: var_feeSats,
+            fee: var_fee,
         };
     }
 }
@@ -4399,14 +4724,6 @@ impl SseDecode for crate::models::RegisterLightningAddressRequest {
             username: var_username,
             description: var_description,
         };
-    }
-}
-
-impl SseDecode for crate::models::SatsPaymentDetails {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut var_amount = <Option<u64>>::sse_decode(deserializer);
-        return crate::models::SatsPaymentDetails { amount: var_amount };
     }
 }
 
@@ -4606,6 +4923,17 @@ impl SseDecode for crate::models::SendPaymentMethod {
                     token_identifier: var_tokenIdentifier,
                 };
             }
+            3 => {
+                let mut var_sparkInvoiceDetails =
+                    <crate::models::SparkInvoiceDetails>::sse_decode(deserializer);
+                let mut var_fee = <u128>::sse_decode(deserializer);
+                let mut var_tokenIdentifier = <Option<String>>::sse_decode(deserializer);
+                return crate::models::SendPaymentMethod::SparkInvoice {
+                    spark_invoice_details: var_sparkInvoiceDetails,
+                    fee: var_fee,
+                    token_identifier: var_tokenIdentifier,
+                };
+            }
             _ => {
                 unimplemented!("");
             }
@@ -4663,6 +4991,30 @@ impl SseDecode for crate::models::SendPaymentResponse {
     }
 }
 
+impl SseDecode for crate::models::SignMessageRequest {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_message = <String>::sse_decode(deserializer);
+        let mut var_compact = <bool>::sse_decode(deserializer);
+        return crate::models::SignMessageRequest {
+            message: var_message,
+            compact: var_compact,
+        };
+    }
+}
+
+impl SseDecode for crate::models::SignMessageResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_pubkey = <String>::sse_decode(deserializer);
+        let mut var_signature = <String>::sse_decode(deserializer);
+        return crate::models::SignMessageResponse {
+            pubkey: var_pubkey,
+            signature: var_signature,
+        };
+    }
+}
+
 impl SseDecode for crate::models::SilentPaymentAddressDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -4677,75 +5029,54 @@ impl SseDecode for crate::models::SilentPaymentAddressDetails {
     }
 }
 
-impl SseDecode for crate::models::SparkAddress {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut var_identityPublicKey = <String>::sse_decode(deserializer);
-        let mut var_network = <crate::models::BitcoinNetwork>::sse_decode(deserializer);
-        let mut var_sparkInvoiceFields =
-            <Option<crate::models::SparkInvoiceFields>>::sse_decode(deserializer);
-        let mut var_signature = <Option<String>>::sse_decode(deserializer);
-        return crate::models::SparkAddress {
-            identity_public_key: var_identityPublicKey,
-            network: var_network,
-            spark_invoice_fields: var_sparkInvoiceFields,
-            signature: var_signature,
-        };
-    }
-}
-
 impl SseDecode for crate::models::SparkAddressDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut var_address = <String>::sse_decode(deserializer);
-        let mut var_decodedAddress = <crate::models::SparkAddress>::sse_decode(deserializer);
+        let mut var_identityPublicKey = <String>::sse_decode(deserializer);
+        let mut var_network = <crate::models::BitcoinNetwork>::sse_decode(deserializer);
         let mut var_source = <crate::models::PaymentRequestSource>::sse_decode(deserializer);
         return crate::models::SparkAddressDetails {
             address: var_address,
-            decoded_address: var_decodedAddress,
+            identity_public_key: var_identityPublicKey,
+            network: var_network,
             source: var_source,
         };
     }
 }
 
-impl SseDecode for crate::models::SparkAddressPaymentType {
+impl SseDecode for crate::models::SparkInvoiceDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut tag_ = <i32>::sse_decode(deserializer);
-        match tag_ {
-            0 => {
-                let mut var_field0 =
-                    <crate::models::TokensPaymentDetails>::sse_decode(deserializer);
-                return crate::models::SparkAddressPaymentType::TokensPayment(var_field0);
-            }
-            1 => {
-                let mut var_field0 = <crate::models::SatsPaymentDetails>::sse_decode(deserializer);
-                return crate::models::SparkAddressPaymentType::SatsPayment(var_field0);
-            }
-            _ => {
-                unimplemented!("");
-            }
-        }
+        let mut var_invoice = <String>::sse_decode(deserializer);
+        let mut var_identityPublicKey = <String>::sse_decode(deserializer);
+        let mut var_network = <crate::models::BitcoinNetwork>::sse_decode(deserializer);
+        let mut var_amount = <Option<u128>>::sse_decode(deserializer);
+        let mut var_tokenIdentifier = <Option<String>>::sse_decode(deserializer);
+        let mut var_expiryTime = <Option<u64>>::sse_decode(deserializer);
+        let mut var_description = <Option<String>>::sse_decode(deserializer);
+        let mut var_senderPublicKey = <Option<String>>::sse_decode(deserializer);
+        return crate::models::SparkInvoiceDetails {
+            invoice: var_invoice,
+            identity_public_key: var_identityPublicKey,
+            network: var_network,
+            amount: var_amount,
+            token_identifier: var_tokenIdentifier,
+            expiry_time: var_expiryTime,
+            description: var_description,
+            sender_public_key: var_senderPublicKey,
+        };
     }
 }
 
-impl SseDecode for crate::models::SparkInvoiceFields {
+impl SseDecode for crate::models::SparkInvoicePaymentDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut var_id = <String>::sse_decode(deserializer);
-        let mut var_version = <u32>::sse_decode(deserializer);
-        let mut var_memo = <Option<String>>::sse_decode(deserializer);
-        let mut var_senderPublicKey = <Option<String>>::sse_decode(deserializer);
-        let mut var_expiryTime = <Option<u64>>::sse_decode(deserializer);
-        let mut var_paymentType =
-            <Option<crate::models::SparkAddressPaymentType>>::sse_decode(deserializer);
-        return crate::models::SparkInvoiceFields {
-            id: var_id,
-            version: var_version,
-            memo: var_memo,
-            sender_public_key: var_senderPublicKey,
-            expiry_time: var_expiryTime,
-            payment_type: var_paymentType,
+        let mut var_description = <Option<String>>::sse_decode(deserializer);
+        let mut var_invoice = <String>::sse_decode(deserializer);
+        return crate::models::SparkInvoicePaymentDetails {
+            description: var_description,
+            invoice: var_invoice,
         };
     }
 }
@@ -4865,18 +5196,6 @@ impl SseDecode for crate::models::TokenMetadata {
     }
 }
 
-impl SseDecode for crate::models::TokensPaymentDetails {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut var_tokenIdentifier = <Option<String>>::sse_decode(deserializer);
-        let mut var_amount = <Option<u128>>::sse_decode(deserializer);
-        return crate::models::TokensPaymentDetails {
-            token_identifier: var_tokenIdentifier,
-            amount: var_amount,
-        };
-    }
-}
-
 impl SseDecode for u16 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -4988,53 +5307,58 @@ fn pde_ffi_dispatcher_primary_impl(
             rust_vec_len,
             data_len,
         ),
-        3 => wire__crate__sdk__BreezSdk_claim_deposit_impl(port, ptr, rust_vec_len, data_len),
-        4 => wire__crate__sdk__BreezSdk_delete_lightning_address_impl(
+        3 => wire__crate__sdk__BreezSdk_check_message_impl(port, ptr, rust_vec_len, data_len),
+        4 => wire__crate__sdk__BreezSdk_claim_deposit_impl(port, ptr, rust_vec_len, data_len),
+        5 => wire__crate__sdk__BreezSdk_delete_lightning_address_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        5 => wire__crate__sdk__BreezSdk_disconnect_impl(port, ptr, rust_vec_len, data_len),
-        6 => wire__crate__sdk__BreezSdk_get_info_impl(port, ptr, rust_vec_len, data_len),
-        7 => {
+        6 => wire__crate__sdk__BreezSdk_disconnect_impl(port, ptr, rust_vec_len, data_len),
+        7 => wire__crate__sdk__BreezSdk_get_info_impl(port, ptr, rust_vec_len, data_len),
+        8 => {
             wire__crate__sdk__BreezSdk_get_lightning_address_impl(port, ptr, rust_vec_len, data_len)
         }
-        8 => wire__crate__sdk__BreezSdk_get_payment_impl(port, ptr, rust_vec_len, data_len),
-        9 => wire__crate__sdk__BreezSdk_get_tokens_metadata_impl(port, ptr, rust_vec_len, data_len),
+        9 => wire__crate__sdk__BreezSdk_get_payment_impl(port, ptr, rust_vec_len, data_len),
         10 => {
+            wire__crate__sdk__BreezSdk_get_tokens_metadata_impl(port, ptr, rust_vec_len, data_len)
+        }
+        11 => {
             wire__crate__sdk__BreezSdk_list_fiat_currencies_impl(port, ptr, rust_vec_len, data_len)
         }
-        11 => wire__crate__sdk__BreezSdk_list_fiat_rates_impl(port, ptr, rust_vec_len, data_len),
-        12 => wire__crate__sdk__BreezSdk_list_payments_impl(port, ptr, rust_vec_len, data_len),
-        13 => wire__crate__sdk__BreezSdk_list_unclaimed_deposits_impl(
+        12 => wire__crate__sdk__BreezSdk_list_fiat_rates_impl(port, ptr, rust_vec_len, data_len),
+        13 => wire__crate__sdk__BreezSdk_list_payments_impl(port, ptr, rust_vec_len, data_len),
+        14 => wire__crate__sdk__BreezSdk_list_unclaimed_deposits_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        14 => wire__crate__sdk__BreezSdk_lnurl_pay_impl(port, ptr, rust_vec_len, data_len),
-        15 => wire__crate__sdk__BreezSdk_parse_impl(port, ptr, rust_vec_len, data_len),
-        16 => wire__crate__sdk__BreezSdk_prepare_lnurl_pay_impl(port, ptr, rust_vec_len, data_len),
-        17 => {
+        15 => wire__crate__sdk__BreezSdk_lnurl_pay_impl(port, ptr, rust_vec_len, data_len),
+        16 => wire__crate__sdk__BreezSdk_lnurl_withdraw_impl(port, ptr, rust_vec_len, data_len),
+        17 => wire__crate__sdk__BreezSdk_parse_impl(port, ptr, rust_vec_len, data_len),
+        18 => wire__crate__sdk__BreezSdk_prepare_lnurl_pay_impl(port, ptr, rust_vec_len, data_len),
+        19 => {
             wire__crate__sdk__BreezSdk_prepare_send_payment_impl(port, ptr, rust_vec_len, data_len)
         }
-        18 => wire__crate__sdk__BreezSdk_receive_payment_impl(port, ptr, rust_vec_len, data_len),
-        19 => wire__crate__sdk__BreezSdk_refund_deposit_impl(port, ptr, rust_vec_len, data_len),
-        20 => wire__crate__sdk__BreezSdk_register_lightning_address_impl(
+        20 => wire__crate__sdk__BreezSdk_receive_payment_impl(port, ptr, rust_vec_len, data_len),
+        21 => wire__crate__sdk__BreezSdk_refund_deposit_impl(port, ptr, rust_vec_len, data_len),
+        22 => wire__crate__sdk__BreezSdk_register_lightning_address_impl(
             port,
             ptr,
             rust_vec_len,
             data_len,
         ),
-        21 => {
+        23 => {
             wire__crate__sdk__BreezSdk_remove_event_listener_impl(port, ptr, rust_vec_len, data_len)
         }
-        22 => wire__crate__sdk__BreezSdk_send_payment_impl(port, ptr, rust_vec_len, data_len),
-        23 => wire__crate__sdk__BreezSdk_sync_wallet_impl(port, ptr, rust_vec_len, data_len),
-        24 => wire__crate__sdk__BreezSdk_wait_for_payment_impl(port, ptr, rust_vec_len, data_len),
-        25 => wire__crate__sdk_builder__SdkBuilder_build_impl(port, ptr, rust_vec_len, data_len),
-        29 => wire__crate__sdk__connect_impl(port, ptr, rust_vec_len, data_len),
+        24 => wire__crate__sdk__BreezSdk_send_payment_impl(port, ptr, rust_vec_len, data_len),
+        25 => wire__crate__sdk__BreezSdk_sign_message_impl(port, ptr, rust_vec_len, data_len),
+        26 => wire__crate__sdk__BreezSdk_sync_wallet_impl(port, ptr, rust_vec_len, data_len),
+        27 => wire__crate__sdk__BreezSdk_wait_for_payment_impl(port, ptr, rust_vec_len, data_len),
+        28 => wire__crate__sdk_builder__SdkBuilder_build_impl(port, ptr, rust_vec_len, data_len),
+        32 => wire__crate__sdk__connect_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -5047,16 +5371,16 @@ fn pde_ffi_dispatcher_sync_impl(
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
-        26 => wire__crate__sdk_builder__SdkBuilder_new_impl(ptr, rust_vec_len, data_len),
-        27 => wire__crate__sdk_builder__SdkBuilder_with_key_set_impl(ptr, rust_vec_len, data_len),
-        28 => wire__crate__sdk_builder__SdkBuilder_with_rest_chain_service_impl(
+        29 => wire__crate__sdk_builder__SdkBuilder_new_impl(ptr, rust_vec_len, data_len),
+        30 => wire__crate__sdk_builder__SdkBuilder_with_key_set_impl(ptr, rust_vec_len, data_len),
+        31 => wire__crate__sdk_builder__SdkBuilder_with_rest_chain_service_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        30 => wire__crate__sdk__default_config_impl(ptr, rust_vec_len, data_len),
-        31 => wire__crate__sdk__default_storage_impl(ptr, rust_vec_len, data_len),
-        32 => wire__crate__sdk__init_logging_impl(ptr, rust_vec_len, data_len),
+        33 => wire__crate__sdk__default_config_impl(ptr, rust_vec_len, data_len),
+        34 => wire__crate__sdk__default_storage_impl(ptr, rust_vec_len, data_len),
+        35 => wire__crate__sdk__init_logging_impl(ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -5572,6 +5896,45 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::CheckLightningA
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::CheckMessageRequest> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.message.into_into_dart().into_dart(),
+            self.0.pubkey.into_into_dart().into_dart(),
+            self.0.signature.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::CheckMessageRequest>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::CheckMessageRequest>>
+    for crate::models::CheckMessageRequest
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::CheckMessageRequest> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::CheckMessageResponse> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [self.0.is_valid.into_into_dart().into_dart()].into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::CheckMessageResponse>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::CheckMessageResponse>>
+    for crate::models::CheckMessageResponse
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::CheckMessageResponse> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::ClaimDepositRequest> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
@@ -5997,6 +6360,9 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::InputType> {
             crate::models::InputType::SparkAddress(field0) => {
                 [12.into_dart(), field0.into_into_dart().into_dart()].into_dart()
             }
+            crate::models::InputType::SparkInvoice(field0) => {
+                [13.into_dart(), field0.into_into_dart().into_dart()].into_dart()
+            }
             _ => {
                 unimplemented!("");
             }
@@ -6310,6 +6676,45 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlPayRespons
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::LnurlWithdrawInfo> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [self.0.withdraw_url.into_into_dart().into_dart()].into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::LnurlWithdrawInfo>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlWithdrawInfo>>
+    for crate::models::LnurlWithdrawInfo
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::LnurlWithdrawInfo> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::LnurlWithdrawRequest> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.amount_sats.into_into_dart().into_dart(),
+            self.0.withdraw_request.into_into_dart().into_dart(),
+            self.0.completion_timeout_secs.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::LnurlWithdrawRequest>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlWithdrawRequest>>
+    for crate::models::LnurlWithdrawRequest
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::LnurlWithdrawRequest> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::LnurlWithdrawRequestDetails> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
@@ -6330,6 +6735,27 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlWithdrawRe
     for crate::models::LnurlWithdrawRequestDetails
 {
     fn into_into_dart(self) -> FrbWrapper<crate::models::LnurlWithdrawRequestDetails> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::LnurlWithdrawResponse> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.payment_request.into_into_dart().into_dart(),
+            self.0.payment.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::LnurlWithdrawResponse>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlWithdrawResponse>>
+    for crate::models::LnurlWithdrawResponse
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::LnurlWithdrawResponse> {
         self.into()
     }
 }
@@ -6488,11 +6914,18 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::Payment>>
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::PaymentDetails> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         match self.0 {
-            crate::models::PaymentDetails::Spark => [0.into_dart()].into_dart(),
-            crate::models::PaymentDetails::Token { metadata, tx_hash } => [
+            crate::models::PaymentDetails::Spark { invoice_details } => {
+                [0.into_dart(), invoice_details.into_into_dart().into_dart()].into_dart()
+            }
+            crate::models::PaymentDetails::Token {
+                metadata,
+                tx_hash,
+                invoice_details,
+            } => [
                 1.into_dart(),
                 metadata.into_into_dart().into_dart(),
                 tx_hash.into_into_dart().into_dart(),
+                invoice_details.into_into_dart().into_dart(),
             ]
             .into_dart(),
             crate::models::PaymentDetails::Lightning {
@@ -6502,6 +6935,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::PaymentDetails>
                 payment_hash,
                 destination_pubkey,
                 lnurl_pay_info,
+                lnurl_withdraw_info,
             } => [
                 2.into_dart(),
                 description.into_into_dart().into_dart(),
@@ -6510,6 +6944,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::PaymentDetails>
                 payment_hash.into_into_dart().into_dart(),
                 destination_pubkey.into_into_dart().into_dart(),
                 lnurl_pay_info.into_into_dart().into_dart(),
+                lnurl_withdraw_info.into_into_dart().into_dart(),
             ]
             .into_dart(),
             crate::models::PaymentDetails::Withdraw { tx_id } => {
@@ -6743,12 +7178,27 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::ReceivePaymentM
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         match self.0 {
             crate::models::ReceivePaymentMethod::SparkAddress => [0.into_dart()].into_dart(),
-            crate::models::ReceivePaymentMethod::BitcoinAddress => [1.into_dart()].into_dart(),
+            crate::models::ReceivePaymentMethod::SparkInvoice {
+                amount,
+                token_identifier,
+                expiry_time,
+                description,
+                sender_public_key,
+            } => [
+                1.into_dart(),
+                amount.into_into_dart().into_dart(),
+                token_identifier.into_into_dart().into_dart(),
+                expiry_time.into_into_dart().into_dart(),
+                description.into_into_dart().into_dart(),
+                sender_public_key.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
+            crate::models::ReceivePaymentMethod::BitcoinAddress => [2.into_dart()].into_dart(),
             crate::models::ReceivePaymentMethod::Bolt11Invoice {
                 description,
                 amount_sats,
             } => [
-                2.into_dart(),
+                3.into_dart(),
                 description.into_into_dart().into_dart(),
                 amount_sats.into_into_dart().into_dart(),
             ]
@@ -6792,7 +7242,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::ReceivePaymentR
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
             self.0.payment_request.into_into_dart().into_dart(),
-            self.0.fee_sats.into_into_dart().into_dart(),
+            self.0.fee.into_into_dart().into_dart(),
         ]
         .into_dart()
     }
@@ -6870,23 +7320,6 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::RegisterLightni
     for crate::models::RegisterLightningAddressRequest
 {
     fn into_into_dart(self) -> FrbWrapper<crate::models::RegisterLightningAddressRequest> {
-        self.into()
-    }
-}
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SatsPaymentDetails> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        [self.0.amount.into_into_dart().into_dart()].into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::models::SatsPaymentDetails>
-{
-}
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SatsPaymentDetails>>
-    for crate::models::SatsPaymentDetails
-{
-    fn into_into_dart(self) -> FrbWrapper<crate::models::SatsPaymentDetails> {
         self.into()
     }
 }
@@ -7098,6 +7531,17 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SendPaymentMeth
                 token_identifier.into_into_dart().into_dart(),
             ]
             .into_dart(),
+            crate::models::SendPaymentMethod::SparkInvoice {
+                spark_invoice_details,
+                fee,
+                token_identifier,
+            } => [
+                3.into_dart(),
+                spark_invoice_details.into_into_dart().into_dart(),
+                fee.into_into_dart().into_dart(),
+                token_identifier.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
             _ => {
                 unimplemented!("");
             }
@@ -7189,6 +7633,48 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SendPaymentResp
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SignMessageRequest> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.message.into_into_dart().into_dart(),
+            self.0.compact.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::SignMessageRequest>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SignMessageRequest>>
+    for crate::models::SignMessageRequest
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::SignMessageRequest> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SignMessageResponse> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.pubkey.into_into_dart().into_dart(),
+            self.0.signature.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::SignMessageResponse>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SignMessageResponse>>
+    for crate::models::SignMessageResponse
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::SignMessageResponse> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SilentPaymentAddressDetails> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
@@ -7211,34 +7697,12 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SilentPaymentAd
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SparkAddress> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        [
-            self.0.identity_public_key.into_into_dart().into_dart(),
-            self.0.network.into_into_dart().into_dart(),
-            self.0.spark_invoice_fields.into_into_dart().into_dart(),
-            self.0.signature.into_into_dart().into_dart(),
-        ]
-        .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::models::SparkAddress>
-{
-}
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SparkAddress>>
-    for crate::models::SparkAddress
-{
-    fn into_into_dart(self) -> FrbWrapper<crate::models::SparkAddress> {
-        self.into()
-    }
-}
-// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SparkAddressDetails> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
             self.0.address.into_into_dart().into_dart(),
-            self.0.decoded_address.into_into_dart().into_dart(),
+            self.0.identity_public_key.into_into_dart().into_dart(),
+            self.0.network.into_into_dart().into_dart(),
             self.0.source.into_into_dart().into_dart(),
         ]
         .into_dart()
@@ -7256,54 +7720,50 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SparkAddressDet
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SparkAddressPaymentType> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        match self.0 {
-            crate::models::SparkAddressPaymentType::TokensPayment(field0) => {
-                [0.into_dart(), field0.into_into_dart().into_dart()].into_dart()
-            }
-            crate::models::SparkAddressPaymentType::SatsPayment(field0) => {
-                [1.into_dart(), field0.into_into_dart().into_dart()].into_dart()
-            }
-            _ => {
-                unimplemented!("");
-            }
-        }
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::models::SparkAddressPaymentType>
-{
-}
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SparkAddressPaymentType>>
-    for crate::models::SparkAddressPaymentType
-{
-    fn into_into_dart(self) -> FrbWrapper<crate::models::SparkAddressPaymentType> {
-        self.into()
-    }
-}
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SparkInvoiceFields> {
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SparkInvoiceDetails> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
-            self.0.id.into_into_dart().into_dart(),
-            self.0.version.into_into_dart().into_dart(),
-            self.0.memo.into_into_dart().into_dart(),
-            self.0.sender_public_key.into_into_dart().into_dart(),
+            self.0.invoice.into_into_dart().into_dart(),
+            self.0.identity_public_key.into_into_dart().into_dart(),
+            self.0.network.into_into_dart().into_dart(),
+            self.0.amount.into_into_dart().into_dart(),
+            self.0.token_identifier.into_into_dart().into_dart(),
             self.0.expiry_time.into_into_dart().into_dart(),
-            self.0.payment_type.into_into_dart().into_dart(),
+            self.0.description.into_into_dart().into_dart(),
+            self.0.sender_public_key.into_into_dart().into_dart(),
         ]
         .into_dart()
     }
 }
 impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::models::SparkInvoiceFields>
+    for FrbWrapper<crate::models::SparkInvoiceDetails>
 {
 }
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SparkInvoiceFields>>
-    for crate::models::SparkInvoiceFields
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SparkInvoiceDetails>>
+    for crate::models::SparkInvoiceDetails
 {
-    fn into_into_dart(self) -> FrbWrapper<crate::models::SparkInvoiceFields> {
+    fn into_into_dart(self) -> FrbWrapper<crate::models::SparkInvoiceDetails> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::SparkInvoicePaymentDetails> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.description.into_into_dart().into_dart(),
+            self.0.invoice.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::SparkInvoicePaymentDetails>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::SparkInvoicePaymentDetails>>
+    for crate::models::SparkInvoicePaymentDetails
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::SparkInvoicePaymentDetails> {
         self.into()
     }
 }
@@ -7468,27 +7928,6 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::TokenMetadata>>
     for crate::models::TokenMetadata
 {
     fn into_into_dart(self) -> FrbWrapper<crate::models::TokenMetadata> {
-        self.into()
-    }
-}
-// Codec=Dco (DartCObject based), see doc to use other codecs
-impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::TokensPaymentDetails> {
-    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
-        [
-            self.0.token_identifier.into_into_dart().into_dart(),
-            self.0.amount.into_into_dart().into_dart(),
-        ]
-        .into_dart()
-    }
-}
-impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
-    for FrbWrapper<crate::models::TokensPaymentDetails>
-{
-}
-impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::TokensPaymentDetails>>
-    for crate::models::TokensPaymentDetails
-{
-    fn into_into_dart(self) -> FrbWrapper<crate::models::TokensPaymentDetails> {
         self.into()
     }
 }
@@ -7915,6 +8354,22 @@ impl SseEncode for crate::models::CheckLightningAddressRequest {
     }
 }
 
+impl SseEncode for crate::models::CheckMessageRequest {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.message, serializer);
+        <String>::sse_encode(self.pubkey, serializer);
+        <String>::sse_encode(self.signature, serializer);
+    }
+}
+
+impl SseEncode for crate::models::CheckMessageResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_valid, serializer);
+    }
+}
+
 impl SseEncode for crate::models::ClaimDepositRequest {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8173,6 +8628,10 @@ impl SseEncode for crate::models::InputType {
             crate::models::InputType::SparkAddress(field0) => {
                 <i32>::sse_encode(12, serializer);
                 <crate::models::SparkAddressDetails>::sse_encode(field0, serializer);
+            }
+            crate::models::InputType::SparkInvoice(field0) => {
+                <i32>::sse_encode(13, serializer);
+                <crate::models::SparkInvoiceDetails>::sse_encode(field0, serializer);
             }
             _ => {
                 unimplemented!("");
@@ -8504,6 +8963,22 @@ impl SseEncode for crate::models::LnurlPayResponse {
     }
 }
 
+impl SseEncode for crate::models::LnurlWithdrawInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.withdraw_url, serializer);
+    }
+}
+
+impl SseEncode for crate::models::LnurlWithdrawRequest {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u64>::sse_encode(self.amount_sats, serializer);
+        <crate::models::LnurlWithdrawRequestDetails>::sse_encode(self.withdraw_request, serializer);
+        <Option<u32>>::sse_encode(self.completion_timeout_secs, serializer);
+    }
+}
+
 impl SseEncode for crate::models::LnurlWithdrawRequestDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8512,6 +8987,14 @@ impl SseEncode for crate::models::LnurlWithdrawRequestDetails {
         <String>::sse_encode(self.default_description, serializer);
         <u64>::sse_encode(self.min_withdrawable, serializer);
         <u64>::sse_encode(self.max_withdrawable, serializer);
+    }
+}
+
+impl SseEncode for crate::models::LnurlWithdrawResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.payment_request, serializer);
+        <Option<crate::models::Payment>>::sse_encode(self.payment, serializer);
     }
 }
 
@@ -8680,6 +9163,26 @@ impl SseEncode for Option<crate::models::LnurlPayInfo> {
     }
 }
 
+impl SseEncode for Option<crate::models::LnurlWithdrawInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::models::LnurlWithdrawInfo>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<crate::models::Payment> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::models::Payment>::sse_encode(value, serializer);
+        }
+    }
+}
+
 impl SseEncode for Option<crate::models::PaymentDetails> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8700,22 +9203,12 @@ impl SseEncode for Option<crate::models::SendPaymentOptions> {
     }
 }
 
-impl SseEncode for Option<crate::models::SparkAddressPaymentType> {
+impl SseEncode for Option<crate::models::SparkInvoicePaymentDetails> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <bool>::sse_encode(self.is_some(), serializer);
         if let Some(value) = self {
-            <crate::models::SparkAddressPaymentType>::sse_encode(value, serializer);
-        }
-    }
-}
-
-impl SseEncode for Option<crate::models::SparkInvoiceFields> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <bool>::sse_encode(self.is_some(), serializer);
-        if let Some(value) = self {
-            <crate::models::SparkInvoiceFields>::sse_encode(value, serializer);
+            <crate::models::SparkInvoicePaymentDetails>::sse_encode(value, serializer);
         }
     }
 }
@@ -8818,13 +9311,25 @@ impl SseEncode for crate::models::PaymentDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         match self {
-            crate::models::PaymentDetails::Spark => {
+            crate::models::PaymentDetails::Spark { invoice_details } => {
                 <i32>::sse_encode(0, serializer);
+                <Option<crate::models::SparkInvoicePaymentDetails>>::sse_encode(
+                    invoice_details,
+                    serializer,
+                );
             }
-            crate::models::PaymentDetails::Token { metadata, tx_hash } => {
+            crate::models::PaymentDetails::Token {
+                metadata,
+                tx_hash,
+                invoice_details,
+            } => {
                 <i32>::sse_encode(1, serializer);
                 <crate::models::TokenMetadata>::sse_encode(metadata, serializer);
                 <String>::sse_encode(tx_hash, serializer);
+                <Option<crate::models::SparkInvoicePaymentDetails>>::sse_encode(
+                    invoice_details,
+                    serializer,
+                );
             }
             crate::models::PaymentDetails::Lightning {
                 description,
@@ -8833,6 +9338,7 @@ impl SseEncode for crate::models::PaymentDetails {
                 payment_hash,
                 destination_pubkey,
                 lnurl_pay_info,
+                lnurl_withdraw_info,
             } => {
                 <i32>::sse_encode(2, serializer);
                 <Option<String>>::sse_encode(description, serializer);
@@ -8841,6 +9347,10 @@ impl SseEncode for crate::models::PaymentDetails {
                 <String>::sse_encode(payment_hash, serializer);
                 <String>::sse_encode(destination_pubkey, serializer);
                 <Option<crate::models::LnurlPayInfo>>::sse_encode(lnurl_pay_info, serializer);
+                <Option<crate::models::LnurlWithdrawInfo>>::sse_encode(
+                    lnurl_withdraw_info,
+                    serializer,
+                );
             }
             crate::models::PaymentDetails::Withdraw { tx_id } => {
                 <i32>::sse_encode(3, serializer);
@@ -8973,14 +9483,28 @@ impl SseEncode for crate::models::ReceivePaymentMethod {
             crate::models::ReceivePaymentMethod::SparkAddress => {
                 <i32>::sse_encode(0, serializer);
             }
-            crate::models::ReceivePaymentMethod::BitcoinAddress => {
+            crate::models::ReceivePaymentMethod::SparkInvoice {
+                amount,
+                token_identifier,
+                expiry_time,
+                description,
+                sender_public_key,
+            } => {
                 <i32>::sse_encode(1, serializer);
+                <Option<u128>>::sse_encode(amount, serializer);
+                <Option<String>>::sse_encode(token_identifier, serializer);
+                <Option<u64>>::sse_encode(expiry_time, serializer);
+                <Option<String>>::sse_encode(description, serializer);
+                <Option<String>>::sse_encode(sender_public_key, serializer);
+            }
+            crate::models::ReceivePaymentMethod::BitcoinAddress => {
+                <i32>::sse_encode(2, serializer);
             }
             crate::models::ReceivePaymentMethod::Bolt11Invoice {
                 description,
                 amount_sats,
             } => {
-                <i32>::sse_encode(2, serializer);
+                <i32>::sse_encode(3, serializer);
                 <String>::sse_encode(description, serializer);
                 <Option<u64>>::sse_encode(amount_sats, serializer);
             }
@@ -9002,7 +9526,7 @@ impl SseEncode for crate::models::ReceivePaymentResponse {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <String>::sse_encode(self.payment_request, serializer);
-        <u64>::sse_encode(self.fee_sats, serializer);
+        <u128>::sse_encode(self.fee, serializer);
     }
 }
 
@@ -9037,13 +9561,6 @@ impl SseEncode for crate::models::RegisterLightningAddressRequest {
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <String>::sse_encode(self.username, serializer);
         <Option<String>>::sse_encode(self.description, serializer);
-    }
-}
-
-impl SseEncode for crate::models::SatsPaymentDetails {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <Option<u64>>::sse_encode(self.amount, serializer);
     }
 }
 
@@ -9208,6 +9725,16 @@ impl SseEncode for crate::models::SendPaymentMethod {
                 <u128>::sse_encode(fee, serializer);
                 <Option<String>>::sse_encode(token_identifier, serializer);
             }
+            crate::models::SendPaymentMethod::SparkInvoice {
+                spark_invoice_details,
+                fee,
+                token_identifier,
+            } => {
+                <i32>::sse_encode(3, serializer);
+                <crate::models::SparkInvoiceDetails>::sse_encode(spark_invoice_details, serializer);
+                <u128>::sse_encode(fee, serializer);
+                <Option<String>>::sse_encode(token_identifier, serializer);
+            }
             _ => {
                 unimplemented!("");
             }
@@ -9256,6 +9783,22 @@ impl SseEncode for crate::models::SendPaymentResponse {
     }
 }
 
+impl SseEncode for crate::models::SignMessageRequest {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.message, serializer);
+        <bool>::sse_encode(self.compact, serializer);
+    }
+}
+
+impl SseEncode for crate::models::SignMessageResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.pubkey, serializer);
+        <String>::sse_encode(self.signature, serializer);
+    }
+}
+
 impl SseEncode for crate::models::SilentPaymentAddressDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -9265,56 +9808,35 @@ impl SseEncode for crate::models::SilentPaymentAddressDetails {
     }
 }
 
-impl SseEncode for crate::models::SparkAddress {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <String>::sse_encode(self.identity_public_key, serializer);
-        <crate::models::BitcoinNetwork>::sse_encode(self.network, serializer);
-        <Option<crate::models::SparkInvoiceFields>>::sse_encode(
-            self.spark_invoice_fields,
-            serializer,
-        );
-        <Option<String>>::sse_encode(self.signature, serializer);
-    }
-}
-
 impl SseEncode for crate::models::SparkAddressDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <String>::sse_encode(self.address, serializer);
-        <crate::models::SparkAddress>::sse_encode(self.decoded_address, serializer);
+        <String>::sse_encode(self.identity_public_key, serializer);
+        <crate::models::BitcoinNetwork>::sse_encode(self.network, serializer);
         <crate::models::PaymentRequestSource>::sse_encode(self.source, serializer);
     }
 }
 
-impl SseEncode for crate::models::SparkAddressPaymentType {
+impl SseEncode for crate::models::SparkInvoiceDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        match self {
-            crate::models::SparkAddressPaymentType::TokensPayment(field0) => {
-                <i32>::sse_encode(0, serializer);
-                <crate::models::TokensPaymentDetails>::sse_encode(field0, serializer);
-            }
-            crate::models::SparkAddressPaymentType::SatsPayment(field0) => {
-                <i32>::sse_encode(1, serializer);
-                <crate::models::SatsPaymentDetails>::sse_encode(field0, serializer);
-            }
-            _ => {
-                unimplemented!("");
-            }
-        }
+        <String>::sse_encode(self.invoice, serializer);
+        <String>::sse_encode(self.identity_public_key, serializer);
+        <crate::models::BitcoinNetwork>::sse_encode(self.network, serializer);
+        <Option<u128>>::sse_encode(self.amount, serializer);
+        <Option<String>>::sse_encode(self.token_identifier, serializer);
+        <Option<u64>>::sse_encode(self.expiry_time, serializer);
+        <Option<String>>::sse_encode(self.description, serializer);
+        <Option<String>>::sse_encode(self.sender_public_key, serializer);
     }
 }
 
-impl SseEncode for crate::models::SparkInvoiceFields {
+impl SseEncode for crate::models::SparkInvoicePaymentDetails {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <String>::sse_encode(self.id, serializer);
-        <u32>::sse_encode(self.version, serializer);
-        <Option<String>>::sse_encode(self.memo, serializer);
-        <Option<String>>::sse_encode(self.sender_public_key, serializer);
-        <Option<u64>>::sse_encode(self.expiry_time, serializer);
-        <Option<crate::models::SparkAddressPaymentType>>::sse_encode(self.payment_type, serializer);
+        <Option<String>>::sse_encode(self.description, serializer);
+        <String>::sse_encode(self.invoice, serializer);
     }
 }
 
@@ -9402,14 +9924,6 @@ impl SseEncode for crate::models::TokenMetadata {
         <u32>::sse_encode(self.decimals, serializer);
         <u128>::sse_encode(self.max_supply, serializer);
         <bool>::sse_encode(self.is_freezable, serializer);
-    }
-}
-
-impl SseEncode for crate::models::TokensPaymentDetails {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <Option<String>>::sse_encode(self.token_identifier, serializer);
-        <Option<u128>>::sse_encode(self.amount, serializer);
     }
 }
 

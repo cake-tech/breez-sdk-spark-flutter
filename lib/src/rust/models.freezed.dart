@@ -1191,7 +1191,7 @@ extension InputTypePatterns on InputType {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( InputType_BitcoinAddress value)?  bitcoinAddress,TResult Function( InputType_Bolt11Invoice value)?  bolt11Invoice,TResult Function( InputType_Bolt12Invoice value)?  bolt12Invoice,TResult Function( InputType_Bolt12Offer value)?  bolt12Offer,TResult Function( InputType_LightningAddress value)?  lightningAddress,TResult Function( InputType_LnurlPay value)?  lnurlPay,TResult Function( InputType_SilentPaymentAddress value)?  silentPaymentAddress,TResult Function( InputType_LnurlAuth value)?  lnurlAuth,TResult Function( InputType_Url value)?  url,TResult Function( InputType_Bip21 value)?  bip21,TResult Function( InputType_Bolt12InvoiceRequest value)?  bolt12InvoiceRequest,TResult Function( InputType_LnurlWithdraw value)?  lnurlWithdraw,TResult Function( InputType_SparkAddress value)?  sparkAddress,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( InputType_BitcoinAddress value)?  bitcoinAddress,TResult Function( InputType_Bolt11Invoice value)?  bolt11Invoice,TResult Function( InputType_Bolt12Invoice value)?  bolt12Invoice,TResult Function( InputType_Bolt12Offer value)?  bolt12Offer,TResult Function( InputType_LightningAddress value)?  lightningAddress,TResult Function( InputType_LnurlPay value)?  lnurlPay,TResult Function( InputType_SilentPaymentAddress value)?  silentPaymentAddress,TResult Function( InputType_LnurlAuth value)?  lnurlAuth,TResult Function( InputType_Url value)?  url,TResult Function( InputType_Bip21 value)?  bip21,TResult Function( InputType_Bolt12InvoiceRequest value)?  bolt12InvoiceRequest,TResult Function( InputType_LnurlWithdraw value)?  lnurlWithdraw,TResult Function( InputType_SparkAddress value)?  sparkAddress,TResult Function( InputType_SparkInvoice value)?  sparkInvoice,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case InputType_BitcoinAddress() when bitcoinAddress != null:
@@ -1207,7 +1207,8 @@ return url(_that);case InputType_Bip21() when bip21 != null:
 return bip21(_that);case InputType_Bolt12InvoiceRequest() when bolt12InvoiceRequest != null:
 return bolt12InvoiceRequest(_that);case InputType_LnurlWithdraw() when lnurlWithdraw != null:
 return lnurlWithdraw(_that);case InputType_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that);case _:
+return sparkAddress(_that);case InputType_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that);case _:
   return orElse();
 
 }
@@ -1225,7 +1226,7 @@ return sparkAddress(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( InputType_BitcoinAddress value)  bitcoinAddress,required TResult Function( InputType_Bolt11Invoice value)  bolt11Invoice,required TResult Function( InputType_Bolt12Invoice value)  bolt12Invoice,required TResult Function( InputType_Bolt12Offer value)  bolt12Offer,required TResult Function( InputType_LightningAddress value)  lightningAddress,required TResult Function( InputType_LnurlPay value)  lnurlPay,required TResult Function( InputType_SilentPaymentAddress value)  silentPaymentAddress,required TResult Function( InputType_LnurlAuth value)  lnurlAuth,required TResult Function( InputType_Url value)  url,required TResult Function( InputType_Bip21 value)  bip21,required TResult Function( InputType_Bolt12InvoiceRequest value)  bolt12InvoiceRequest,required TResult Function( InputType_LnurlWithdraw value)  lnurlWithdraw,required TResult Function( InputType_SparkAddress value)  sparkAddress,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( InputType_BitcoinAddress value)  bitcoinAddress,required TResult Function( InputType_Bolt11Invoice value)  bolt11Invoice,required TResult Function( InputType_Bolt12Invoice value)  bolt12Invoice,required TResult Function( InputType_Bolt12Offer value)  bolt12Offer,required TResult Function( InputType_LightningAddress value)  lightningAddress,required TResult Function( InputType_LnurlPay value)  lnurlPay,required TResult Function( InputType_SilentPaymentAddress value)  silentPaymentAddress,required TResult Function( InputType_LnurlAuth value)  lnurlAuth,required TResult Function( InputType_Url value)  url,required TResult Function( InputType_Bip21 value)  bip21,required TResult Function( InputType_Bolt12InvoiceRequest value)  bolt12InvoiceRequest,required TResult Function( InputType_LnurlWithdraw value)  lnurlWithdraw,required TResult Function( InputType_SparkAddress value)  sparkAddress,required TResult Function( InputType_SparkInvoice value)  sparkInvoice,}){
 final _that = this;
 switch (_that) {
 case InputType_BitcoinAddress():
@@ -1241,7 +1242,8 @@ return url(_that);case InputType_Bip21():
 return bip21(_that);case InputType_Bolt12InvoiceRequest():
 return bolt12InvoiceRequest(_that);case InputType_LnurlWithdraw():
 return lnurlWithdraw(_that);case InputType_SparkAddress():
-return sparkAddress(_that);}
+return sparkAddress(_that);case InputType_SparkInvoice():
+return sparkInvoice(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -1255,7 +1257,7 @@ return sparkAddress(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( InputType_BitcoinAddress value)?  bitcoinAddress,TResult? Function( InputType_Bolt11Invoice value)?  bolt11Invoice,TResult? Function( InputType_Bolt12Invoice value)?  bolt12Invoice,TResult? Function( InputType_Bolt12Offer value)?  bolt12Offer,TResult? Function( InputType_LightningAddress value)?  lightningAddress,TResult? Function( InputType_LnurlPay value)?  lnurlPay,TResult? Function( InputType_SilentPaymentAddress value)?  silentPaymentAddress,TResult? Function( InputType_LnurlAuth value)?  lnurlAuth,TResult? Function( InputType_Url value)?  url,TResult? Function( InputType_Bip21 value)?  bip21,TResult? Function( InputType_Bolt12InvoiceRequest value)?  bolt12InvoiceRequest,TResult? Function( InputType_LnurlWithdraw value)?  lnurlWithdraw,TResult? Function( InputType_SparkAddress value)?  sparkAddress,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( InputType_BitcoinAddress value)?  bitcoinAddress,TResult? Function( InputType_Bolt11Invoice value)?  bolt11Invoice,TResult? Function( InputType_Bolt12Invoice value)?  bolt12Invoice,TResult? Function( InputType_Bolt12Offer value)?  bolt12Offer,TResult? Function( InputType_LightningAddress value)?  lightningAddress,TResult? Function( InputType_LnurlPay value)?  lnurlPay,TResult? Function( InputType_SilentPaymentAddress value)?  silentPaymentAddress,TResult? Function( InputType_LnurlAuth value)?  lnurlAuth,TResult? Function( InputType_Url value)?  url,TResult? Function( InputType_Bip21 value)?  bip21,TResult? Function( InputType_Bolt12InvoiceRequest value)?  bolt12InvoiceRequest,TResult? Function( InputType_LnurlWithdraw value)?  lnurlWithdraw,TResult? Function( InputType_SparkAddress value)?  sparkAddress,TResult? Function( InputType_SparkInvoice value)?  sparkInvoice,}){
 final _that = this;
 switch (_that) {
 case InputType_BitcoinAddress() when bitcoinAddress != null:
@@ -1271,7 +1273,8 @@ return url(_that);case InputType_Bip21() when bip21 != null:
 return bip21(_that);case InputType_Bolt12InvoiceRequest() when bolt12InvoiceRequest != null:
 return bolt12InvoiceRequest(_that);case InputType_LnurlWithdraw() when lnurlWithdraw != null:
 return lnurlWithdraw(_that);case InputType_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that);case _:
+return sparkAddress(_that);case InputType_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that);case _:
   return null;
 
 }
@@ -1288,7 +1291,7 @@ return sparkAddress(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( BitcoinAddressDetails field0)?  bitcoinAddress,TResult Function( Bolt11InvoiceDetails field0)?  bolt11Invoice,TResult Function( Bolt12InvoiceDetails field0)?  bolt12Invoice,TResult Function( Bolt12OfferDetails field0)?  bolt12Offer,TResult Function( LightningAddressDetails field0)?  lightningAddress,TResult Function( LnurlPayRequestDetails field0)?  lnurlPay,TResult Function( SilentPaymentAddressDetails field0)?  silentPaymentAddress,TResult Function( LnurlAuthRequestDetails field0)?  lnurlAuth,TResult Function( String field0)?  url,TResult Function( Bip21Details field0)?  bip21,TResult Function( Bolt12InvoiceRequestDetails field0)?  bolt12InvoiceRequest,TResult Function( LnurlWithdrawRequestDetails field0)?  lnurlWithdraw,TResult Function( SparkAddressDetails field0)?  sparkAddress,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( BitcoinAddressDetails field0)?  bitcoinAddress,TResult Function( Bolt11InvoiceDetails field0)?  bolt11Invoice,TResult Function( Bolt12InvoiceDetails field0)?  bolt12Invoice,TResult Function( Bolt12OfferDetails field0)?  bolt12Offer,TResult Function( LightningAddressDetails field0)?  lightningAddress,TResult Function( LnurlPayRequestDetails field0)?  lnurlPay,TResult Function( SilentPaymentAddressDetails field0)?  silentPaymentAddress,TResult Function( LnurlAuthRequestDetails field0)?  lnurlAuth,TResult Function( String field0)?  url,TResult Function( Bip21Details field0)?  bip21,TResult Function( Bolt12InvoiceRequestDetails field0)?  bolt12InvoiceRequest,TResult Function( LnurlWithdrawRequestDetails field0)?  lnurlWithdraw,TResult Function( SparkAddressDetails field0)?  sparkAddress,TResult Function( SparkInvoiceDetails field0)?  sparkInvoice,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case InputType_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that.field0);case InputType_Bolt11Invoice() when bolt11Invoice != null:
@@ -1303,7 +1306,8 @@ return url(_that.field0);case InputType_Bip21() when bip21 != null:
 return bip21(_that.field0);case InputType_Bolt12InvoiceRequest() when bolt12InvoiceRequest != null:
 return bolt12InvoiceRequest(_that.field0);case InputType_LnurlWithdraw() when lnurlWithdraw != null:
 return lnurlWithdraw(_that.field0);case InputType_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that.field0);case _:
+return sparkAddress(_that.field0);case InputType_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that.field0);case _:
   return orElse();
 
 }
@@ -1321,7 +1325,7 @@ return sparkAddress(_that.field0);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( BitcoinAddressDetails field0)  bitcoinAddress,required TResult Function( Bolt11InvoiceDetails field0)  bolt11Invoice,required TResult Function( Bolt12InvoiceDetails field0)  bolt12Invoice,required TResult Function( Bolt12OfferDetails field0)  bolt12Offer,required TResult Function( LightningAddressDetails field0)  lightningAddress,required TResult Function( LnurlPayRequestDetails field0)  lnurlPay,required TResult Function( SilentPaymentAddressDetails field0)  silentPaymentAddress,required TResult Function( LnurlAuthRequestDetails field0)  lnurlAuth,required TResult Function( String field0)  url,required TResult Function( Bip21Details field0)  bip21,required TResult Function( Bolt12InvoiceRequestDetails field0)  bolt12InvoiceRequest,required TResult Function( LnurlWithdrawRequestDetails field0)  lnurlWithdraw,required TResult Function( SparkAddressDetails field0)  sparkAddress,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( BitcoinAddressDetails field0)  bitcoinAddress,required TResult Function( Bolt11InvoiceDetails field0)  bolt11Invoice,required TResult Function( Bolt12InvoiceDetails field0)  bolt12Invoice,required TResult Function( Bolt12OfferDetails field0)  bolt12Offer,required TResult Function( LightningAddressDetails field0)  lightningAddress,required TResult Function( LnurlPayRequestDetails field0)  lnurlPay,required TResult Function( SilentPaymentAddressDetails field0)  silentPaymentAddress,required TResult Function( LnurlAuthRequestDetails field0)  lnurlAuth,required TResult Function( String field0)  url,required TResult Function( Bip21Details field0)  bip21,required TResult Function( Bolt12InvoiceRequestDetails field0)  bolt12InvoiceRequest,required TResult Function( LnurlWithdrawRequestDetails field0)  lnurlWithdraw,required TResult Function( SparkAddressDetails field0)  sparkAddress,required TResult Function( SparkInvoiceDetails field0)  sparkInvoice,}) {final _that = this;
 switch (_that) {
 case InputType_BitcoinAddress():
 return bitcoinAddress(_that.field0);case InputType_Bolt11Invoice():
@@ -1336,7 +1340,8 @@ return url(_that.field0);case InputType_Bip21():
 return bip21(_that.field0);case InputType_Bolt12InvoiceRequest():
 return bolt12InvoiceRequest(_that.field0);case InputType_LnurlWithdraw():
 return lnurlWithdraw(_that.field0);case InputType_SparkAddress():
-return sparkAddress(_that.field0);}
+return sparkAddress(_that.field0);case InputType_SparkInvoice():
+return sparkInvoice(_that.field0);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1350,7 +1355,7 @@ return sparkAddress(_that.field0);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( BitcoinAddressDetails field0)?  bitcoinAddress,TResult? Function( Bolt11InvoiceDetails field0)?  bolt11Invoice,TResult? Function( Bolt12InvoiceDetails field0)?  bolt12Invoice,TResult? Function( Bolt12OfferDetails field0)?  bolt12Offer,TResult? Function( LightningAddressDetails field0)?  lightningAddress,TResult? Function( LnurlPayRequestDetails field0)?  lnurlPay,TResult? Function( SilentPaymentAddressDetails field0)?  silentPaymentAddress,TResult? Function( LnurlAuthRequestDetails field0)?  lnurlAuth,TResult? Function( String field0)?  url,TResult? Function( Bip21Details field0)?  bip21,TResult? Function( Bolt12InvoiceRequestDetails field0)?  bolt12InvoiceRequest,TResult? Function( LnurlWithdrawRequestDetails field0)?  lnurlWithdraw,TResult? Function( SparkAddressDetails field0)?  sparkAddress,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( BitcoinAddressDetails field0)?  bitcoinAddress,TResult? Function( Bolt11InvoiceDetails field0)?  bolt11Invoice,TResult? Function( Bolt12InvoiceDetails field0)?  bolt12Invoice,TResult? Function( Bolt12OfferDetails field0)?  bolt12Offer,TResult? Function( LightningAddressDetails field0)?  lightningAddress,TResult? Function( LnurlPayRequestDetails field0)?  lnurlPay,TResult? Function( SilentPaymentAddressDetails field0)?  silentPaymentAddress,TResult? Function( LnurlAuthRequestDetails field0)?  lnurlAuth,TResult? Function( String field0)?  url,TResult? Function( Bip21Details field0)?  bip21,TResult? Function( Bolt12InvoiceRequestDetails field0)?  bolt12InvoiceRequest,TResult? Function( LnurlWithdrawRequestDetails field0)?  lnurlWithdraw,TResult? Function( SparkAddressDetails field0)?  sparkAddress,TResult? Function( SparkInvoiceDetails field0)?  sparkInvoice,}) {final _that = this;
 switch (_that) {
 case InputType_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that.field0);case InputType_Bolt11Invoice() when bolt11Invoice != null:
@@ -1365,7 +1370,8 @@ return url(_that.field0);case InputType_Bip21() when bip21 != null:
 return bip21(_that.field0);case InputType_Bolt12InvoiceRequest() when bolt12InvoiceRequest != null:
 return bolt12InvoiceRequest(_that.field0);case InputType_LnurlWithdraw() when lnurlWithdraw != null:
 return lnurlWithdraw(_that.field0);case InputType_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that.field0);case _:
+return sparkAddress(_that.field0);case InputType_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that.field0);case _:
   return null;
 
 }
@@ -2232,6 +2238,72 @@ as SparkAddressDetails,
 }
 
 /// @nodoc
+
+
+class InputType_SparkInvoice extends InputType {
+  const InputType_SparkInvoice(this.field0): super._();
+  
+
+@override final  SparkInvoiceDetails field0;
+
+/// Create a copy of InputType
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InputType_SparkInvoiceCopyWith<InputType_SparkInvoice> get copyWith => _$InputType_SparkInvoiceCopyWithImpl<InputType_SparkInvoice>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InputType_SparkInvoice&&(identical(other.field0, field0) || other.field0 == field0));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,field0);
+
+@override
+String toString() {
+  return 'InputType.sparkInvoice(field0: $field0)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $InputType_SparkInvoiceCopyWith<$Res> implements $InputTypeCopyWith<$Res> {
+  factory $InputType_SparkInvoiceCopyWith(InputType_SparkInvoice value, $Res Function(InputType_SparkInvoice) _then) = _$InputType_SparkInvoiceCopyWithImpl;
+@useResult
+$Res call({
+ SparkInvoiceDetails field0
+});
+
+
+
+
+}
+/// @nodoc
+class _$InputType_SparkInvoiceCopyWithImpl<$Res>
+    implements $InputType_SparkInvoiceCopyWith<$Res> {
+  _$InputType_SparkInvoiceCopyWithImpl(this._self, this._then);
+
+  final InputType_SparkInvoice _self;
+  final $Res Function(InputType_SparkInvoice) _then;
+
+/// Create a copy of InputType
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? field0 = null,}) {
+  return _then(InputType_SparkInvoice(
+null == field0 ? _self.field0 : field0 // ignore: cast_nullable_to_non_nullable
+as SparkInvoiceDetails,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$PaymentDetails {
 
 
@@ -2348,12 +2420,12 @@ return deposit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  spark,TResult Function( TokenMetadata metadata,  String txHash)?  token,TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo)?  lightning,TResult Function( String txId)?  withdraw,TResult Function( String txId)?  deposit,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( SparkInvoicePaymentDetails? invoiceDetails)?  spark,TResult Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)?  token,TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo)?  lightning,TResult Function( String txId)?  withdraw,TResult Function( String txId)?  deposit,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case PaymentDetails_Spark() when spark != null:
-return spark();case PaymentDetails_Token() when token != null:
-return token(_that.metadata,_that.txHash);case PaymentDetails_Lightning() when lightning != null:
-return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo);case PaymentDetails_Withdraw() when withdraw != null:
+return spark(_that.invoiceDetails);case PaymentDetails_Token() when token != null:
+return token(_that.metadata,_that.txHash,_that.invoiceDetails);case PaymentDetails_Lightning() when lightning != null:
+return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo);case PaymentDetails_Withdraw() when withdraw != null:
 return withdraw(_that.txId);case PaymentDetails_Deposit() when deposit != null:
 return deposit(_that.txId);case _:
   return orElse();
@@ -2373,12 +2445,12 @@ return deposit(_that.txId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  spark,required TResult Function( TokenMetadata metadata,  String txHash)  token,required TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo)  lightning,required TResult Function( String txId)  withdraw,required TResult Function( String txId)  deposit,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( SparkInvoicePaymentDetails? invoiceDetails)  spark,required TResult Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)  token,required TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo)  lightning,required TResult Function( String txId)  withdraw,required TResult Function( String txId)  deposit,}) {final _that = this;
 switch (_that) {
 case PaymentDetails_Spark():
-return spark();case PaymentDetails_Token():
-return token(_that.metadata,_that.txHash);case PaymentDetails_Lightning():
-return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo);case PaymentDetails_Withdraw():
+return spark(_that.invoiceDetails);case PaymentDetails_Token():
+return token(_that.metadata,_that.txHash,_that.invoiceDetails);case PaymentDetails_Lightning():
+return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo);case PaymentDetails_Withdraw():
 return withdraw(_that.txId);case PaymentDetails_Deposit():
 return deposit(_that.txId);}
 }
@@ -2394,12 +2466,12 @@ return deposit(_that.txId);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  spark,TResult? Function( TokenMetadata metadata,  String txHash)?  token,TResult? Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo)?  lightning,TResult? Function( String txId)?  withdraw,TResult? Function( String txId)?  deposit,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( SparkInvoicePaymentDetails? invoiceDetails)?  spark,TResult? Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)?  token,TResult? Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo)?  lightning,TResult? Function( String txId)?  withdraw,TResult? Function( String txId)?  deposit,}) {final _that = this;
 switch (_that) {
 case PaymentDetails_Spark() when spark != null:
-return spark();case PaymentDetails_Token() when token != null:
-return token(_that.metadata,_that.txHash);case PaymentDetails_Lightning() when lightning != null:
-return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo);case PaymentDetails_Withdraw() when withdraw != null:
+return spark(_that.invoiceDetails);case PaymentDetails_Token() when token != null:
+return token(_that.metadata,_that.txHash,_that.invoiceDetails);case PaymentDetails_Lightning() when lightning != null:
+return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo);case PaymentDetails_Withdraw() when withdraw != null:
 return withdraw(_that.txId);case PaymentDetails_Deposit() when deposit != null:
 return deposit(_that.txId);case _:
   return null;
@@ -2413,43 +2485,78 @@ return deposit(_that.txId);case _:
 
 
 class PaymentDetails_Spark extends PaymentDetails {
-  const PaymentDetails_Spark(): super._();
+  const PaymentDetails_Spark({this.invoiceDetails}): super._();
   
 
+ final  SparkInvoicePaymentDetails? invoiceDetails;
 
-
+/// Create a copy of PaymentDetails
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PaymentDetails_SparkCopyWith<PaymentDetails_Spark> get copyWith => _$PaymentDetails_SparkCopyWithImpl<PaymentDetails_Spark>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Spark);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Spark&&(identical(other.invoiceDetails, invoiceDetails) || other.invoiceDetails == invoiceDetails));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,invoiceDetails);
 
 @override
 String toString() {
-  return 'PaymentDetails.spark()';
+  return 'PaymentDetails.spark(invoiceDetails: $invoiceDetails)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $PaymentDetails_SparkCopyWith<$Res> implements $PaymentDetailsCopyWith<$Res> {
+  factory $PaymentDetails_SparkCopyWith(PaymentDetails_Spark value, $Res Function(PaymentDetails_Spark) _then) = _$PaymentDetails_SparkCopyWithImpl;
+@useResult
+$Res call({
+ SparkInvoicePaymentDetails? invoiceDetails
+});
 
 
+
+
+}
+/// @nodoc
+class _$PaymentDetails_SparkCopyWithImpl<$Res>
+    implements $PaymentDetails_SparkCopyWith<$Res> {
+  _$PaymentDetails_SparkCopyWithImpl(this._self, this._then);
+
+  final PaymentDetails_Spark _self;
+  final $Res Function(PaymentDetails_Spark) _then;
+
+/// Create a copy of PaymentDetails
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? invoiceDetails = freezed,}) {
+  return _then(PaymentDetails_Spark(
+invoiceDetails: freezed == invoiceDetails ? _self.invoiceDetails : invoiceDetails // ignore: cast_nullable_to_non_nullable
+as SparkInvoicePaymentDetails?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
 
 class PaymentDetails_Token extends PaymentDetails {
-  const PaymentDetails_Token({required this.metadata, required this.txHash}): super._();
+  const PaymentDetails_Token({required this.metadata, required this.txHash, this.invoiceDetails}): super._();
   
 
  final  TokenMetadata metadata;
  final  String txHash;
+ final  SparkInvoicePaymentDetails? invoiceDetails;
 
 /// Create a copy of PaymentDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -2461,16 +2568,16 @@ $PaymentDetails_TokenCopyWith<PaymentDetails_Token> get copyWith => _$PaymentDet
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Token&&(identical(other.metadata, metadata) || other.metadata == metadata)&&(identical(other.txHash, txHash) || other.txHash == txHash));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Token&&(identical(other.metadata, metadata) || other.metadata == metadata)&&(identical(other.txHash, txHash) || other.txHash == txHash)&&(identical(other.invoiceDetails, invoiceDetails) || other.invoiceDetails == invoiceDetails));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,metadata,txHash);
+int get hashCode => Object.hash(runtimeType,metadata,txHash,invoiceDetails);
 
 @override
 String toString() {
-  return 'PaymentDetails.token(metadata: $metadata, txHash: $txHash)';
+  return 'PaymentDetails.token(metadata: $metadata, txHash: $txHash, invoiceDetails: $invoiceDetails)';
 }
 
 
@@ -2481,7 +2588,7 @@ abstract mixin class $PaymentDetails_TokenCopyWith<$Res> implements $PaymentDeta
   factory $PaymentDetails_TokenCopyWith(PaymentDetails_Token value, $Res Function(PaymentDetails_Token) _then) = _$PaymentDetails_TokenCopyWithImpl;
 @useResult
 $Res call({
- TokenMetadata metadata, String txHash
+ TokenMetadata metadata, String txHash, SparkInvoicePaymentDetails? invoiceDetails
 });
 
 
@@ -2498,11 +2605,12 @@ class _$PaymentDetails_TokenCopyWithImpl<$Res>
 
 /// Create a copy of PaymentDetails
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? metadata = null,Object? txHash = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? metadata = null,Object? txHash = null,Object? invoiceDetails = freezed,}) {
   return _then(PaymentDetails_Token(
 metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as TokenMetadata,txHash: null == txHash ? _self.txHash : txHash // ignore: cast_nullable_to_non_nullable
-as String,
+as String,invoiceDetails: freezed == invoiceDetails ? _self.invoiceDetails : invoiceDetails // ignore: cast_nullable_to_non_nullable
+as SparkInvoicePaymentDetails?,
   ));
 }
 
@@ -2513,7 +2621,7 @@ as String,
 
 
 class PaymentDetails_Lightning extends PaymentDetails {
-  const PaymentDetails_Lightning({this.description, this.preimage, required this.invoice, required this.paymentHash, required this.destinationPubkey, this.lnurlPayInfo}): super._();
+  const PaymentDetails_Lightning({this.description, this.preimage, required this.invoice, required this.paymentHash, required this.destinationPubkey, this.lnurlPayInfo, this.lnurlWithdrawInfo}): super._();
   
 
  final  String? description;
@@ -2522,6 +2630,7 @@ class PaymentDetails_Lightning extends PaymentDetails {
  final  String paymentHash;
  final  String destinationPubkey;
  final  LnurlPayInfo? lnurlPayInfo;
+ final  LnurlWithdrawInfo? lnurlWithdrawInfo;
 
 /// Create a copy of PaymentDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -2533,16 +2642,16 @@ $PaymentDetails_LightningCopyWith<PaymentDetails_Lightning> get copyWith => _$Pa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Lightning&&(identical(other.description, description) || other.description == description)&&(identical(other.preimage, preimage) || other.preimage == preimage)&&(identical(other.invoice, invoice) || other.invoice == invoice)&&(identical(other.paymentHash, paymentHash) || other.paymentHash == paymentHash)&&(identical(other.destinationPubkey, destinationPubkey) || other.destinationPubkey == destinationPubkey)&&(identical(other.lnurlPayInfo, lnurlPayInfo) || other.lnurlPayInfo == lnurlPayInfo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Lightning&&(identical(other.description, description) || other.description == description)&&(identical(other.preimage, preimage) || other.preimage == preimage)&&(identical(other.invoice, invoice) || other.invoice == invoice)&&(identical(other.paymentHash, paymentHash) || other.paymentHash == paymentHash)&&(identical(other.destinationPubkey, destinationPubkey) || other.destinationPubkey == destinationPubkey)&&(identical(other.lnurlPayInfo, lnurlPayInfo) || other.lnurlPayInfo == lnurlPayInfo)&&(identical(other.lnurlWithdrawInfo, lnurlWithdrawInfo) || other.lnurlWithdrawInfo == lnurlWithdrawInfo));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,description,preimage,invoice,paymentHash,destinationPubkey,lnurlPayInfo);
+int get hashCode => Object.hash(runtimeType,description,preimage,invoice,paymentHash,destinationPubkey,lnurlPayInfo,lnurlWithdrawInfo);
 
 @override
 String toString() {
-  return 'PaymentDetails.lightning(description: $description, preimage: $preimage, invoice: $invoice, paymentHash: $paymentHash, destinationPubkey: $destinationPubkey, lnurlPayInfo: $lnurlPayInfo)';
+  return 'PaymentDetails.lightning(description: $description, preimage: $preimage, invoice: $invoice, paymentHash: $paymentHash, destinationPubkey: $destinationPubkey, lnurlPayInfo: $lnurlPayInfo, lnurlWithdrawInfo: $lnurlWithdrawInfo)';
 }
 
 
@@ -2553,7 +2662,7 @@ abstract mixin class $PaymentDetails_LightningCopyWith<$Res> implements $Payment
   factory $PaymentDetails_LightningCopyWith(PaymentDetails_Lightning value, $Res Function(PaymentDetails_Lightning) _then) = _$PaymentDetails_LightningCopyWithImpl;
 @useResult
 $Res call({
- String? description, String? preimage, String invoice, String paymentHash, String destinationPubkey, LnurlPayInfo? lnurlPayInfo
+ String? description, String? preimage, String invoice, String paymentHash, String destinationPubkey, LnurlPayInfo? lnurlPayInfo, LnurlWithdrawInfo? lnurlWithdrawInfo
 });
 
 
@@ -2570,7 +2679,7 @@ class _$PaymentDetails_LightningCopyWithImpl<$Res>
 
 /// Create a copy of PaymentDetails
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? description = freezed,Object? preimage = freezed,Object? invoice = null,Object? paymentHash = null,Object? destinationPubkey = null,Object? lnurlPayInfo = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? description = freezed,Object? preimage = freezed,Object? invoice = null,Object? paymentHash = null,Object? destinationPubkey = null,Object? lnurlPayInfo = freezed,Object? lnurlWithdrawInfo = freezed,}) {
   return _then(PaymentDetails_Lightning(
 description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,preimage: freezed == preimage ? _self.preimage : preimage // ignore: cast_nullable_to_non_nullable
@@ -2578,7 +2687,8 @@ as String?,invoice: null == invoice ? _self.invoice : invoice // ignore: cast_nu
 as String,paymentHash: null == paymentHash ? _self.paymentHash : paymentHash // ignore: cast_nullable_to_non_nullable
 as String,destinationPubkey: null == destinationPubkey ? _self.destinationPubkey : destinationPubkey // ignore: cast_nullable_to_non_nullable
 as String,lnurlPayInfo: freezed == lnurlPayInfo ? _self.lnurlPayInfo : lnurlPayInfo // ignore: cast_nullable_to_non_nullable
-as LnurlPayInfo?,
+as LnurlPayInfo?,lnurlWithdrawInfo: freezed == lnurlWithdrawInfo ? _self.lnurlWithdrawInfo : lnurlWithdrawInfo // ignore: cast_nullable_to_non_nullable
+as LnurlWithdrawInfo?,
   ));
 }
 
@@ -2761,11 +2871,12 @@ extension ReceivePaymentMethodPatterns on ReceivePaymentMethod {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ReceivePaymentMethod_SparkAddress value)?  sparkAddress,TResult Function( ReceivePaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult Function( ReceivePaymentMethod_Bolt11Invoice value)?  bolt11Invoice,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ReceivePaymentMethod_SparkAddress value)?  sparkAddress,TResult Function( ReceivePaymentMethod_SparkInvoice value)?  sparkInvoice,TResult Function( ReceivePaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult Function( ReceivePaymentMethod_Bolt11Invoice value)?  bolt11Invoice,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case ReceivePaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that);case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
+return sparkAddress(_that);case ReceivePaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that);case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that);case ReceivePaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that);case _:
   return orElse();
@@ -2785,11 +2896,12 @@ return bolt11Invoice(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ReceivePaymentMethod_SparkAddress value)  sparkAddress,required TResult Function( ReceivePaymentMethod_BitcoinAddress value)  bitcoinAddress,required TResult Function( ReceivePaymentMethod_Bolt11Invoice value)  bolt11Invoice,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ReceivePaymentMethod_SparkAddress value)  sparkAddress,required TResult Function( ReceivePaymentMethod_SparkInvoice value)  sparkInvoice,required TResult Function( ReceivePaymentMethod_BitcoinAddress value)  bitcoinAddress,required TResult Function( ReceivePaymentMethod_Bolt11Invoice value)  bolt11Invoice,}){
 final _that = this;
 switch (_that) {
 case ReceivePaymentMethod_SparkAddress():
-return sparkAddress(_that);case ReceivePaymentMethod_BitcoinAddress():
+return sparkAddress(_that);case ReceivePaymentMethod_SparkInvoice():
+return sparkInvoice(_that);case ReceivePaymentMethod_BitcoinAddress():
 return bitcoinAddress(_that);case ReceivePaymentMethod_Bolt11Invoice():
 return bolt11Invoice(_that);}
 }
@@ -2805,11 +2917,12 @@ return bolt11Invoice(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ReceivePaymentMethod_SparkAddress value)?  sparkAddress,TResult? Function( ReceivePaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult? Function( ReceivePaymentMethod_Bolt11Invoice value)?  bolt11Invoice,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ReceivePaymentMethod_SparkAddress value)?  sparkAddress,TResult? Function( ReceivePaymentMethod_SparkInvoice value)?  sparkInvoice,TResult? Function( ReceivePaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult? Function( ReceivePaymentMethod_Bolt11Invoice value)?  bolt11Invoice,}){
 final _that = this;
 switch (_that) {
 case ReceivePaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that);case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
+return sparkAddress(_that);case ReceivePaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that);case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that);case ReceivePaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that);case _:
   return null;
@@ -2828,10 +2941,11 @@ return bolt11Invoice(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  sparkAddress,TResult Function()?  bitcoinAddress,TResult Function( String description,  BigInt? amountSats)?  bolt11Invoice,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  sparkAddress,TResult Function( BigInt? amount,  String? tokenIdentifier,  BigInt? expiryTime,  String? description,  String? senderPublicKey)?  sparkInvoice,TResult Function()?  bitcoinAddress,TResult Function( String description,  BigInt? amountSats)?  bolt11Invoice,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ReceivePaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress();case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
+return sparkAddress();case ReceivePaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that.amount,_that.tokenIdentifier,_that.expiryTime,_that.description,_that.senderPublicKey);case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress();case ReceivePaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that.description,_that.amountSats);case _:
   return orElse();
@@ -2851,10 +2965,11 @@ return bolt11Invoice(_that.description,_that.amountSats);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  sparkAddress,required TResult Function()  bitcoinAddress,required TResult Function( String description,  BigInt? amountSats)  bolt11Invoice,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  sparkAddress,required TResult Function( BigInt? amount,  String? tokenIdentifier,  BigInt? expiryTime,  String? description,  String? senderPublicKey)  sparkInvoice,required TResult Function()  bitcoinAddress,required TResult Function( String description,  BigInt? amountSats)  bolt11Invoice,}) {final _that = this;
 switch (_that) {
 case ReceivePaymentMethod_SparkAddress():
-return sparkAddress();case ReceivePaymentMethod_BitcoinAddress():
+return sparkAddress();case ReceivePaymentMethod_SparkInvoice():
+return sparkInvoice(_that.amount,_that.tokenIdentifier,_that.expiryTime,_that.description,_that.senderPublicKey);case ReceivePaymentMethod_BitcoinAddress():
 return bitcoinAddress();case ReceivePaymentMethod_Bolt11Invoice():
 return bolt11Invoice(_that.description,_that.amountSats);}
 }
@@ -2870,10 +2985,11 @@ return bolt11Invoice(_that.description,_that.amountSats);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  sparkAddress,TResult? Function()?  bitcoinAddress,TResult? Function( String description,  BigInt? amountSats)?  bolt11Invoice,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  sparkAddress,TResult? Function( BigInt? amount,  String? tokenIdentifier,  BigInt? expiryTime,  String? description,  String? senderPublicKey)?  sparkInvoice,TResult? Function()?  bitcoinAddress,TResult? Function( String description,  BigInt? amountSats)?  bolt11Invoice,}) {final _that = this;
 switch (_that) {
 case ReceivePaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress();case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
+return sparkAddress();case ReceivePaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that.amount,_that.tokenIdentifier,_that.expiryTime,_that.description,_that.senderPublicKey);case ReceivePaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress();case ReceivePaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that.description,_that.amountSats);case _:
   return null;
@@ -2914,6 +3030,80 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class ReceivePaymentMethod_SparkInvoice extends ReceivePaymentMethod {
+  const ReceivePaymentMethod_SparkInvoice({this.amount, this.tokenIdentifier, this.expiryTime, this.description, this.senderPublicKey}): super._();
+  
+
+ final  BigInt? amount;
+ final  String? tokenIdentifier;
+ final  BigInt? expiryTime;
+ final  String? description;
+ final  String? senderPublicKey;
+
+/// Create a copy of ReceivePaymentMethod
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ReceivePaymentMethod_SparkInvoiceCopyWith<ReceivePaymentMethod_SparkInvoice> get copyWith => _$ReceivePaymentMethod_SparkInvoiceCopyWithImpl<ReceivePaymentMethod_SparkInvoice>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReceivePaymentMethod_SparkInvoice&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.tokenIdentifier, tokenIdentifier) || other.tokenIdentifier == tokenIdentifier)&&(identical(other.expiryTime, expiryTime) || other.expiryTime == expiryTime)&&(identical(other.description, description) || other.description == description)&&(identical(other.senderPublicKey, senderPublicKey) || other.senderPublicKey == senderPublicKey));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,amount,tokenIdentifier,expiryTime,description,senderPublicKey);
+
+@override
+String toString() {
+  return 'ReceivePaymentMethod.sparkInvoice(amount: $amount, tokenIdentifier: $tokenIdentifier, expiryTime: $expiryTime, description: $description, senderPublicKey: $senderPublicKey)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ReceivePaymentMethod_SparkInvoiceCopyWith<$Res> implements $ReceivePaymentMethodCopyWith<$Res> {
+  factory $ReceivePaymentMethod_SparkInvoiceCopyWith(ReceivePaymentMethod_SparkInvoice value, $Res Function(ReceivePaymentMethod_SparkInvoice) _then) = _$ReceivePaymentMethod_SparkInvoiceCopyWithImpl;
+@useResult
+$Res call({
+ BigInt? amount, String? tokenIdentifier, BigInt? expiryTime, String? description, String? senderPublicKey
+});
+
+
+
+
+}
+/// @nodoc
+class _$ReceivePaymentMethod_SparkInvoiceCopyWithImpl<$Res>
+    implements $ReceivePaymentMethod_SparkInvoiceCopyWith<$Res> {
+  _$ReceivePaymentMethod_SparkInvoiceCopyWithImpl(this._self, this._then);
+
+  final ReceivePaymentMethod_SparkInvoice _self;
+  final $Res Function(ReceivePaymentMethod_SparkInvoice) _then;
+
+/// Create a copy of ReceivePaymentMethod
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? amount = freezed,Object? tokenIdentifier = freezed,Object? expiryTime = freezed,Object? description = freezed,Object? senderPublicKey = freezed,}) {
+  return _then(ReceivePaymentMethod_SparkInvoice(
+amount: freezed == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as BigInt?,tokenIdentifier: freezed == tokenIdentifier ? _self.tokenIdentifier : tokenIdentifier // ignore: cast_nullable_to_non_nullable
+as String?,expiryTime: freezed == expiryTime ? _self.expiryTime : expiryTime // ignore: cast_nullable_to_non_nullable
+as BigInt?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,senderPublicKey: freezed == senderPublicKey ? _self.senderPublicKey : senderPublicKey // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
@@ -3353,13 +3543,14 @@ extension SendPaymentMethodPatterns on SendPaymentMethod {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SendPaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult Function( SendPaymentMethod_Bolt11Invoice value)?  bolt11Invoice,TResult Function( SendPaymentMethod_SparkAddress value)?  sparkAddress,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SendPaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult Function( SendPaymentMethod_Bolt11Invoice value)?  bolt11Invoice,TResult Function( SendPaymentMethod_SparkAddress value)?  sparkAddress,TResult Function( SendPaymentMethod_SparkInvoice value)?  sparkInvoice,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case SendPaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that);case SendPaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that);case SendPaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that);case _:
+return sparkAddress(_that);case SendPaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that);case _:
   return orElse();
 
 }
@@ -3377,13 +3568,14 @@ return sparkAddress(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SendPaymentMethod_BitcoinAddress value)  bitcoinAddress,required TResult Function( SendPaymentMethod_Bolt11Invoice value)  bolt11Invoice,required TResult Function( SendPaymentMethod_SparkAddress value)  sparkAddress,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SendPaymentMethod_BitcoinAddress value)  bitcoinAddress,required TResult Function( SendPaymentMethod_Bolt11Invoice value)  bolt11Invoice,required TResult Function( SendPaymentMethod_SparkAddress value)  sparkAddress,required TResult Function( SendPaymentMethod_SparkInvoice value)  sparkInvoice,}){
 final _that = this;
 switch (_that) {
 case SendPaymentMethod_BitcoinAddress():
 return bitcoinAddress(_that);case SendPaymentMethod_Bolt11Invoice():
 return bolt11Invoice(_that);case SendPaymentMethod_SparkAddress():
-return sparkAddress(_that);}
+return sparkAddress(_that);case SendPaymentMethod_SparkInvoice():
+return sparkInvoice(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -3397,13 +3589,14 @@ return sparkAddress(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SendPaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult? Function( SendPaymentMethod_Bolt11Invoice value)?  bolt11Invoice,TResult? Function( SendPaymentMethod_SparkAddress value)?  sparkAddress,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SendPaymentMethod_BitcoinAddress value)?  bitcoinAddress,TResult? Function( SendPaymentMethod_Bolt11Invoice value)?  bolt11Invoice,TResult? Function( SendPaymentMethod_SparkAddress value)?  sparkAddress,TResult? Function( SendPaymentMethod_SparkInvoice value)?  sparkInvoice,}){
 final _that = this;
 switch (_that) {
 case SendPaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that);case SendPaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that);case SendPaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that);case _:
+return sparkAddress(_that);case SendPaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that);case _:
   return null;
 
 }
@@ -3420,12 +3613,13 @@ return sparkAddress(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( BitcoinAddressDetails address,  SendOnchainFeeQuote feeQuote)?  bitcoinAddress,TResult Function( Bolt11InvoiceDetails invoiceDetails,  BigInt? sparkTransferFeeSats,  BigInt lightningFeeSats)?  bolt11Invoice,TResult Function( String address,  BigInt fee,  String? tokenIdentifier)?  sparkAddress,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( BitcoinAddressDetails address,  SendOnchainFeeQuote feeQuote)?  bitcoinAddress,TResult Function( Bolt11InvoiceDetails invoiceDetails,  BigInt? sparkTransferFeeSats,  BigInt lightningFeeSats)?  bolt11Invoice,TResult Function( String address,  BigInt fee,  String? tokenIdentifier)?  sparkAddress,TResult Function( SparkInvoiceDetails sparkInvoiceDetails,  BigInt fee,  String? tokenIdentifier)?  sparkInvoice,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SendPaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that.address,_that.feeQuote);case SendPaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that.invoiceDetails,_that.sparkTransferFeeSats,_that.lightningFeeSats);case SendPaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);case _:
+return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);case SendPaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that.sparkInvoiceDetails,_that.fee,_that.tokenIdentifier);case _:
   return orElse();
 
 }
@@ -3443,12 +3637,13 @@ return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( BitcoinAddressDetails address,  SendOnchainFeeQuote feeQuote)  bitcoinAddress,required TResult Function( Bolt11InvoiceDetails invoiceDetails,  BigInt? sparkTransferFeeSats,  BigInt lightningFeeSats)  bolt11Invoice,required TResult Function( String address,  BigInt fee,  String? tokenIdentifier)  sparkAddress,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( BitcoinAddressDetails address,  SendOnchainFeeQuote feeQuote)  bitcoinAddress,required TResult Function( Bolt11InvoiceDetails invoiceDetails,  BigInt? sparkTransferFeeSats,  BigInt lightningFeeSats)  bolt11Invoice,required TResult Function( String address,  BigInt fee,  String? tokenIdentifier)  sparkAddress,required TResult Function( SparkInvoiceDetails sparkInvoiceDetails,  BigInt fee,  String? tokenIdentifier)  sparkInvoice,}) {final _that = this;
 switch (_that) {
 case SendPaymentMethod_BitcoinAddress():
 return bitcoinAddress(_that.address,_that.feeQuote);case SendPaymentMethod_Bolt11Invoice():
 return bolt11Invoice(_that.invoiceDetails,_that.sparkTransferFeeSats,_that.lightningFeeSats);case SendPaymentMethod_SparkAddress():
-return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);}
+return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);case SendPaymentMethod_SparkInvoice():
+return sparkInvoice(_that.sparkInvoiceDetails,_that.fee,_that.tokenIdentifier);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -3462,12 +3657,13 @@ return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( BitcoinAddressDetails address,  SendOnchainFeeQuote feeQuote)?  bitcoinAddress,TResult? Function( Bolt11InvoiceDetails invoiceDetails,  BigInt? sparkTransferFeeSats,  BigInt lightningFeeSats)?  bolt11Invoice,TResult? Function( String address,  BigInt fee,  String? tokenIdentifier)?  sparkAddress,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( BitcoinAddressDetails address,  SendOnchainFeeQuote feeQuote)?  bitcoinAddress,TResult? Function( Bolt11InvoiceDetails invoiceDetails,  BigInt? sparkTransferFeeSats,  BigInt lightningFeeSats)?  bolt11Invoice,TResult? Function( String address,  BigInt fee,  String? tokenIdentifier)?  sparkAddress,TResult? Function( SparkInvoiceDetails sparkInvoiceDetails,  BigInt fee,  String? tokenIdentifier)?  sparkInvoice,}) {final _that = this;
 switch (_that) {
 case SendPaymentMethod_BitcoinAddress() when bitcoinAddress != null:
 return bitcoinAddress(_that.address,_that.feeQuote);case SendPaymentMethod_Bolt11Invoice() when bolt11Invoice != null:
 return bolt11Invoice(_that.invoiceDetails,_that.sparkTransferFeeSats,_that.lightningFeeSats);case SendPaymentMethod_SparkAddress() when sparkAddress != null:
-return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);case _:
+return sparkAddress(_that.address,_that.fee,_that.tokenIdentifier);case SendPaymentMethod_SparkInvoice() when sparkInvoice != null:
+return sparkInvoice(_that.sparkInvoiceDetails,_that.fee,_that.tokenIdentifier);case _:
   return null;
 
 }
@@ -3675,6 +3871,76 @@ class _$SendPaymentMethod_SparkAddressCopyWithImpl<$Res>
   return _then(SendPaymentMethod_SparkAddress(
 address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,fee: null == fee ? _self.fee : fee // ignore: cast_nullable_to_non_nullable
+as BigInt,tokenIdentifier: freezed == tokenIdentifier ? _self.tokenIdentifier : tokenIdentifier // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class SendPaymentMethod_SparkInvoice extends SendPaymentMethod {
+  const SendPaymentMethod_SparkInvoice({required this.sparkInvoiceDetails, required this.fee, this.tokenIdentifier}): super._();
+  
+
+ final  SparkInvoiceDetails sparkInvoiceDetails;
+ final  BigInt fee;
+ final  String? tokenIdentifier;
+
+/// Create a copy of SendPaymentMethod
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SendPaymentMethod_SparkInvoiceCopyWith<SendPaymentMethod_SparkInvoice> get copyWith => _$SendPaymentMethod_SparkInvoiceCopyWithImpl<SendPaymentMethod_SparkInvoice>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendPaymentMethod_SparkInvoice&&(identical(other.sparkInvoiceDetails, sparkInvoiceDetails) || other.sparkInvoiceDetails == sparkInvoiceDetails)&&(identical(other.fee, fee) || other.fee == fee)&&(identical(other.tokenIdentifier, tokenIdentifier) || other.tokenIdentifier == tokenIdentifier));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,sparkInvoiceDetails,fee,tokenIdentifier);
+
+@override
+String toString() {
+  return 'SendPaymentMethod.sparkInvoice(sparkInvoiceDetails: $sparkInvoiceDetails, fee: $fee, tokenIdentifier: $tokenIdentifier)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SendPaymentMethod_SparkInvoiceCopyWith<$Res> implements $SendPaymentMethodCopyWith<$Res> {
+  factory $SendPaymentMethod_SparkInvoiceCopyWith(SendPaymentMethod_SparkInvoice value, $Res Function(SendPaymentMethod_SparkInvoice) _then) = _$SendPaymentMethod_SparkInvoiceCopyWithImpl;
+@useResult
+$Res call({
+ SparkInvoiceDetails sparkInvoiceDetails, BigInt fee, String? tokenIdentifier
+});
+
+
+
+
+}
+/// @nodoc
+class _$SendPaymentMethod_SparkInvoiceCopyWithImpl<$Res>
+    implements $SendPaymentMethod_SparkInvoiceCopyWith<$Res> {
+  _$SendPaymentMethod_SparkInvoiceCopyWithImpl(this._self, this._then);
+
+  final SendPaymentMethod_SparkInvoice _self;
+  final $Res Function(SendPaymentMethod_SparkInvoice) _then;
+
+/// Create a copy of SendPaymentMethod
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? sparkInvoiceDetails = null,Object? fee = null,Object? tokenIdentifier = freezed,}) {
+  return _then(SendPaymentMethod_SparkInvoice(
+sparkInvoiceDetails: null == sparkInvoiceDetails ? _self.sparkInvoiceDetails : sparkInvoiceDetails // ignore: cast_nullable_to_non_nullable
+as SparkInvoiceDetails,fee: null == fee ? _self.fee : fee // ignore: cast_nullable_to_non_nullable
 as BigInt,tokenIdentifier: freezed == tokenIdentifier ? _self.tokenIdentifier : tokenIdentifier // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -3971,298 +4237,6 @@ class _$SendPaymentOptions_Bolt11InvoiceCopyWithImpl<$Res>
 preferSpark: null == preferSpark ? _self.preferSpark : preferSpark // ignore: cast_nullable_to_non_nullable
 as bool,completionTimeoutSecs: freezed == completionTimeoutSecs ? _self.completionTimeoutSecs : completionTimeoutSecs // ignore: cast_nullable_to_non_nullable
 as int?,
-  ));
-}
-
-
-}
-
-/// @nodoc
-mixin _$SparkAddressPaymentType {
-
- Object get field0;
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SparkAddressPaymentType&&const DeepCollectionEquality().equals(other.field0, field0));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
-
-@override
-String toString() {
-  return 'SparkAddressPaymentType(field0: $field0)';
-}
-
-
-}
-
-/// @nodoc
-class $SparkAddressPaymentTypeCopyWith<$Res>  {
-$SparkAddressPaymentTypeCopyWith(SparkAddressPaymentType _, $Res Function(SparkAddressPaymentType) __);
-}
-
-
-/// Adds pattern-matching-related methods to [SparkAddressPaymentType].
-extension SparkAddressPaymentTypePatterns on SparkAddressPaymentType {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SparkAddressPaymentType_TokensPayment value)?  tokensPayment,TResult Function( SparkAddressPaymentType_SatsPayment value)?  satsPayment,required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case SparkAddressPaymentType_TokensPayment() when tokensPayment != null:
-return tokensPayment(_that);case SparkAddressPaymentType_SatsPayment() when satsPayment != null:
-return satsPayment(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SparkAddressPaymentType_TokensPayment value)  tokensPayment,required TResult Function( SparkAddressPaymentType_SatsPayment value)  satsPayment,}){
-final _that = this;
-switch (_that) {
-case SparkAddressPaymentType_TokensPayment():
-return tokensPayment(_that);case SparkAddressPaymentType_SatsPayment():
-return satsPayment(_that);}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SparkAddressPaymentType_TokensPayment value)?  tokensPayment,TResult? Function( SparkAddressPaymentType_SatsPayment value)?  satsPayment,}){
-final _that = this;
-switch (_that) {
-case SparkAddressPaymentType_TokensPayment() when tokensPayment != null:
-return tokensPayment(_that);case SparkAddressPaymentType_SatsPayment() when satsPayment != null:
-return satsPayment(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( TokensPaymentDetails field0)?  tokensPayment,TResult Function( SatsPaymentDetails field0)?  satsPayment,required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case SparkAddressPaymentType_TokensPayment() when tokensPayment != null:
-return tokensPayment(_that.field0);case SparkAddressPaymentType_SatsPayment() when satsPayment != null:
-return satsPayment(_that.field0);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( TokensPaymentDetails field0)  tokensPayment,required TResult Function( SatsPaymentDetails field0)  satsPayment,}) {final _that = this;
-switch (_that) {
-case SparkAddressPaymentType_TokensPayment():
-return tokensPayment(_that.field0);case SparkAddressPaymentType_SatsPayment():
-return satsPayment(_that.field0);}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( TokensPaymentDetails field0)?  tokensPayment,TResult? Function( SatsPaymentDetails field0)?  satsPayment,}) {final _that = this;
-switch (_that) {
-case SparkAddressPaymentType_TokensPayment() when tokensPayment != null:
-return tokensPayment(_that.field0);case SparkAddressPaymentType_SatsPayment() when satsPayment != null:
-return satsPayment(_that.field0);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class SparkAddressPaymentType_TokensPayment extends SparkAddressPaymentType {
-  const SparkAddressPaymentType_TokensPayment(this.field0): super._();
-  
-
-@override final  TokensPaymentDetails field0;
-
-/// Create a copy of SparkAddressPaymentType
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SparkAddressPaymentType_TokensPaymentCopyWith<SparkAddressPaymentType_TokensPayment> get copyWith => _$SparkAddressPaymentType_TokensPaymentCopyWithImpl<SparkAddressPaymentType_TokensPayment>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SparkAddressPaymentType_TokensPayment&&(identical(other.field0, field0) || other.field0 == field0));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,field0);
-
-@override
-String toString() {
-  return 'SparkAddressPaymentType.tokensPayment(field0: $field0)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SparkAddressPaymentType_TokensPaymentCopyWith<$Res> implements $SparkAddressPaymentTypeCopyWith<$Res> {
-  factory $SparkAddressPaymentType_TokensPaymentCopyWith(SparkAddressPaymentType_TokensPayment value, $Res Function(SparkAddressPaymentType_TokensPayment) _then) = _$SparkAddressPaymentType_TokensPaymentCopyWithImpl;
-@useResult
-$Res call({
- TokensPaymentDetails field0
-});
-
-
-
-
-}
-/// @nodoc
-class _$SparkAddressPaymentType_TokensPaymentCopyWithImpl<$Res>
-    implements $SparkAddressPaymentType_TokensPaymentCopyWith<$Res> {
-  _$SparkAddressPaymentType_TokensPaymentCopyWithImpl(this._self, this._then);
-
-  final SparkAddressPaymentType_TokensPayment _self;
-  final $Res Function(SparkAddressPaymentType_TokensPayment) _then;
-
-/// Create a copy of SparkAddressPaymentType
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? field0 = null,}) {
-  return _then(SparkAddressPaymentType_TokensPayment(
-null == field0 ? _self.field0 : field0 // ignore: cast_nullable_to_non_nullable
-as TokensPaymentDetails,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class SparkAddressPaymentType_SatsPayment extends SparkAddressPaymentType {
-  const SparkAddressPaymentType_SatsPayment(this.field0): super._();
-  
-
-@override final  SatsPaymentDetails field0;
-
-/// Create a copy of SparkAddressPaymentType
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SparkAddressPaymentType_SatsPaymentCopyWith<SparkAddressPaymentType_SatsPayment> get copyWith => _$SparkAddressPaymentType_SatsPaymentCopyWithImpl<SparkAddressPaymentType_SatsPayment>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SparkAddressPaymentType_SatsPayment&&(identical(other.field0, field0) || other.field0 == field0));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,field0);
-
-@override
-String toString() {
-  return 'SparkAddressPaymentType.satsPayment(field0: $field0)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SparkAddressPaymentType_SatsPaymentCopyWith<$Res> implements $SparkAddressPaymentTypeCopyWith<$Res> {
-  factory $SparkAddressPaymentType_SatsPaymentCopyWith(SparkAddressPaymentType_SatsPayment value, $Res Function(SparkAddressPaymentType_SatsPayment) _then) = _$SparkAddressPaymentType_SatsPaymentCopyWithImpl;
-@useResult
-$Res call({
- SatsPaymentDetails field0
-});
-
-
-
-
-}
-/// @nodoc
-class _$SparkAddressPaymentType_SatsPaymentCopyWithImpl<$Res>
-    implements $SparkAddressPaymentType_SatsPaymentCopyWith<$Res> {
-  _$SparkAddressPaymentType_SatsPaymentCopyWithImpl(this._self, this._then);
-
-  final SparkAddressPaymentType_SatsPayment _self;
-  final $Res Function(SparkAddressPaymentType_SatsPayment) _then;
-
-/// Create a copy of SparkAddressPaymentType
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? field0 = null,}) {
-  return _then(SparkAddressPaymentType_SatsPayment(
-null == field0 ? _self.field0 : field0 // ignore: cast_nullable_to_non_nullable
-as SatsPaymentDetails,
   ));
 }
 

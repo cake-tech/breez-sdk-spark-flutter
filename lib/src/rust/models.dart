@@ -9,7 +9,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'models.freezed.dart';
 
-// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `PaymentMetadata`, `UpdateDepositPayload`
+// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `PaymentMetadata`, `SparkInvoicePaymentType`, `UpdateDepositPayload`
 
 class AesSuccessActionData {
   final String description;
@@ -434,6 +434,40 @@ class CheckLightningAddressRequest {
       other is CheckLightningAddressRequest && runtimeType == other.runtimeType && username == other.username;
 }
 
+class CheckMessageRequest {
+  final String message;
+  final String pubkey;
+  final String signature;
+
+  const CheckMessageRequest({required this.message, required this.pubkey, required this.signature});
+
+  @override
+  int get hashCode => message.hashCode ^ pubkey.hashCode ^ signature.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CheckMessageRequest &&
+          runtimeType == other.runtimeType &&
+          message == other.message &&
+          pubkey == other.pubkey &&
+          signature == other.signature;
+}
+
+class CheckMessageResponse {
+  final bool isValid;
+
+  const CheckMessageResponse({required this.isValid});
+
+  @override
+  int get hashCode => isValid.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CheckMessageResponse && runtimeType == other.runtimeType && isValid == other.isValid;
+}
+
 class ClaimDepositRequest {
   final String txid;
   final int vout;
@@ -789,6 +823,7 @@ sealed class InputType with _$InputType {
       InputType_Bolt12InvoiceRequest;
   const factory InputType.lnurlWithdraw(LnurlWithdrawRequestDetails field0) = InputType_LnurlWithdraw;
   const factory InputType.sparkAddress(SparkAddressDetails field0) = InputType_SparkAddress;
+  const factory InputType.sparkInvoice(SparkInvoiceDetails field0) = InputType_SparkInvoice;
 }
 
 enum KeySetType { default_, taproot, nativeSegwit, wrappedSegwit, legacy }
@@ -1106,6 +1141,44 @@ class LnurlPayResponse {
           successAction == other.successAction;
 }
 
+class LnurlWithdrawInfo {
+  final String withdrawUrl;
+
+  const LnurlWithdrawInfo({required this.withdrawUrl});
+
+  @override
+  int get hashCode => withdrawUrl.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LnurlWithdrawInfo && runtimeType == other.runtimeType && withdrawUrl == other.withdrawUrl;
+}
+
+class LnurlWithdrawRequest {
+  final BigInt amountSats;
+  final LnurlWithdrawRequestDetails withdrawRequest;
+  final int? completionTimeoutSecs;
+
+  const LnurlWithdrawRequest({
+    required this.amountSats,
+    required this.withdrawRequest,
+    this.completionTimeoutSecs,
+  });
+
+  @override
+  int get hashCode => amountSats.hashCode ^ withdrawRequest.hashCode ^ completionTimeoutSecs.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LnurlWithdrawRequest &&
+          runtimeType == other.runtimeType &&
+          amountSats == other.amountSats &&
+          withdrawRequest == other.withdrawRequest &&
+          completionTimeoutSecs == other.completionTimeoutSecs;
+}
+
 class LnurlWithdrawRequestDetails {
   final String callback;
   final String k1;
@@ -1139,6 +1212,24 @@ class LnurlWithdrawRequestDetails {
           defaultDescription == other.defaultDescription &&
           minWithdrawable == other.minWithdrawable &&
           maxWithdrawable == other.maxWithdrawable;
+}
+
+class LnurlWithdrawResponse {
+  final String paymentRequest;
+  final Payment? payment;
+
+  const LnurlWithdrawResponse({required this.paymentRequest, this.payment});
+
+  @override
+  int get hashCode => paymentRequest.hashCode ^ payment.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LnurlWithdrawResponse &&
+          runtimeType == other.runtimeType &&
+          paymentRequest == other.paymentRequest &&
+          payment == other.payment;
 }
 
 class LocaleOverrides {
@@ -1248,9 +1339,12 @@ class Payment {
 sealed class PaymentDetails with _$PaymentDetails {
   const PaymentDetails._();
 
-  const factory PaymentDetails.spark() = PaymentDetails_Spark;
-  const factory PaymentDetails.token({required TokenMetadata metadata, required String txHash}) =
-      PaymentDetails_Token;
+  const factory PaymentDetails.spark({SparkInvoicePaymentDetails? invoiceDetails}) = PaymentDetails_Spark;
+  const factory PaymentDetails.token({
+    required TokenMetadata metadata,
+    required String txHash,
+    SparkInvoicePaymentDetails? invoiceDetails,
+  }) = PaymentDetails_Token;
   const factory PaymentDetails.lightning({
     String? description,
     String? preimage,
@@ -1258,6 +1352,7 @@ sealed class PaymentDetails with _$PaymentDetails {
     required String paymentHash,
     required String destinationPubkey,
     LnurlPayInfo? lnurlPayInfo,
+    LnurlWithdrawInfo? lnurlWithdrawInfo,
   }) = PaymentDetails_Lightning;
   const factory PaymentDetails.withdraw({required String txId}) = PaymentDetails_Withdraw;
   const factory PaymentDetails.deposit({required String txId}) = PaymentDetails_Deposit;
@@ -1414,6 +1509,13 @@ sealed class ReceivePaymentMethod with _$ReceivePaymentMethod {
   const ReceivePaymentMethod._();
 
   const factory ReceivePaymentMethod.sparkAddress() = ReceivePaymentMethod_SparkAddress;
+  const factory ReceivePaymentMethod.sparkInvoice({
+    BigInt? amount,
+    String? tokenIdentifier,
+    BigInt? expiryTime,
+    String? description,
+    String? senderPublicKey,
+  }) = ReceivePaymentMethod_SparkInvoice;
   const factory ReceivePaymentMethod.bitcoinAddress() = ReceivePaymentMethod_BitcoinAddress;
   const factory ReceivePaymentMethod.bolt11Invoice({required String description, BigInt? amountSats}) =
       ReceivePaymentMethod_Bolt11Invoice;
@@ -1437,12 +1539,12 @@ class ReceivePaymentRequest {
 
 class ReceivePaymentResponse {
   final String paymentRequest;
-  final BigInt feeSats;
+  final BigInt fee;
 
-  const ReceivePaymentResponse({required this.paymentRequest, required this.feeSats});
+  const ReceivePaymentResponse({required this.paymentRequest, required this.fee});
 
   @override
-  int get hashCode => paymentRequest.hashCode ^ feeSats.hashCode;
+  int get hashCode => paymentRequest.hashCode ^ fee.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1450,7 +1552,7 @@ class ReceivePaymentResponse {
       other is ReceivePaymentResponse &&
           runtimeType == other.runtimeType &&
           paymentRequest == other.paymentRequest &&
-          feeSats == other.feeSats;
+          fee == other.fee;
 }
 
 class RefundDepositRequest {
@@ -1514,20 +1616,6 @@ class RegisterLightningAddressRequest {
           runtimeType == other.runtimeType &&
           username == other.username &&
           description == other.description;
-}
-
-class SatsPaymentDetails {
-  final BigInt? amount;
-
-  const SatsPaymentDetails({this.amount});
-
-  @override
-  int get hashCode => amount.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is SatsPaymentDetails && runtimeType == other.runtimeType && amount == other.amount;
 }
 
 @freezed
@@ -1605,6 +1693,11 @@ sealed class SendPaymentMethod with _$SendPaymentMethod {
     required BigInt fee,
     String? tokenIdentifier,
   }) = SendPaymentMethod_SparkAddress;
+  const factory SendPaymentMethod.sparkInvoice({
+    required SparkInvoiceDetails sparkInvoiceDetails,
+    required BigInt fee,
+    String? tokenIdentifier,
+  }) = SendPaymentMethod_SparkInvoice;
 }
 
 @freezed
@@ -1649,6 +1742,42 @@ class SendPaymentResponse {
       other is SendPaymentResponse && runtimeType == other.runtimeType && payment == other.payment;
 }
 
+class SignMessageRequest {
+  final String message;
+  final bool compact;
+
+  const SignMessageRequest({required this.message, required this.compact});
+
+  @override
+  int get hashCode => message.hashCode ^ compact.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SignMessageRequest &&
+          runtimeType == other.runtimeType &&
+          message == other.message &&
+          compact == other.compact;
+}
+
+class SignMessageResponse {
+  final String pubkey;
+  final String signature;
+
+  const SignMessageResponse({required this.pubkey, required this.signature});
+
+  @override
+  int get hashCode => pubkey.hashCode ^ signature.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SignMessageResponse &&
+          runtimeType == other.runtimeType &&
+          pubkey == other.pubkey &&
+          signature == other.signature;
+}
+
 class SilentPaymentAddressDetails {
   final String address;
   final BitcoinNetwork network;
@@ -1669,43 +1798,21 @@ class SilentPaymentAddressDetails {
           source == other.source;
 }
 
-class SparkAddress {
+class SparkAddressDetails {
+  final String address;
   final String identityPublicKey;
   final BitcoinNetwork network;
-  final SparkInvoiceFields? sparkInvoiceFields;
-  final String? signature;
+  final PaymentRequestSource source;
 
-  const SparkAddress({
+  const SparkAddressDetails({
+    required this.address,
     required this.identityPublicKey,
     required this.network,
-    this.sparkInvoiceFields,
-    this.signature,
+    required this.source,
   });
 
   @override
-  int get hashCode =>
-      identityPublicKey.hashCode ^ network.hashCode ^ sparkInvoiceFields.hashCode ^ signature.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is SparkAddress &&
-          runtimeType == other.runtimeType &&
-          identityPublicKey == other.identityPublicKey &&
-          network == other.network &&
-          sparkInvoiceFields == other.sparkInvoiceFields &&
-          signature == other.signature;
-}
-
-class SparkAddressDetails {
-  final String address;
-  final SparkAddress decodedAddress;
-  final PaymentRequestSource source;
-
-  const SparkAddressDetails({required this.address, required this.decodedAddress, required this.source});
-
-  @override
-  int get hashCode => address.hashCode ^ decodedAddress.hashCode ^ source.hashCode;
+  int get hashCode => address.hashCode ^ identityPublicKey.hashCode ^ network.hashCode ^ source.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1713,57 +1820,74 @@ class SparkAddressDetails {
       other is SparkAddressDetails &&
           runtimeType == other.runtimeType &&
           address == other.address &&
-          decodedAddress == other.decodedAddress &&
+          identityPublicKey == other.identityPublicKey &&
+          network == other.network &&
           source == other.source;
 }
 
-@freezed
-sealed class SparkAddressPaymentType with _$SparkAddressPaymentType {
-  const SparkAddressPaymentType._();
-
-  const factory SparkAddressPaymentType.tokensPayment(TokensPaymentDetails field0) =
-      SparkAddressPaymentType_TokensPayment;
-  const factory SparkAddressPaymentType.satsPayment(SatsPaymentDetails field0) =
-      SparkAddressPaymentType_SatsPayment;
-}
-
-class SparkInvoiceFields {
-  final String id;
-  final int version;
-  final String? memo;
-  final String? senderPublicKey;
+class SparkInvoiceDetails {
+  final String invoice;
+  final String identityPublicKey;
+  final BitcoinNetwork network;
+  final BigInt? amount;
+  final String? tokenIdentifier;
   final BigInt? expiryTime;
-  final SparkAddressPaymentType? paymentType;
+  final String? description;
+  final String? senderPublicKey;
 
-  const SparkInvoiceFields({
-    required this.id,
-    required this.version,
-    this.memo,
-    this.senderPublicKey,
+  const SparkInvoiceDetails({
+    required this.invoice,
+    required this.identityPublicKey,
+    required this.network,
+    this.amount,
+    this.tokenIdentifier,
     this.expiryTime,
-    this.paymentType,
+    this.description,
+    this.senderPublicKey,
   });
 
   @override
   int get hashCode =>
-      id.hashCode ^
-      version.hashCode ^
-      memo.hashCode ^
-      senderPublicKey.hashCode ^
+      invoice.hashCode ^
+      identityPublicKey.hashCode ^
+      network.hashCode ^
+      amount.hashCode ^
+      tokenIdentifier.hashCode ^
       expiryTime.hashCode ^
-      paymentType.hashCode;
+      description.hashCode ^
+      senderPublicKey.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SparkInvoiceFields &&
+      other is SparkInvoiceDetails &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
-          version == other.version &&
-          memo == other.memo &&
-          senderPublicKey == other.senderPublicKey &&
+          invoice == other.invoice &&
+          identityPublicKey == other.identityPublicKey &&
+          network == other.network &&
+          amount == other.amount &&
+          tokenIdentifier == other.tokenIdentifier &&
           expiryTime == other.expiryTime &&
-          paymentType == other.paymentType;
+          description == other.description &&
+          senderPublicKey == other.senderPublicKey;
+}
+
+class SparkInvoicePaymentDetails {
+  final String? description;
+  final String invoice;
+
+  const SparkInvoicePaymentDetails({this.description, required this.invoice});
+
+  @override
+  int get hashCode => description.hashCode ^ invoice.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SparkInvoicePaymentDetails &&
+          runtimeType == other.runtimeType &&
+          description == other.description &&
+          invoice == other.invoice;
 }
 
 @freezed
@@ -1889,24 +2013,6 @@ class TokenMetadata {
           decimals == other.decimals &&
           maxSupply == other.maxSupply &&
           isFreezable == other.isFreezable;
-}
-
-class TokensPaymentDetails {
-  final String? tokenIdentifier;
-  final BigInt? amount;
-
-  const TokensPaymentDetails({this.tokenIdentifier, this.amount});
-
-  @override
-  int get hashCode => tokenIdentifier.hashCode ^ amount.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TokensPaymentDetails &&
-          runtimeType == other.runtimeType &&
-          tokenIdentifier == other.tokenIdentifier &&
-          amount == other.amount;
 }
 
 class UrlSuccessActionData {

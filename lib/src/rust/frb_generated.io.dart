@@ -187,6 +187,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   CheckLightningAddressRequest dco_decode_box_autoadd_check_lightning_address_request(dynamic raw);
 
   @protected
+  CheckMessageRequest dco_decode_box_autoadd_check_message_request(dynamic raw);
+
+  @protected
   ClaimDepositRequest dco_decode_box_autoadd_claim_deposit_request(dynamic raw);
 
   @protected
@@ -238,6 +241,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayRequestDetails dco_decode_box_autoadd_lnurl_pay_request_details(dynamic raw);
 
   @protected
+  LnurlWithdrawInfo dco_decode_box_autoadd_lnurl_withdraw_info(dynamic raw);
+
+  @protected
+  LnurlWithdrawRequest dco_decode_box_autoadd_lnurl_withdraw_request(dynamic raw);
+
+  @protected
   LnurlWithdrawRequestDetails dco_decode_box_autoadd_lnurl_withdraw_request_details(dynamic raw);
 
   @protected
@@ -265,9 +274,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   RegisterLightningAddressRequest dco_decode_box_autoadd_register_lightning_address_request(dynamic raw);
 
   @protected
-  SatsPaymentDetails dco_decode_box_autoadd_sats_payment_details(dynamic raw);
-
-  @protected
   Seed dco_decode_box_autoadd_seed(dynamic raw);
 
   @protected
@@ -280,16 +286,19 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   SendPaymentRequest dco_decode_box_autoadd_send_payment_request(dynamic raw);
 
   @protected
+  SignMessageRequest dco_decode_box_autoadd_sign_message_request(dynamic raw);
+
+  @protected
   SilentPaymentAddressDetails dco_decode_box_autoadd_silent_payment_address_details(dynamic raw);
 
   @protected
   SparkAddressDetails dco_decode_box_autoadd_spark_address_details(dynamic raw);
 
   @protected
-  SparkAddressPaymentType dco_decode_box_autoadd_spark_address_payment_type(dynamic raw);
+  SparkInvoiceDetails dco_decode_box_autoadd_spark_invoice_details(dynamic raw);
 
   @protected
-  SparkInvoiceFields dco_decode_box_autoadd_spark_invoice_fields(dynamic raw);
+  SparkInvoicePaymentDetails dco_decode_box_autoadd_spark_invoice_payment_details(dynamic raw);
 
   @protected
   SuccessAction dco_decode_box_autoadd_success_action(dynamic raw);
@@ -307,9 +316,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   TokenMetadata dco_decode_box_autoadd_token_metadata(dynamic raw);
 
   @protected
-  TokensPaymentDetails dco_decode_box_autoadd_tokens_payment_details(dynamic raw);
-
-  @protected
   int dco_decode_box_autoadd_u_32(dynamic raw);
 
   @protected
@@ -323,6 +329,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   CheckLightningAddressRequest dco_decode_check_lightning_address_request(dynamic raw);
+
+  @protected
+  CheckMessageRequest dco_decode_check_message_request(dynamic raw);
+
+  @protected
+  CheckMessageResponse dco_decode_check_message_response(dynamic raw);
 
   @protected
   ClaimDepositRequest dco_decode_claim_deposit_request(dynamic raw);
@@ -481,7 +493,16 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayResponse dco_decode_lnurl_pay_response(dynamic raw);
 
   @protected
+  LnurlWithdrawInfo dco_decode_lnurl_withdraw_info(dynamic raw);
+
+  @protected
+  LnurlWithdrawRequest dco_decode_lnurl_withdraw_request(dynamic raw);
+
+  @protected
   LnurlWithdrawRequestDetails dco_decode_lnurl_withdraw_request_details(dynamic raw);
+
+  @protected
+  LnurlWithdrawResponse dco_decode_lnurl_withdraw_response(dynamic raw);
 
   @protected
   LocaleOverrides dco_decode_locale_overrides(dynamic raw);
@@ -532,16 +553,19 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayInfo? dco_decode_opt_box_autoadd_lnurl_pay_info(dynamic raw);
 
   @protected
+  LnurlWithdrawInfo? dco_decode_opt_box_autoadd_lnurl_withdraw_info(dynamic raw);
+
+  @protected
+  Payment? dco_decode_opt_box_autoadd_payment(dynamic raw);
+
+  @protected
   PaymentDetails? dco_decode_opt_box_autoadd_payment_details(dynamic raw);
 
   @protected
   SendPaymentOptions? dco_decode_opt_box_autoadd_send_payment_options(dynamic raw);
 
   @protected
-  SparkAddressPaymentType? dco_decode_opt_box_autoadd_spark_address_payment_type(dynamic raw);
-
-  @protected
-  SparkInvoiceFields? dco_decode_opt_box_autoadd_spark_invoice_fields(dynamic raw);
+  SparkInvoicePaymentDetails? dco_decode_opt_box_autoadd_spark_invoice_payment_details(dynamic raw);
 
   @protected
   SuccessAction? dco_decode_opt_box_autoadd_success_action(dynamic raw);
@@ -622,9 +646,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   RegisterLightningAddressRequest dco_decode_register_lightning_address_request(dynamic raw);
 
   @protected
-  SatsPaymentDetails dco_decode_sats_payment_details(dynamic raw);
-
-  @protected
   SdkError dco_decode_sdk_error(dynamic raw);
 
   @protected
@@ -652,19 +673,22 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   SendPaymentResponse dco_decode_send_payment_response(dynamic raw);
 
   @protected
-  SilentPaymentAddressDetails dco_decode_silent_payment_address_details(dynamic raw);
+  SignMessageRequest dco_decode_sign_message_request(dynamic raw);
 
   @protected
-  SparkAddress dco_decode_spark_address(dynamic raw);
+  SignMessageResponse dco_decode_sign_message_response(dynamic raw);
+
+  @protected
+  SilentPaymentAddressDetails dco_decode_silent_payment_address_details(dynamic raw);
 
   @protected
   SparkAddressDetails dco_decode_spark_address_details(dynamic raw);
 
   @protected
-  SparkAddressPaymentType dco_decode_spark_address_payment_type(dynamic raw);
+  SparkInvoiceDetails dco_decode_spark_invoice_details(dynamic raw);
 
   @protected
-  SparkInvoiceFields dco_decode_spark_invoice_fields(dynamic raw);
+  SparkInvoicePaymentDetails dco_decode_spark_invoice_payment_details(dynamic raw);
 
   @protected
   SuccessAction dco_decode_success_action(dynamic raw);
@@ -686,9 +710,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   TokenMetadata dco_decode_token_metadata(dynamic raw);
-
-  @protected
-  TokensPaymentDetails dco_decode_tokens_payment_details(dynamic raw);
 
   @protected
   int dco_decode_u_16(dynamic raw);
@@ -887,6 +908,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
+  CheckMessageRequest sse_decode_box_autoadd_check_message_request(SseDeserializer deserializer);
+
+  @protected
   ClaimDepositRequest sse_decode_box_autoadd_claim_deposit_request(SseDeserializer deserializer);
 
   @protected
@@ -940,6 +964,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayRequestDetails sse_decode_box_autoadd_lnurl_pay_request_details(SseDeserializer deserializer);
 
   @protected
+  LnurlWithdrawInfo sse_decode_box_autoadd_lnurl_withdraw_info(SseDeserializer deserializer);
+
+  @protected
+  LnurlWithdrawRequest sse_decode_box_autoadd_lnurl_withdraw_request(SseDeserializer deserializer);
+
+  @protected
   LnurlWithdrawRequestDetails sse_decode_box_autoadd_lnurl_withdraw_request_details(
     SseDeserializer deserializer,
   );
@@ -971,9 +1001,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
-  SatsPaymentDetails sse_decode_box_autoadd_sats_payment_details(SseDeserializer deserializer);
-
-  @protected
   Seed sse_decode_box_autoadd_seed(SseDeserializer deserializer);
 
   @protected
@@ -986,6 +1013,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   SendPaymentRequest sse_decode_box_autoadd_send_payment_request(SseDeserializer deserializer);
 
   @protected
+  SignMessageRequest sse_decode_box_autoadd_sign_message_request(SseDeserializer deserializer);
+
+  @protected
   SilentPaymentAddressDetails sse_decode_box_autoadd_silent_payment_address_details(
     SseDeserializer deserializer,
   );
@@ -994,10 +1024,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   SparkAddressDetails sse_decode_box_autoadd_spark_address_details(SseDeserializer deserializer);
 
   @protected
-  SparkAddressPaymentType sse_decode_box_autoadd_spark_address_payment_type(SseDeserializer deserializer);
+  SparkInvoiceDetails sse_decode_box_autoadd_spark_invoice_details(SseDeserializer deserializer);
 
   @protected
-  SparkInvoiceFields sse_decode_box_autoadd_spark_invoice_fields(SseDeserializer deserializer);
+  SparkInvoicePaymentDetails sse_decode_box_autoadd_spark_invoice_payment_details(
+    SseDeserializer deserializer,
+  );
 
   @protected
   SuccessAction sse_decode_box_autoadd_success_action(SseDeserializer deserializer);
@@ -1015,9 +1047,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   TokenMetadata sse_decode_box_autoadd_token_metadata(SseDeserializer deserializer);
 
   @protected
-  TokensPaymentDetails sse_decode_box_autoadd_tokens_payment_details(SseDeserializer deserializer);
-
-  @protected
   int sse_decode_box_autoadd_u_32(SseDeserializer deserializer);
 
   @protected
@@ -1031,6 +1060,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   CheckLightningAddressRequest sse_decode_check_lightning_address_request(SseDeserializer deserializer);
+
+  @protected
+  CheckMessageRequest sse_decode_check_message_request(SseDeserializer deserializer);
+
+  @protected
+  CheckMessageResponse sse_decode_check_message_response(SseDeserializer deserializer);
 
   @protected
   ClaimDepositRequest sse_decode_claim_deposit_request(SseDeserializer deserializer);
@@ -1189,7 +1224,16 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayResponse sse_decode_lnurl_pay_response(SseDeserializer deserializer);
 
   @protected
+  LnurlWithdrawInfo sse_decode_lnurl_withdraw_info(SseDeserializer deserializer);
+
+  @protected
+  LnurlWithdrawRequest sse_decode_lnurl_withdraw_request(SseDeserializer deserializer);
+
+  @protected
   LnurlWithdrawRequestDetails sse_decode_lnurl_withdraw_request_details(SseDeserializer deserializer);
+
+  @protected
+  LnurlWithdrawResponse sse_decode_lnurl_withdraw_response(SseDeserializer deserializer);
 
   @protected
   LocaleOverrides sse_decode_locale_overrides(SseDeserializer deserializer);
@@ -1240,18 +1284,21 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayInfo? sse_decode_opt_box_autoadd_lnurl_pay_info(SseDeserializer deserializer);
 
   @protected
+  LnurlWithdrawInfo? sse_decode_opt_box_autoadd_lnurl_withdraw_info(SseDeserializer deserializer);
+
+  @protected
+  Payment? sse_decode_opt_box_autoadd_payment(SseDeserializer deserializer);
+
+  @protected
   PaymentDetails? sse_decode_opt_box_autoadd_payment_details(SseDeserializer deserializer);
 
   @protected
   SendPaymentOptions? sse_decode_opt_box_autoadd_send_payment_options(SseDeserializer deserializer);
 
   @protected
-  SparkAddressPaymentType? sse_decode_opt_box_autoadd_spark_address_payment_type(
+  SparkInvoicePaymentDetails? sse_decode_opt_box_autoadd_spark_invoice_payment_details(
     SseDeserializer deserializer,
   );
-
-  @protected
-  SparkInvoiceFields? sse_decode_opt_box_autoadd_spark_invoice_fields(SseDeserializer deserializer);
 
   @protected
   SuccessAction? sse_decode_opt_box_autoadd_success_action(SseDeserializer deserializer);
@@ -1332,9 +1379,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   RegisterLightningAddressRequest sse_decode_register_lightning_address_request(SseDeserializer deserializer);
 
   @protected
-  SatsPaymentDetails sse_decode_sats_payment_details(SseDeserializer deserializer);
-
-  @protected
   SdkError sse_decode_sdk_error(SseDeserializer deserializer);
 
   @protected
@@ -1362,19 +1406,22 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   SendPaymentResponse sse_decode_send_payment_response(SseDeserializer deserializer);
 
   @protected
-  SilentPaymentAddressDetails sse_decode_silent_payment_address_details(SseDeserializer deserializer);
+  SignMessageRequest sse_decode_sign_message_request(SseDeserializer deserializer);
 
   @protected
-  SparkAddress sse_decode_spark_address(SseDeserializer deserializer);
+  SignMessageResponse sse_decode_sign_message_response(SseDeserializer deserializer);
+
+  @protected
+  SilentPaymentAddressDetails sse_decode_silent_payment_address_details(SseDeserializer deserializer);
 
   @protected
   SparkAddressDetails sse_decode_spark_address_details(SseDeserializer deserializer);
 
   @protected
-  SparkAddressPaymentType sse_decode_spark_address_payment_type(SseDeserializer deserializer);
+  SparkInvoiceDetails sse_decode_spark_invoice_details(SseDeserializer deserializer);
 
   @protected
-  SparkInvoiceFields sse_decode_spark_invoice_fields(SseDeserializer deserializer);
+  SparkInvoicePaymentDetails sse_decode_spark_invoice_payment_details(SseDeserializer deserializer);
 
   @protected
   SuccessAction sse_decode_success_action(SseDeserializer deserializer);
@@ -1396,9 +1443,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   TokenMetadata sse_decode_token_metadata(SseDeserializer deserializer);
-
-  @protected
-  TokensPaymentDetails sse_decode_tokens_payment_details(SseDeserializer deserializer);
 
   @protected
   int sse_decode_u_16(SseDeserializer deserializer);
@@ -1611,6 +1655,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
+  void sse_encode_box_autoadd_check_message_request(CheckMessageRequest self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_claim_deposit_request(ClaimDepositRequest self, SseSerializer serializer);
 
   @protected
@@ -1677,6 +1724,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
+  void sse_encode_box_autoadd_lnurl_withdraw_info(LnurlWithdrawInfo self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lnurl_withdraw_request(LnurlWithdrawRequest self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_lnurl_withdraw_request_details(
     LnurlWithdrawRequestDetails self,
     SseSerializer serializer,
@@ -1719,9 +1772,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
-  void sse_encode_box_autoadd_sats_payment_details(SatsPaymentDetails self, SseSerializer serializer);
-
-  @protected
   void sse_encode_box_autoadd_seed(Seed self, SseSerializer serializer);
 
   @protected
@@ -1734,6 +1784,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_box_autoadd_send_payment_request(SendPaymentRequest self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_sign_message_request(SignMessageRequest self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_silent_payment_address_details(
     SilentPaymentAddressDetails self,
     SseSerializer serializer,
@@ -1743,13 +1796,13 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_box_autoadd_spark_address_details(SparkAddressDetails self, SseSerializer serializer);
 
   @protected
-  void sse_encode_box_autoadd_spark_address_payment_type(
-    SparkAddressPaymentType self,
-    SseSerializer serializer,
-  );
+  void sse_encode_box_autoadd_spark_invoice_details(SparkInvoiceDetails self, SseSerializer serializer);
 
   @protected
-  void sse_encode_box_autoadd_spark_invoice_fields(SparkInvoiceFields self, SseSerializer serializer);
+  void sse_encode_box_autoadd_spark_invoice_payment_details(
+    SparkInvoicePaymentDetails self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_box_autoadd_success_action(SuccessAction self, SseSerializer serializer);
@@ -1765,9 +1818,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_box_autoadd_token_metadata(TokenMetadata self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_box_autoadd_tokens_payment_details(TokensPaymentDetails self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_u_32(int self, SseSerializer serializer);
@@ -1786,6 +1836,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
     CheckLightningAddressRequest self,
     SseSerializer serializer,
   );
+
+  @protected
+  void sse_encode_check_message_request(CheckMessageRequest self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_check_message_response(CheckMessageResponse self, SseSerializer serializer);
 
   @protected
   void sse_encode_claim_deposit_request(ClaimDepositRequest self, SseSerializer serializer);
@@ -1956,7 +2012,16 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_lnurl_pay_response(LnurlPayResponse self, SseSerializer serializer);
 
   @protected
+  void sse_encode_lnurl_withdraw_info(LnurlWithdrawInfo self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lnurl_withdraw_request(LnurlWithdrawRequest self, SseSerializer serializer);
+
+  @protected
   void sse_encode_lnurl_withdraw_request_details(LnurlWithdrawRequestDetails self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lnurl_withdraw_response(LnurlWithdrawResponse self, SseSerializer serializer);
 
   @protected
   void sse_encode_locale_overrides(LocaleOverrides self, SseSerializer serializer);
@@ -2010,19 +2075,22 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_opt_box_autoadd_lnurl_pay_info(LnurlPayInfo? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_lnurl_withdraw_info(LnurlWithdrawInfo? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_box_autoadd_payment(Payment? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_payment_details(PaymentDetails? self, SseSerializer serializer);
 
   @protected
   void sse_encode_opt_box_autoadd_send_payment_options(SendPaymentOptions? self, SseSerializer serializer);
 
   @protected
-  void sse_encode_opt_box_autoadd_spark_address_payment_type(
-    SparkAddressPaymentType? self,
+  void sse_encode_opt_box_autoadd_spark_invoice_payment_details(
+    SparkInvoicePaymentDetails? self,
     SseSerializer serializer,
   );
-
-  @protected
-  void sse_encode_opt_box_autoadd_spark_invoice_fields(SparkInvoiceFields? self, SseSerializer serializer);
 
   @protected
   void sse_encode_opt_box_autoadd_success_action(SuccessAction? self, SseSerializer serializer);
@@ -2109,9 +2177,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
-  void sse_encode_sats_payment_details(SatsPaymentDetails self, SseSerializer serializer);
-
-  @protected
   void sse_encode_sdk_error(SdkError self, SseSerializer serializer);
 
   @protected
@@ -2139,19 +2204,22 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_send_payment_response(SendPaymentResponse self, SseSerializer serializer);
 
   @protected
-  void sse_encode_silent_payment_address_details(SilentPaymentAddressDetails self, SseSerializer serializer);
+  void sse_encode_sign_message_request(SignMessageRequest self, SseSerializer serializer);
 
   @protected
-  void sse_encode_spark_address(SparkAddress self, SseSerializer serializer);
+  void sse_encode_sign_message_response(SignMessageResponse self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_silent_payment_address_details(SilentPaymentAddressDetails self, SseSerializer serializer);
 
   @protected
   void sse_encode_spark_address_details(SparkAddressDetails self, SseSerializer serializer);
 
   @protected
-  void sse_encode_spark_address_payment_type(SparkAddressPaymentType self, SseSerializer serializer);
+  void sse_encode_spark_invoice_details(SparkInvoiceDetails self, SseSerializer serializer);
 
   @protected
-  void sse_encode_spark_invoice_fields(SparkInvoiceFields self, SseSerializer serializer);
+  void sse_encode_spark_invoice_payment_details(SparkInvoicePaymentDetails self, SseSerializer serializer);
 
   @protected
   void sse_encode_success_action(SuccessAction self, SseSerializer serializer);
@@ -2173,9 +2241,6 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_token_metadata(TokenMetadata self, SseSerializer serializer);
-
-  @protected
-  void sse_encode_tokens_payment_details(TokensPaymentDetails self, SseSerializer serializer);
 
   @protected
   void sse_encode_u_16(int self, SseSerializer serializer);
