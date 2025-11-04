@@ -9,7 +9,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'models.freezed.dart';
 
-// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `PaymentMetadata`, `SparkInvoicePaymentType`, `UpdateDepositPayload`
+// These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `IncomingChange`, `OutgoingChange`, `PaymentMetadata`, `RecordChange`, `RecordId`, `Record`, `SparkInvoicePaymentType`, `UnversionedRecordChange`, `UpdateDepositPayload`
 
 class AesSuccessActionData {
   final String description;
@@ -511,6 +511,7 @@ class Config {
   final bool preferSparkOverLightning;
   final List<ExternalInputParser>? externalInputParsers;
   final bool useDefaultExternalInputParsers;
+  final String? realTimeSyncServerUrl;
 
   const Config({
     this.apiKey,
@@ -521,6 +522,7 @@ class Config {
     required this.preferSparkOverLightning,
     this.externalInputParsers,
     required this.useDefaultExternalInputParsers,
+    this.realTimeSyncServerUrl,
   });
 
   @override
@@ -532,7 +534,8 @@ class Config {
       lnurlDomain.hashCode ^
       preferSparkOverLightning.hashCode ^
       externalInputParsers.hashCode ^
-      useDefaultExternalInputParsers.hashCode;
+      useDefaultExternalInputParsers.hashCode ^
+      realTimeSyncServerUrl.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -546,7 +549,8 @@ class Config {
           lnurlDomain == other.lnurlDomain &&
           preferSparkOverLightning == other.preferSparkOverLightning &&
           externalInputParsers == other.externalInputParsers &&
-          useDefaultExternalInputParsers == other.useDefaultExternalInputParsers;
+          useDefaultExternalInputParsers == other.useDefaultExternalInputParsers &&
+          realTimeSyncServerUrl == other.realTimeSyncServerUrl;
 }
 
 class ConnectRequest {

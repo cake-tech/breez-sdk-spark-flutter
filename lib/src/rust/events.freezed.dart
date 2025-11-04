@@ -55,13 +55,14 @@ extension SdkEventPatterns on SdkEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SdkEvent_Synced value)?  synced,TResult Function( SdkEvent_ClaimDepositsFailed value)?  claimDepositsFailed,TResult Function( SdkEvent_ClaimDepositsSucceeded value)?  claimDepositsSucceeded,TResult Function( SdkEvent_PaymentSucceeded value)?  paymentSucceeded,TResult Function( SdkEvent_PaymentFailed value)?  paymentFailed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SdkEvent_Synced value)?  synced,TResult Function( SdkEvent_DataSynced value)?  dataSynced,TResult Function( SdkEvent_UnclaimedDeposits value)?  unclaimedDeposits,TResult Function( SdkEvent_ClaimedDeposits value)?  claimedDeposits,TResult Function( SdkEvent_PaymentSucceeded value)?  paymentSucceeded,TResult Function( SdkEvent_PaymentFailed value)?  paymentFailed,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case SdkEvent_Synced() when synced != null:
-return synced(_that);case SdkEvent_ClaimDepositsFailed() when claimDepositsFailed != null:
-return claimDepositsFailed(_that);case SdkEvent_ClaimDepositsSucceeded() when claimDepositsSucceeded != null:
-return claimDepositsSucceeded(_that);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
+return synced(_that);case SdkEvent_DataSynced() when dataSynced != null:
+return dataSynced(_that);case SdkEvent_UnclaimedDeposits() when unclaimedDeposits != null:
+return unclaimedDeposits(_that);case SdkEvent_ClaimedDeposits() when claimedDeposits != null:
+return claimedDeposits(_that);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
 return paymentSucceeded(_that);case SdkEvent_PaymentFailed() when paymentFailed != null:
 return paymentFailed(_that);case _:
   return orElse();
@@ -81,13 +82,14 @@ return paymentFailed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SdkEvent_Synced value)  synced,required TResult Function( SdkEvent_ClaimDepositsFailed value)  claimDepositsFailed,required TResult Function( SdkEvent_ClaimDepositsSucceeded value)  claimDepositsSucceeded,required TResult Function( SdkEvent_PaymentSucceeded value)  paymentSucceeded,required TResult Function( SdkEvent_PaymentFailed value)  paymentFailed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SdkEvent_Synced value)  synced,required TResult Function( SdkEvent_DataSynced value)  dataSynced,required TResult Function( SdkEvent_UnclaimedDeposits value)  unclaimedDeposits,required TResult Function( SdkEvent_ClaimedDeposits value)  claimedDeposits,required TResult Function( SdkEvent_PaymentSucceeded value)  paymentSucceeded,required TResult Function( SdkEvent_PaymentFailed value)  paymentFailed,}){
 final _that = this;
 switch (_that) {
 case SdkEvent_Synced():
-return synced(_that);case SdkEvent_ClaimDepositsFailed():
-return claimDepositsFailed(_that);case SdkEvent_ClaimDepositsSucceeded():
-return claimDepositsSucceeded(_that);case SdkEvent_PaymentSucceeded():
+return synced(_that);case SdkEvent_DataSynced():
+return dataSynced(_that);case SdkEvent_UnclaimedDeposits():
+return unclaimedDeposits(_that);case SdkEvent_ClaimedDeposits():
+return claimedDeposits(_that);case SdkEvent_PaymentSucceeded():
 return paymentSucceeded(_that);case SdkEvent_PaymentFailed():
 return paymentFailed(_that);}
 }
@@ -103,13 +105,14 @@ return paymentFailed(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SdkEvent_Synced value)?  synced,TResult? Function( SdkEvent_ClaimDepositsFailed value)?  claimDepositsFailed,TResult? Function( SdkEvent_ClaimDepositsSucceeded value)?  claimDepositsSucceeded,TResult? Function( SdkEvent_PaymentSucceeded value)?  paymentSucceeded,TResult? Function( SdkEvent_PaymentFailed value)?  paymentFailed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SdkEvent_Synced value)?  synced,TResult? Function( SdkEvent_DataSynced value)?  dataSynced,TResult? Function( SdkEvent_UnclaimedDeposits value)?  unclaimedDeposits,TResult? Function( SdkEvent_ClaimedDeposits value)?  claimedDeposits,TResult? Function( SdkEvent_PaymentSucceeded value)?  paymentSucceeded,TResult? Function( SdkEvent_PaymentFailed value)?  paymentFailed,}){
 final _that = this;
 switch (_that) {
 case SdkEvent_Synced() when synced != null:
-return synced(_that);case SdkEvent_ClaimDepositsFailed() when claimDepositsFailed != null:
-return claimDepositsFailed(_that);case SdkEvent_ClaimDepositsSucceeded() when claimDepositsSucceeded != null:
-return claimDepositsSucceeded(_that);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
+return synced(_that);case SdkEvent_DataSynced() when dataSynced != null:
+return dataSynced(_that);case SdkEvent_UnclaimedDeposits() when unclaimedDeposits != null:
+return unclaimedDeposits(_that);case SdkEvent_ClaimedDeposits() when claimedDeposits != null:
+return claimedDeposits(_that);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
 return paymentSucceeded(_that);case SdkEvent_PaymentFailed() when paymentFailed != null:
 return paymentFailed(_that);case _:
   return null;
@@ -128,12 +131,13 @@ return paymentFailed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  synced,TResult Function( List<DepositInfo> unclaimedDeposits)?  claimDepositsFailed,TResult Function( List<DepositInfo> claimedDeposits)?  claimDepositsSucceeded,TResult Function( Payment payment)?  paymentSucceeded,TResult Function( Payment payment)?  paymentFailed,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  synced,TResult Function( bool didPullNewRecords)?  dataSynced,TResult Function( List<DepositInfo> unclaimedDeposits)?  unclaimedDeposits,TResult Function( List<DepositInfo> claimedDeposits)?  claimedDeposits,TResult Function( Payment payment)?  paymentSucceeded,TResult Function( Payment payment)?  paymentFailed,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SdkEvent_Synced() when synced != null:
-return synced();case SdkEvent_ClaimDepositsFailed() when claimDepositsFailed != null:
-return claimDepositsFailed(_that.unclaimedDeposits);case SdkEvent_ClaimDepositsSucceeded() when claimDepositsSucceeded != null:
-return claimDepositsSucceeded(_that.claimedDeposits);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
+return synced();case SdkEvent_DataSynced() when dataSynced != null:
+return dataSynced(_that.didPullNewRecords);case SdkEvent_UnclaimedDeposits() when unclaimedDeposits != null:
+return unclaimedDeposits(_that.unclaimedDeposits);case SdkEvent_ClaimedDeposits() when claimedDeposits != null:
+return claimedDeposits(_that.claimedDeposits);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
 return paymentSucceeded(_that.payment);case SdkEvent_PaymentFailed() when paymentFailed != null:
 return paymentFailed(_that.payment);case _:
   return orElse();
@@ -153,12 +157,13 @@ return paymentFailed(_that.payment);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  synced,required TResult Function( List<DepositInfo> unclaimedDeposits)  claimDepositsFailed,required TResult Function( List<DepositInfo> claimedDeposits)  claimDepositsSucceeded,required TResult Function( Payment payment)  paymentSucceeded,required TResult Function( Payment payment)  paymentFailed,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  synced,required TResult Function( bool didPullNewRecords)  dataSynced,required TResult Function( List<DepositInfo> unclaimedDeposits)  unclaimedDeposits,required TResult Function( List<DepositInfo> claimedDeposits)  claimedDeposits,required TResult Function( Payment payment)  paymentSucceeded,required TResult Function( Payment payment)  paymentFailed,}) {final _that = this;
 switch (_that) {
 case SdkEvent_Synced():
-return synced();case SdkEvent_ClaimDepositsFailed():
-return claimDepositsFailed(_that.unclaimedDeposits);case SdkEvent_ClaimDepositsSucceeded():
-return claimDepositsSucceeded(_that.claimedDeposits);case SdkEvent_PaymentSucceeded():
+return synced();case SdkEvent_DataSynced():
+return dataSynced(_that.didPullNewRecords);case SdkEvent_UnclaimedDeposits():
+return unclaimedDeposits(_that.unclaimedDeposits);case SdkEvent_ClaimedDeposits():
+return claimedDeposits(_that.claimedDeposits);case SdkEvent_PaymentSucceeded():
 return paymentSucceeded(_that.payment);case SdkEvent_PaymentFailed():
 return paymentFailed(_that.payment);}
 }
@@ -174,12 +179,13 @@ return paymentFailed(_that.payment);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  synced,TResult? Function( List<DepositInfo> unclaimedDeposits)?  claimDepositsFailed,TResult? Function( List<DepositInfo> claimedDeposits)?  claimDepositsSucceeded,TResult? Function( Payment payment)?  paymentSucceeded,TResult? Function( Payment payment)?  paymentFailed,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  synced,TResult? Function( bool didPullNewRecords)?  dataSynced,TResult? Function( List<DepositInfo> unclaimedDeposits)?  unclaimedDeposits,TResult? Function( List<DepositInfo> claimedDeposits)?  claimedDeposits,TResult? Function( Payment payment)?  paymentSucceeded,TResult? Function( Payment payment)?  paymentFailed,}) {final _that = this;
 switch (_that) {
 case SdkEvent_Synced() when synced != null:
-return synced();case SdkEvent_ClaimDepositsFailed() when claimDepositsFailed != null:
-return claimDepositsFailed(_that.unclaimedDeposits);case SdkEvent_ClaimDepositsSucceeded() when claimDepositsSucceeded != null:
-return claimDepositsSucceeded(_that.claimedDeposits);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
+return synced();case SdkEvent_DataSynced() when dataSynced != null:
+return dataSynced(_that.didPullNewRecords);case SdkEvent_UnclaimedDeposits() when unclaimedDeposits != null:
+return unclaimedDeposits(_that.unclaimedDeposits);case SdkEvent_ClaimedDeposits() when claimedDeposits != null:
+return claimedDeposits(_that.claimedDeposits);case SdkEvent_PaymentSucceeded() when paymentSucceeded != null:
 return paymentSucceeded(_that.payment);case SdkEvent_PaymentFailed() when paymentFailed != null:
 return paymentFailed(_that.payment);case _:
   return null;
@@ -224,8 +230,74 @@ String toString() {
 /// @nodoc
 
 
-class SdkEvent_ClaimDepositsFailed extends SdkEvent {
-  const SdkEvent_ClaimDepositsFailed({required final  List<DepositInfo> unclaimedDeposits}): _unclaimedDeposits = unclaimedDeposits,super._();
+class SdkEvent_DataSynced extends SdkEvent {
+  const SdkEvent_DataSynced({required this.didPullNewRecords}): super._();
+  
+
+ final  bool didPullNewRecords;
+
+/// Create a copy of SdkEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SdkEvent_DataSyncedCopyWith<SdkEvent_DataSynced> get copyWith => _$SdkEvent_DataSyncedCopyWithImpl<SdkEvent_DataSynced>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkEvent_DataSynced&&(identical(other.didPullNewRecords, didPullNewRecords) || other.didPullNewRecords == didPullNewRecords));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,didPullNewRecords);
+
+@override
+String toString() {
+  return 'SdkEvent.dataSynced(didPullNewRecords: $didPullNewRecords)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SdkEvent_DataSyncedCopyWith<$Res> implements $SdkEventCopyWith<$Res> {
+  factory $SdkEvent_DataSyncedCopyWith(SdkEvent_DataSynced value, $Res Function(SdkEvent_DataSynced) _then) = _$SdkEvent_DataSyncedCopyWithImpl;
+@useResult
+$Res call({
+ bool didPullNewRecords
+});
+
+
+
+
+}
+/// @nodoc
+class _$SdkEvent_DataSyncedCopyWithImpl<$Res>
+    implements $SdkEvent_DataSyncedCopyWith<$Res> {
+  _$SdkEvent_DataSyncedCopyWithImpl(this._self, this._then);
+
+  final SdkEvent_DataSynced _self;
+  final $Res Function(SdkEvent_DataSynced) _then;
+
+/// Create a copy of SdkEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? didPullNewRecords = null,}) {
+  return _then(SdkEvent_DataSynced(
+didPullNewRecords: null == didPullNewRecords ? _self.didPullNewRecords : didPullNewRecords // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class SdkEvent_UnclaimedDeposits extends SdkEvent {
+  const SdkEvent_UnclaimedDeposits({required final  List<DepositInfo> unclaimedDeposits}): _unclaimedDeposits = unclaimedDeposits,super._();
   
 
  final  List<DepositInfo> _unclaimedDeposits;
@@ -240,13 +312,13 @@ class SdkEvent_ClaimDepositsFailed extends SdkEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$SdkEvent_ClaimDepositsFailedCopyWith<SdkEvent_ClaimDepositsFailed> get copyWith => _$SdkEvent_ClaimDepositsFailedCopyWithImpl<SdkEvent_ClaimDepositsFailed>(this, _$identity);
+$SdkEvent_UnclaimedDepositsCopyWith<SdkEvent_UnclaimedDeposits> get copyWith => _$SdkEvent_UnclaimedDepositsCopyWithImpl<SdkEvent_UnclaimedDeposits>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkEvent_ClaimDepositsFailed&&const DeepCollectionEquality().equals(other._unclaimedDeposits, _unclaimedDeposits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkEvent_UnclaimedDeposits&&const DeepCollectionEquality().equals(other._unclaimedDeposits, _unclaimedDeposits));
 }
 
 
@@ -255,15 +327,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'SdkEvent.claimDepositsFailed(unclaimedDeposits: $unclaimedDeposits)';
+  return 'SdkEvent.unclaimedDeposits(unclaimedDeposits: $unclaimedDeposits)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SdkEvent_ClaimDepositsFailedCopyWith<$Res> implements $SdkEventCopyWith<$Res> {
-  factory $SdkEvent_ClaimDepositsFailedCopyWith(SdkEvent_ClaimDepositsFailed value, $Res Function(SdkEvent_ClaimDepositsFailed) _then) = _$SdkEvent_ClaimDepositsFailedCopyWithImpl;
+abstract mixin class $SdkEvent_UnclaimedDepositsCopyWith<$Res> implements $SdkEventCopyWith<$Res> {
+  factory $SdkEvent_UnclaimedDepositsCopyWith(SdkEvent_UnclaimedDeposits value, $Res Function(SdkEvent_UnclaimedDeposits) _then) = _$SdkEvent_UnclaimedDepositsCopyWithImpl;
 @useResult
 $Res call({
  List<DepositInfo> unclaimedDeposits
@@ -274,17 +346,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$SdkEvent_ClaimDepositsFailedCopyWithImpl<$Res>
-    implements $SdkEvent_ClaimDepositsFailedCopyWith<$Res> {
-  _$SdkEvent_ClaimDepositsFailedCopyWithImpl(this._self, this._then);
+class _$SdkEvent_UnclaimedDepositsCopyWithImpl<$Res>
+    implements $SdkEvent_UnclaimedDepositsCopyWith<$Res> {
+  _$SdkEvent_UnclaimedDepositsCopyWithImpl(this._self, this._then);
 
-  final SdkEvent_ClaimDepositsFailed _self;
-  final $Res Function(SdkEvent_ClaimDepositsFailed) _then;
+  final SdkEvent_UnclaimedDeposits _self;
+  final $Res Function(SdkEvent_UnclaimedDeposits) _then;
 
 /// Create a copy of SdkEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? unclaimedDeposits = null,}) {
-  return _then(SdkEvent_ClaimDepositsFailed(
+  return _then(SdkEvent_UnclaimedDeposits(
 unclaimedDeposits: null == unclaimedDeposits ? _self._unclaimedDeposits : unclaimedDeposits // ignore: cast_nullable_to_non_nullable
 as List<DepositInfo>,
   ));
@@ -296,8 +368,8 @@ as List<DepositInfo>,
 /// @nodoc
 
 
-class SdkEvent_ClaimDepositsSucceeded extends SdkEvent {
-  const SdkEvent_ClaimDepositsSucceeded({required final  List<DepositInfo> claimedDeposits}): _claimedDeposits = claimedDeposits,super._();
+class SdkEvent_ClaimedDeposits extends SdkEvent {
+  const SdkEvent_ClaimedDeposits({required final  List<DepositInfo> claimedDeposits}): _claimedDeposits = claimedDeposits,super._();
   
 
  final  List<DepositInfo> _claimedDeposits;
@@ -312,13 +384,13 @@ class SdkEvent_ClaimDepositsSucceeded extends SdkEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$SdkEvent_ClaimDepositsSucceededCopyWith<SdkEvent_ClaimDepositsSucceeded> get copyWith => _$SdkEvent_ClaimDepositsSucceededCopyWithImpl<SdkEvent_ClaimDepositsSucceeded>(this, _$identity);
+$SdkEvent_ClaimedDepositsCopyWith<SdkEvent_ClaimedDeposits> get copyWith => _$SdkEvent_ClaimedDepositsCopyWithImpl<SdkEvent_ClaimedDeposits>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkEvent_ClaimDepositsSucceeded&&const DeepCollectionEquality().equals(other._claimedDeposits, _claimedDeposits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkEvent_ClaimedDeposits&&const DeepCollectionEquality().equals(other._claimedDeposits, _claimedDeposits));
 }
 
 
@@ -327,15 +399,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'SdkEvent.claimDepositsSucceeded(claimedDeposits: $claimedDeposits)';
+  return 'SdkEvent.claimedDeposits(claimedDeposits: $claimedDeposits)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SdkEvent_ClaimDepositsSucceededCopyWith<$Res> implements $SdkEventCopyWith<$Res> {
-  factory $SdkEvent_ClaimDepositsSucceededCopyWith(SdkEvent_ClaimDepositsSucceeded value, $Res Function(SdkEvent_ClaimDepositsSucceeded) _then) = _$SdkEvent_ClaimDepositsSucceededCopyWithImpl;
+abstract mixin class $SdkEvent_ClaimedDepositsCopyWith<$Res> implements $SdkEventCopyWith<$Res> {
+  factory $SdkEvent_ClaimedDepositsCopyWith(SdkEvent_ClaimedDeposits value, $Res Function(SdkEvent_ClaimedDeposits) _then) = _$SdkEvent_ClaimedDepositsCopyWithImpl;
 @useResult
 $Res call({
  List<DepositInfo> claimedDeposits
@@ -346,17 +418,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$SdkEvent_ClaimDepositsSucceededCopyWithImpl<$Res>
-    implements $SdkEvent_ClaimDepositsSucceededCopyWith<$Res> {
-  _$SdkEvent_ClaimDepositsSucceededCopyWithImpl(this._self, this._then);
+class _$SdkEvent_ClaimedDepositsCopyWithImpl<$Res>
+    implements $SdkEvent_ClaimedDepositsCopyWith<$Res> {
+  _$SdkEvent_ClaimedDepositsCopyWithImpl(this._self, this._then);
 
-  final SdkEvent_ClaimDepositsSucceeded _self;
-  final $Res Function(SdkEvent_ClaimDepositsSucceeded) _then;
+  final SdkEvent_ClaimedDeposits _self;
+  final $Res Function(SdkEvent_ClaimedDeposits) _then;
 
 /// Create a copy of SdkEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? claimedDeposits = null,}) {
-  return _then(SdkEvent_ClaimDepositsSucceeded(
+  return _then(SdkEvent_ClaimedDeposits(
 claimedDeposits: null == claimedDeposits ? _self._claimedDeposits : claimedDeposits // ignore: cast_nullable_to_non_nullable
 as List<DepositInfo>,
   ));

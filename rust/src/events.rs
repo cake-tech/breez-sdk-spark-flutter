@@ -6,10 +6,13 @@ use flutter_rust_bridge::frb;
 #[frb(mirror(SdkEvent))]
 pub enum _SdkEvent {
     Synced,
-    ClaimDepositsFailed {
+    DataSynced {
+        did_pull_new_records: bool,
+    },
+    UnclaimedDeposits {
         unclaimed_deposits: Vec<DepositInfo>,
     },
-    ClaimDepositsSucceeded {
+    ClaimedDeposits {
         claimed_deposits: Vec<DepositInfo>,
     },
     PaymentSucceeded {

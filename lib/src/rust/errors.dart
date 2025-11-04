@@ -18,7 +18,7 @@ sealed class DepositClaimError with _$DepositClaimError {
   const factory DepositClaimError.depositClaimFeeExceeded({
     required String tx,
     required int vout,
-    required Fee maxFee,
+    Fee? maxFee,
     required BigInt actualFee,
   }) = DepositClaimError_DepositClaimFeeExceeded;
   const factory DepositClaimError.missingUtxo({required String tx, required int vout}) =
@@ -39,7 +39,7 @@ sealed class SdkError with _$SdkError implements FrbException {
   const factory SdkError.depositClaimFeeExceeded({
     required String tx,
     required int vout,
-    required Fee maxFee,
+    Fee? maxFee,
     required BigInt actualFee,
   }) = SdkError_DepositClaimFeeExceeded;
   const factory SdkError.missingUtxo({required String tx, required int vout}) = SdkError_MissingUtxo;

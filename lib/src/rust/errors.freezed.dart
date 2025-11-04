@@ -122,7 +122,7 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String tx,  int vout,  Fee maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String message)?  generic,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String message)?  generic,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case DepositClaimError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
 return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case DepositClaimError_MissingUtxo() when missingUtxo != null:
@@ -145,7 +145,7 @@ return generic(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String tx,  int vout,  Fee maxFee,  BigInt actualFee)  depositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String message)  generic,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)  depositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String message)  generic,}) {final _that = this;
 switch (_that) {
 case DepositClaimError_DepositClaimFeeExceeded():
 return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case DepositClaimError_MissingUtxo():
@@ -164,7 +164,7 @@ return generic(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String tx,  int vout,  Fee maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String message)?  generic,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String message)?  generic,}) {final _that = this;
 switch (_that) {
 case DepositClaimError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
 return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case DepositClaimError_MissingUtxo() when missingUtxo != null:
@@ -181,12 +181,12 @@ return generic(_that.message);case _:
 
 
 class DepositClaimError_DepositClaimFeeExceeded extends DepositClaimError {
-  const DepositClaimError_DepositClaimFeeExceeded({required this.tx, required this.vout, required this.maxFee, required this.actualFee}): super._();
+  const DepositClaimError_DepositClaimFeeExceeded({required this.tx, required this.vout, this.maxFee, required this.actualFee}): super._();
   
 
  final  String tx;
  final  int vout;
- final  Fee maxFee;
+ final  Fee? maxFee;
  final  BigInt actualFee;
 
 /// Create a copy of DepositClaimError
@@ -219,11 +219,11 @@ abstract mixin class $DepositClaimError_DepositClaimFeeExceededCopyWith<$Res> im
   factory $DepositClaimError_DepositClaimFeeExceededCopyWith(DepositClaimError_DepositClaimFeeExceeded value, $Res Function(DepositClaimError_DepositClaimFeeExceeded) _then) = _$DepositClaimError_DepositClaimFeeExceededCopyWithImpl;
 @useResult
 $Res call({
- String tx, int vout, Fee maxFee, BigInt actualFee
+ String tx, int vout, Fee? maxFee, BigInt actualFee
 });
 
 
-$FeeCopyWith<$Res> get maxFee;
+$FeeCopyWith<$Res>? get maxFee;
 
 }
 /// @nodoc
@@ -236,12 +236,12 @@ class _$DepositClaimError_DepositClaimFeeExceededCopyWithImpl<$Res>
 
 /// Create a copy of DepositClaimError
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = null,Object? actualFee = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = freezed,Object? actualFee = null,}) {
   return _then(DepositClaimError_DepositClaimFeeExceeded(
 tx: null == tx ? _self.tx : tx // ignore: cast_nullable_to_non_nullable
 as String,vout: null == vout ? _self.vout : vout // ignore: cast_nullable_to_non_nullable
-as int,maxFee: null == maxFee ? _self.maxFee : maxFee // ignore: cast_nullable_to_non_nullable
-as Fee,actualFee: null == actualFee ? _self.actualFee : actualFee // ignore: cast_nullable_to_non_nullable
+as int,maxFee: freezed == maxFee ? _self.maxFee : maxFee // ignore: cast_nullable_to_non_nullable
+as Fee?,actualFee: null == actualFee ? _self.actualFee : actualFee // ignore: cast_nullable_to_non_nullable
 as BigInt,
   ));
 }
@@ -250,9 +250,12 @@ as BigInt,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$FeeCopyWith<$Res> get maxFee {
-  
-  return $FeeCopyWith<$Res>(_self.maxFee, (value) {
+$FeeCopyWith<$Res>? get maxFee {
+    if (_self.maxFee == null) {
+    return null;
+  }
+
+  return $FeeCopyWith<$Res>(_self.maxFee!, (value) {
     return _then(_self.copyWith(maxFee: value));
   });
 }
@@ -524,7 +527,7 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String field0)?  sparkError,TResult Function( String field0)?  invalidUuid,TResult Function( String field0)?  invalidInput,TResult Function( String field0)?  networkError,TResult Function( String field0)?  storageError,TResult Function( String field0)?  chainServiceError,TResult Function( String tx,  int vout,  Fee maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String field0)?  lnurlError,TResult Function( String field0)?  generic,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String field0)?  sparkError,TResult Function( String field0)?  invalidUuid,TResult Function( String field0)?  invalidInput,TResult Function( String field0)?  networkError,TResult Function( String field0)?  storageError,TResult Function( String field0)?  chainServiceError,TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String field0)?  lnurlError,TResult Function( String field0)?  generic,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
 return sparkError(_that.field0);case SdkError_InvalidUuid() when invalidUuid != null:
@@ -554,7 +557,7 @@ return generic(_that.field0);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String field0)  sparkError,required TResult Function( String field0)  invalidUuid,required TResult Function( String field0)  invalidInput,required TResult Function( String field0)  networkError,required TResult Function( String field0)  storageError,required TResult Function( String field0)  chainServiceError,required TResult Function( String tx,  int vout,  Fee maxFee,  BigInt actualFee)  depositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String field0)  lnurlError,required TResult Function( String field0)  generic,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String field0)  sparkError,required TResult Function( String field0)  invalidUuid,required TResult Function( String field0)  invalidInput,required TResult Function( String field0)  networkError,required TResult Function( String field0)  storageError,required TResult Function( String field0)  chainServiceError,required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)  depositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String field0)  lnurlError,required TResult Function( String field0)  generic,}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError():
 return sparkError(_that.field0);case SdkError_InvalidUuid():
@@ -580,7 +583,7 @@ return generic(_that.field0);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String field0)?  sparkError,TResult? Function( String field0)?  invalidUuid,TResult? Function( String field0)?  invalidInput,TResult? Function( String field0)?  networkError,TResult? Function( String field0)?  storageError,TResult? Function( String field0)?  chainServiceError,TResult? Function( String tx,  int vout,  Fee maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String field0)?  lnurlError,TResult? Function( String field0)?  generic,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String field0)?  sparkError,TResult? Function( String field0)?  invalidUuid,TResult? Function( String field0)?  invalidInput,TResult? Function( String field0)?  networkError,TResult? Function( String field0)?  storageError,TResult? Function( String field0)?  chainServiceError,TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String field0)?  lnurlError,TResult? Function( String field0)?  generic,}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
 return sparkError(_that.field0);case SdkError_InvalidUuid() when invalidUuid != null:
@@ -1000,12 +1003,12 @@ as String,
 
 
 class SdkError_DepositClaimFeeExceeded extends SdkError {
-  const SdkError_DepositClaimFeeExceeded({required this.tx, required this.vout, required this.maxFee, required this.actualFee}): super._();
+  const SdkError_DepositClaimFeeExceeded({required this.tx, required this.vout, this.maxFee, required this.actualFee}): super._();
   
 
  final  String tx;
  final  int vout;
- final  Fee maxFee;
+ final  Fee? maxFee;
  final  BigInt actualFee;
 
 /// Create a copy of SdkError
@@ -1038,11 +1041,11 @@ abstract mixin class $SdkError_DepositClaimFeeExceededCopyWith<$Res> implements 
   factory $SdkError_DepositClaimFeeExceededCopyWith(SdkError_DepositClaimFeeExceeded value, $Res Function(SdkError_DepositClaimFeeExceeded) _then) = _$SdkError_DepositClaimFeeExceededCopyWithImpl;
 @useResult
 $Res call({
- String tx, int vout, Fee maxFee, BigInt actualFee
+ String tx, int vout, Fee? maxFee, BigInt actualFee
 });
 
 
-$FeeCopyWith<$Res> get maxFee;
+$FeeCopyWith<$Res>? get maxFee;
 
 }
 /// @nodoc
@@ -1055,12 +1058,12 @@ class _$SdkError_DepositClaimFeeExceededCopyWithImpl<$Res>
 
 /// Create a copy of SdkError
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = null,Object? actualFee = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = freezed,Object? actualFee = null,}) {
   return _then(SdkError_DepositClaimFeeExceeded(
 tx: null == tx ? _self.tx : tx // ignore: cast_nullable_to_non_nullable
 as String,vout: null == vout ? _self.vout : vout // ignore: cast_nullable_to_non_nullable
-as int,maxFee: null == maxFee ? _self.maxFee : maxFee // ignore: cast_nullable_to_non_nullable
-as Fee,actualFee: null == actualFee ? _self.actualFee : actualFee // ignore: cast_nullable_to_non_nullable
+as int,maxFee: freezed == maxFee ? _self.maxFee : maxFee // ignore: cast_nullable_to_non_nullable
+as Fee?,actualFee: null == actualFee ? _self.actualFee : actualFee // ignore: cast_nullable_to_non_nullable
 as BigInt,
   ));
 }
@@ -1069,9 +1072,12 @@ as BigInt,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$FeeCopyWith<$Res> get maxFee {
-  
-  return $FeeCopyWith<$Res>(_self.maxFee, (value) {
+$FeeCopyWith<$Res>? get maxFee {
+    if (_self.maxFee == null) {
+    return null;
+  }
+
+  return $FeeCopyWith<$Res>(_self.maxFee!, (value) {
     return _then(_self.copyWith(maxFee: value));
   });
 }

@@ -18,10 +18,11 @@ sealed class SdkEvent with _$SdkEvent {
   const SdkEvent._();
 
   const factory SdkEvent.synced() = SdkEvent_Synced;
-  const factory SdkEvent.claimDepositsFailed({required List<DepositInfo> unclaimedDeposits}) =
-      SdkEvent_ClaimDepositsFailed;
-  const factory SdkEvent.claimDepositsSucceeded({required List<DepositInfo> claimedDeposits}) =
-      SdkEvent_ClaimDepositsSucceeded;
+  const factory SdkEvent.dataSynced({required bool didPullNewRecords}) = SdkEvent_DataSynced;
+  const factory SdkEvent.unclaimedDeposits({required List<DepositInfo> unclaimedDeposits}) =
+      SdkEvent_UnclaimedDeposits;
+  const factory SdkEvent.claimedDeposits({required List<DepositInfo> claimedDeposits}) =
+      SdkEvent_ClaimedDeposits;
   const factory SdkEvent.paymentSucceeded({required Payment payment}) = SdkEvent_PaymentSucceeded;
   const factory SdkEvent.paymentFailed({required Payment payment}) = SdkEvent_PaymentFailed;
 }

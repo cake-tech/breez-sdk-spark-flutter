@@ -39,7 +39,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.9.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1727701405;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -518911483;
 
 // Section: executor
 
@@ -1754,6 +1754,42 @@ fn wire__crate__sdk_builder__SdkBuilder_with_key_set_impl(
         },
     )
 }
+fn wire__crate__sdk_builder__SdkBuilder_with_real_time_sync_storage_impl(
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "SdkBuilder_with_real_time_sync_storage",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
+                    ptr_,
+                    rust_vec_len_,
+                    data_len_,
+                )
+            };
+            let mut deserializer =
+                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_that = <SdkBuilder>::sse_decode(&mut deserializer);
+            let api_storage = <Arc<dyn SyncStorage>>::sse_decode(&mut deserializer);
+            deserializer.end();
+            transform_result_sse::<_, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::sdk_builder::SdkBuilder::with_real_time_sync_storage(
+                        api_that,
+                        api_storage,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__crate__sdk_builder__SdkBuilder_with_rest_chain_service_impl(
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
@@ -2091,6 +2127,7 @@ const _: fn() = || {
         let _: bool = Config.prefer_spark_over_lightning;
         let _: Option<Vec<crate::models::ExternalInputParser>> = Config.external_input_parsers;
         let _: bool = Config.use_default_external_input_parsers;
+        let _: Option<String> = Config.real_time_sync_server_url;
     }
     {
         let ConnectRequest = None::<crate::models::ConnectRequest>.unwrap();
@@ -2122,7 +2159,7 @@ const _: fn() = || {
         } => {
             let _: String = tx;
             let _: u32 = vout;
-            let _: crate::models::Fee = max_fee;
+            let _: Option<crate::models::Fee> = max_fee;
             let _: u64 = actual_fee;
         }
         crate::errors::DepositClaimError::MissingUtxo { tx, vout } => {
@@ -2522,7 +2559,7 @@ const _: fn() = || {
         } => {
             let _: String = tx;
             let _: u32 = vout;
-            let _: crate::models::Fee = max_fee;
+            let _: Option<crate::models::Fee> = max_fee;
             let _: u64 = actual_fee;
         }
         crate::errors::SdkError::MissingUtxo { tx, vout } => {
@@ -2538,10 +2575,15 @@ const _: fn() = || {
     }
     match None::<crate::events::SdkEvent>.unwrap() {
         crate::events::SdkEvent::Synced => {}
-        crate::events::SdkEvent::ClaimDepositsFailed { unclaimed_deposits } => {
+        crate::events::SdkEvent::DataSynced {
+            did_pull_new_records,
+        } => {
+            let _: bool = did_pull_new_records;
+        }
+        crate::events::SdkEvent::UnclaimedDeposits { unclaimed_deposits } => {
             let _: Vec<crate::models::DepositInfo> = unclaimed_deposits;
         }
-        crate::events::SdkEvent::ClaimDepositsSucceeded { claimed_deposits } => {
+        crate::events::SdkEvent::ClaimedDeposits { claimed_deposits } => {
             let _: Vec<crate::models::DepositInfo> = claimed_deposits;
         }
         crate::events::SdkEvent::PaymentSucceeded { payment } => {
@@ -2750,6 +2792,9 @@ flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn Storage>>
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
+    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn SyncStorage>>
+);
+flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<BreezSdk>
 );
 flutter_rust_bridge::frb_generated_moi_arc_impl_value!(
@@ -2771,6 +2816,16 @@ impl SseDecode for Arc<dyn Storage> {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <RustOpaqueMoi<
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn Storage>>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode for Arc<dyn SyncStorage> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueMoi<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn SyncStorage>>,
         >>::sse_decode(deserializer);
         return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
     }
@@ -2806,6 +2861,16 @@ impl SseDecode for std::collections::HashMap<String, crate::models::TokenBalance
 
 impl SseDecode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn Storage>>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return decode_rust_opaque_moi(inner);
+    }
+}
+
+impl SseDecode
+    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn SyncStorage>>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -3257,6 +3322,7 @@ impl SseDecode for crate::models::Config {
         let mut var_externalInputParsers =
             <Option<Vec<crate::models::ExternalInputParser>>>::sse_decode(deserializer);
         let mut var_useDefaultExternalInputParsers = <bool>::sse_decode(deserializer);
+        let mut var_realTimeSyncServerUrl = <Option<String>>::sse_decode(deserializer);
         return crate::models::Config {
             api_key: var_apiKey,
             network: var_network,
@@ -3266,6 +3332,7 @@ impl SseDecode for crate::models::Config {
             prefer_spark_over_lightning: var_preferSparkOverLightning,
             external_input_parsers: var_externalInputParsers,
             use_default_external_input_parsers: var_useDefaultExternalInputParsers,
+            real_time_sync_server_url: var_realTimeSyncServerUrl,
         };
     }
 }
@@ -3327,7 +3394,7 @@ impl SseDecode for crate::errors::DepositClaimError {
             0 => {
                 let mut var_tx = <String>::sse_decode(deserializer);
                 let mut var_vout = <u32>::sse_decode(deserializer);
-                let mut var_maxFee = <crate::models::Fee>::sse_decode(deserializer);
+                let mut var_maxFee = <Option<crate::models::Fee>>::sse_decode(deserializer);
                 let mut var_actualFee = <u64>::sse_decode(deserializer);
                 return crate::errors::DepositClaimError::DepositClaimFeeExceeded {
                     tx: var_tx,
@@ -4759,7 +4826,7 @@ impl SseDecode for crate::errors::SdkError {
             6 => {
                 let mut var_tx = <String>::sse_decode(deserializer);
                 let mut var_vout = <u32>::sse_decode(deserializer);
-                let mut var_maxFee = <crate::models::Fee>::sse_decode(deserializer);
+                let mut var_maxFee = <Option<crate::models::Fee>>::sse_decode(deserializer);
                 let mut var_actualFee = <u64>::sse_decode(deserializer);
                 return crate::errors::SdkError::DepositClaimFeeExceeded {
                     tx: var_tx,
@@ -4800,26 +4867,32 @@ impl SseDecode for crate::events::SdkEvent {
                 return crate::events::SdkEvent::Synced;
             }
             1 => {
-                let mut var_unclaimedDeposits =
-                    <Vec<crate::models::DepositInfo>>::sse_decode(deserializer);
-                return crate::events::SdkEvent::ClaimDepositsFailed {
-                    unclaimed_deposits: var_unclaimedDeposits,
+                let mut var_didPullNewRecords = <bool>::sse_decode(deserializer);
+                return crate::events::SdkEvent::DataSynced {
+                    did_pull_new_records: var_didPullNewRecords,
                 };
             }
             2 => {
-                let mut var_claimedDeposits =
+                let mut var_unclaimedDeposits =
                     <Vec<crate::models::DepositInfo>>::sse_decode(deserializer);
-                return crate::events::SdkEvent::ClaimDepositsSucceeded {
-                    claimed_deposits: var_claimedDeposits,
+                return crate::events::SdkEvent::UnclaimedDeposits {
+                    unclaimed_deposits: var_unclaimedDeposits,
                 };
             }
             3 => {
+                let mut var_claimedDeposits =
+                    <Vec<crate::models::DepositInfo>>::sse_decode(deserializer);
+                return crate::events::SdkEvent::ClaimedDeposits {
+                    claimed_deposits: var_claimedDeposits,
+                };
+            }
+            4 => {
                 let mut var_payment = <crate::models::Payment>::sse_decode(deserializer);
                 return crate::events::SdkEvent::PaymentSucceeded {
                     payment: var_payment,
                 };
             }
-            4 => {
+            5 => {
                 let mut var_payment = <crate::models::Payment>::sse_decode(deserializer);
                 return crate::events::SdkEvent::PaymentFailed {
                     payment: var_payment,
@@ -5358,7 +5431,7 @@ fn pde_ffi_dispatcher_primary_impl(
         26 => wire__crate__sdk__BreezSdk_sync_wallet_impl(port, ptr, rust_vec_len, data_len),
         27 => wire__crate__sdk__BreezSdk_wait_for_payment_impl(port, ptr, rust_vec_len, data_len),
         28 => wire__crate__sdk_builder__SdkBuilder_build_impl(port, ptr, rust_vec_len, data_len),
-        32 => wire__crate__sdk__connect_impl(port, ptr, rust_vec_len, data_len),
+        33 => wire__crate__sdk__connect_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -5373,14 +5446,19 @@ fn pde_ffi_dispatcher_sync_impl(
     match func_id {
         29 => wire__crate__sdk_builder__SdkBuilder_new_impl(ptr, rust_vec_len, data_len),
         30 => wire__crate__sdk_builder__SdkBuilder_with_key_set_impl(ptr, rust_vec_len, data_len),
-        31 => wire__crate__sdk_builder__SdkBuilder_with_rest_chain_service_impl(
+        31 => wire__crate__sdk_builder__SdkBuilder_with_real_time_sync_storage_impl(
             ptr,
             rust_vec_len,
             data_len,
         ),
-        33 => wire__crate__sdk__default_config_impl(ptr, rust_vec_len, data_len),
-        34 => wire__crate__sdk__default_storage_impl(ptr, rust_vec_len, data_len),
-        35 => wire__crate__sdk__init_logging_impl(ptr, rust_vec_len, data_len),
+        32 => wire__crate__sdk_builder__SdkBuilder_with_rest_chain_service_impl(
+            ptr,
+            rust_vec_len,
+            data_len,
+        ),
+        34 => wire__crate__sdk__default_config_impl(ptr, rust_vec_len, data_len),
+        35 => wire__crate__sdk__default_storage_impl(ptr, rust_vec_len, data_len),
+        36 => wire__crate__sdk__init_logging_impl(ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -5398,6 +5476,24 @@ impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<
 
 impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<Arc<dyn Storage>>> for Arc<dyn Storage> {
     fn into_into_dart(self) -> FrbWrapper<Arc<dyn Storage>> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<Arc<dyn SyncStorage>> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<Arc<dyn SyncStorage>>
+{
+}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<Arc<dyn SyncStorage>>> for Arc<dyn SyncStorage> {
+    fn into_into_dart(self) -> FrbWrapper<Arc<dyn SyncStorage>> {
         self.into()
     }
 }
@@ -5989,6 +6085,10 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::Config> {
             self.0.external_input_parsers.into_into_dart().into_dart(),
             self.0
                 .use_default_external_input_parsers
+                .into_into_dart()
+                .into_dart(),
+            self.0
+                .real_time_sync_server_url
                 .into_into_dart()
                 .into_dart(),
         ]
@@ -7392,19 +7492,26 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::events::SdkEvent> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         match self.0 {
             crate::events::SdkEvent::Synced => [0.into_dart()].into_dart(),
-            crate::events::SdkEvent::ClaimDepositsFailed { unclaimed_deposits } => [
+            crate::events::SdkEvent::DataSynced {
+                did_pull_new_records,
+            } => [
                 1.into_dart(),
+                did_pull_new_records.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
+            crate::events::SdkEvent::UnclaimedDeposits { unclaimed_deposits } => [
+                2.into_dart(),
                 unclaimed_deposits.into_into_dart().into_dart(),
             ]
             .into_dart(),
-            crate::events::SdkEvent::ClaimDepositsSucceeded { claimed_deposits } => {
-                [2.into_dart(), claimed_deposits.into_into_dart().into_dart()].into_dart()
+            crate::events::SdkEvent::ClaimedDeposits { claimed_deposits } => {
+                [3.into_dart(), claimed_deposits.into_into_dart().into_dart()].into_dart()
             }
             crate::events::SdkEvent::PaymentSucceeded { payment } => {
-                [3.into_dart(), payment.into_into_dart().into_dart()].into_dart()
+                [4.into_dart(), payment.into_into_dart().into_dart()].into_dart()
             }
             crate::events::SdkEvent::PaymentFailed { payment } => {
-                [4.into_dart(), payment.into_into_dart().into_dart()].into_dart()
+                [5.into_dart(), payment.into_into_dart().into_dart()].into_dart()
             }
             _ => {
                 unimplemented!("");
@@ -8029,6 +8136,18 @@ impl SseEncode for Arc<dyn Storage> {
     }
 }
 
+impl SseEncode for Arc<dyn SyncStorage> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueMoi<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn SyncStorage>>,
+        >>::sse_encode(
+            flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, MoiArc<_>>(self),
+            serializer,
+        );
+    }
+}
+
 impl SseEncode for BreezSdk {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8055,6 +8174,17 @@ impl SseEncode for std::collections::HashMap<String, crate::models::TokenBalance
 
 impl SseEncode
     for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn Storage>>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc<dyn SyncStorage>>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8400,6 +8530,7 @@ impl SseEncode for crate::models::Config {
             serializer,
         );
         <bool>::sse_encode(self.use_default_external_input_parsers, serializer);
+        <Option<String>>::sse_encode(self.real_time_sync_server_url, serializer);
     }
 }
 
@@ -8446,7 +8577,7 @@ impl SseEncode for crate::errors::DepositClaimError {
                 <i32>::sse_encode(0, serializer);
                 <String>::sse_encode(tx, serializer);
                 <u32>::sse_encode(vout, serializer);
-                <crate::models::Fee>::sse_encode(max_fee, serializer);
+                <Option<crate::models::Fee>>::sse_encode(max_fee, serializer);
                 <u64>::sse_encode(actual_fee, serializer);
             }
             crate::errors::DepositClaimError::MissingUtxo { tx, vout } => {
@@ -9601,7 +9732,7 @@ impl SseEncode for crate::errors::SdkError {
                 <i32>::sse_encode(6, serializer);
                 <String>::sse_encode(tx, serializer);
                 <u32>::sse_encode(vout, serializer);
-                <crate::models::Fee>::sse_encode(max_fee, serializer);
+                <Option<crate::models::Fee>>::sse_encode(max_fee, serializer);
                 <u64>::sse_encode(actual_fee, serializer);
             }
             crate::errors::SdkError::MissingUtxo { tx, vout } => {
@@ -9631,20 +9762,26 @@ impl SseEncode for crate::events::SdkEvent {
             crate::events::SdkEvent::Synced => {
                 <i32>::sse_encode(0, serializer);
             }
-            crate::events::SdkEvent::ClaimDepositsFailed { unclaimed_deposits } => {
+            crate::events::SdkEvent::DataSynced {
+                did_pull_new_records,
+            } => {
                 <i32>::sse_encode(1, serializer);
+                <bool>::sse_encode(did_pull_new_records, serializer);
+            }
+            crate::events::SdkEvent::UnclaimedDeposits { unclaimed_deposits } => {
+                <i32>::sse_encode(2, serializer);
                 <Vec<crate::models::DepositInfo>>::sse_encode(unclaimed_deposits, serializer);
             }
-            crate::events::SdkEvent::ClaimDepositsSucceeded { claimed_deposits } => {
-                <i32>::sse_encode(2, serializer);
+            crate::events::SdkEvent::ClaimedDeposits { claimed_deposits } => {
+                <i32>::sse_encode(3, serializer);
                 <Vec<crate::models::DepositInfo>>::sse_encode(claimed_deposits, serializer);
             }
             crate::events::SdkEvent::PaymentSucceeded { payment } => {
-                <i32>::sse_encode(3, serializer);
+                <i32>::sse_encode(4, serializer);
                 <crate::models::Payment>::sse_encode(payment, serializer);
             }
             crate::events::SdkEvent::PaymentFailed { payment } => {
-                <i32>::sse_encode(4, serializer);
+                <i32>::sse_encode(5, serializer);
                 <crate::models::Payment>::sse_encode(payment, serializer);
             }
             _ => {
@@ -10044,6 +10181,20 @@ mod io {
         ptr: *const std::ffi::c_void,
     ) {
         MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < dyn Storage >>>::decrement_strong_count(ptr as _);
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_breez_sdk_spark_flutter_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcdynSyncStorage(
+        ptr: *const std::ffi::c_void,
+    ) {
+        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < dyn SyncStorage >>>::increment_strong_count(ptr as _);
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_breez_sdk_spark_flutter_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerArcdynSyncStorage(
+        ptr: *const std::ffi::c_void,
+    ) {
+        MoiArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Arc < dyn SyncStorage >>>::decrement_strong_count(ptr as _);
     }
 
     #[unsafe(no_mangle)]
