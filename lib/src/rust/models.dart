@@ -1262,6 +1262,26 @@ class LnurlPayResponse {
           successAction == other.successAction;
 }
 
+class LnurlReceiveMetadata {
+  final String? nostrZapRequest;
+  final String? nostrZapReceipt;
+  final String? senderComment;
+
+  const LnurlReceiveMetadata({this.nostrZapRequest, this.nostrZapReceipt, this.senderComment});
+
+  @override
+  int get hashCode => nostrZapRequest.hashCode ^ nostrZapReceipt.hashCode ^ senderComment.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LnurlReceiveMetadata &&
+          runtimeType == other.runtimeType &&
+          nostrZapRequest == other.nostrZapRequest &&
+          nostrZapReceipt == other.nostrZapReceipt &&
+          senderComment == other.senderComment;
+}
+
 class LnurlWithdrawInfo {
   final String withdrawUrl;
 
@@ -1491,6 +1511,7 @@ sealed class PaymentDetails with _$PaymentDetails {
     required String destinationPubkey,
     LnurlPayInfo? lnurlPayInfo,
     LnurlWithdrawInfo? lnurlWithdrawInfo,
+    LnurlReceiveMetadata? lnurlReceiveMetadata,
   }) = PaymentDetails_Lightning;
   const factory PaymentDetails.withdraw({required String txId}) = PaymentDetails_Withdraw;
   const factory PaymentDetails.deposit({required String txId}) = PaymentDetails_Deposit;

@@ -15,12 +15,13 @@ part 'errors.freezed.dart';
 sealed class DepositClaimError with _$DepositClaimError {
   const DepositClaimError._();
 
-  const factory DepositClaimError.depositClaimFeeExceeded({
+  const factory DepositClaimError.maxDepositClaimFeeExceeded({
     required String tx,
     required int vout,
     Fee? maxFee,
-    required BigInt actualFee,
-  }) = DepositClaimError_DepositClaimFeeExceeded;
+    required BigInt requiredFeeSats,
+    required BigInt requiredFeeRateSatPerVbyte,
+  }) = DepositClaimError_MaxDepositClaimFeeExceeded;
   const factory DepositClaimError.missingUtxo({required String tx, required int vout}) =
       DepositClaimError_MissingUtxo;
   const factory DepositClaimError.generic({required String message}) = DepositClaimError_Generic;
@@ -36,12 +37,13 @@ sealed class SdkError with _$SdkError implements FrbException {
   const factory SdkError.networkError(String field0) = SdkError_NetworkError;
   const factory SdkError.storageError(String field0) = SdkError_StorageError;
   const factory SdkError.chainServiceError(String field0) = SdkError_ChainServiceError;
-  const factory SdkError.depositClaimFeeExceeded({
+  const factory SdkError.maxDepositClaimFeeExceeded({
     required String tx,
     required int vout,
     Fee? maxFee,
-    required BigInt actualFee,
-  }) = SdkError_DepositClaimFeeExceeded;
+    required BigInt requiredFeeSats,
+    required BigInt requiredFeeRateSatPerVbyte,
+  }) = SdkError_MaxDepositClaimFeeExceeded;
   const factory SdkError.missingUtxo({required String tx, required int vout}) = SdkError_MissingUtxo;
   const factory SdkError.lnurlError(String field0) = SdkError_LnurlError;
   const factory SdkError.generic(String field0) = SdkError_Generic;

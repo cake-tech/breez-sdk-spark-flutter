@@ -2126,6 +2126,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  LnurlReceiveMetadata dco_decode_box_autoadd_lnurl_receive_metadata(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_lnurl_receive_metadata(raw);
+  }
+
+  @protected
   LnurlWithdrawInfo dco_decode_box_autoadd_lnurl_withdraw_info(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_lnurl_withdraw_info(raw);
@@ -2475,11 +2481,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     // Codec=Dco (DartCObject based), see doc to use other codecs
     switch (raw[0]) {
       case 0:
-        return DepositClaimError_DepositClaimFeeExceeded(
+        return DepositClaimError_MaxDepositClaimFeeExceeded(
           tx: dco_decode_String(raw[1]),
           vout: dco_decode_u_32(raw[2]),
           maxFee: dco_decode_opt_box_autoadd_fee(raw[3]),
-          actualFee: dco_decode_u_64(raw[4]),
+          requiredFeeSats: dco_decode_u_64(raw[4]),
+          requiredFeeRateSatPerVbyte: dco_decode_u_64(raw[5]),
         );
       case 1:
         return DepositClaimError_MissingUtxo(tx: dco_decode_String(raw[1]), vout: dco_decode_u_32(raw[2]));
@@ -2929,6 +2936,18 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  LnurlReceiveMetadata dco_decode_lnurl_receive_metadata(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3) throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return LnurlReceiveMetadata(
+      nostrZapRequest: dco_decode_opt_String(arr[0]),
+      nostrZapReceipt: dco_decode_opt_String(arr[1]),
+      senderComment: dco_decode_opt_String(arr[2]),
+    );
+  }
+
+  @protected
   LnurlWithdrawInfo dco_decode_lnurl_withdraw_info(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -3090,6 +3109,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  LnurlReceiveMetadata? dco_decode_opt_box_autoadd_lnurl_receive_metadata(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_lnurl_receive_metadata(raw);
+  }
+
+  @protected
   LnurlWithdrawInfo? dco_decode_opt_box_autoadd_lnurl_withdraw_info(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_box_autoadd_lnurl_withdraw_info(raw);
@@ -3226,6 +3251,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
           destinationPubkey: dco_decode_String(raw[5]),
           lnurlPayInfo: dco_decode_opt_box_autoadd_lnurl_pay_info(raw[6]),
           lnurlWithdrawInfo: dco_decode_opt_box_autoadd_lnurl_withdraw_info(raw[7]),
+          lnurlReceiveMetadata: dco_decode_opt_box_autoadd_lnurl_receive_metadata(raw[8]),
         );
       case 3:
         return PaymentDetails_Withdraw(txId: dco_decode_String(raw[1]));
@@ -3440,11 +3466,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
       case 5:
         return SdkError_ChainServiceError(dco_decode_String(raw[1]));
       case 6:
-        return SdkError_DepositClaimFeeExceeded(
+        return SdkError_MaxDepositClaimFeeExceeded(
           tx: dco_decode_String(raw[1]),
           vout: dco_decode_u_32(raw[2]),
           maxFee: dco_decode_opt_box_autoadd_fee(raw[3]),
-          actualFee: dco_decode_u_64(raw[4]),
+          requiredFeeSats: dco_decode_u_64(raw[4]),
+          requiredFeeRateSatPerVbyte: dco_decode_u_64(raw[5]),
         );
       case 7:
         return SdkError_MissingUtxo(tx: dco_decode_String(raw[1]), vout: dco_decode_u_32(raw[2]));
@@ -4449,6 +4476,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  LnurlReceiveMetadata sse_decode_box_autoadd_lnurl_receive_metadata(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_lnurl_receive_metadata(deserializer));
+  }
+
+  @protected
   LnurlWithdrawInfo sse_decode_box_autoadd_lnurl_withdraw_info(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_lnurl_withdraw_info(deserializer));
@@ -4819,12 +4852,14 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
         var var_tx = sse_decode_String(deserializer);
         var var_vout = sse_decode_u_32(deserializer);
         var var_maxFee = sse_decode_opt_box_autoadd_fee(deserializer);
-        var var_actualFee = sse_decode_u_64(deserializer);
-        return DepositClaimError_DepositClaimFeeExceeded(
+        var var_requiredFeeSats = sse_decode_u_64(deserializer);
+        var var_requiredFeeRateSatPerVbyte = sse_decode_u_64(deserializer);
+        return DepositClaimError_MaxDepositClaimFeeExceeded(
           tx: var_tx,
           vout: var_vout,
           maxFee: var_maxFee,
-          actualFee: var_actualFee,
+          requiredFeeSats: var_requiredFeeSats,
+          requiredFeeRateSatPerVbyte: var_requiredFeeRateSatPerVbyte,
         );
       case 1:
         var var_tx = sse_decode_String(deserializer);
@@ -5406,6 +5441,19 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  LnurlReceiveMetadata sse_decode_lnurl_receive_metadata(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_nostrZapRequest = sse_decode_opt_String(deserializer);
+    var var_nostrZapReceipt = sse_decode_opt_String(deserializer);
+    var var_senderComment = sse_decode_opt_String(deserializer);
+    return LnurlReceiveMetadata(
+      nostrZapRequest: var_nostrZapRequest,
+      nostrZapReceipt: var_nostrZapReceipt,
+      senderComment: var_senderComment,
+    );
+  }
+
+  @protected
   LnurlWithdrawInfo sse_decode_lnurl_withdraw_info(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_withdrawUrl = sse_decode_String(deserializer);
@@ -5608,6 +5656,17 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
 
     if (sse_decode_bool(deserializer)) {
       return (sse_decode_box_autoadd_lnurl_pay_info(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  LnurlReceiveMetadata? sse_decode_opt_box_autoadd_lnurl_receive_metadata(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_lnurl_receive_metadata(deserializer));
     } else {
       return null;
     }
@@ -5841,6 +5900,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
         var var_destinationPubkey = sse_decode_String(deserializer);
         var var_lnurlPayInfo = sse_decode_opt_box_autoadd_lnurl_pay_info(deserializer);
         var var_lnurlWithdrawInfo = sse_decode_opt_box_autoadd_lnurl_withdraw_info(deserializer);
+        var var_lnurlReceiveMetadata = sse_decode_opt_box_autoadd_lnurl_receive_metadata(deserializer);
         return PaymentDetails_Lightning(
           description: var_description,
           preimage: var_preimage,
@@ -5849,6 +5909,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
           destinationPubkey: var_destinationPubkey,
           lnurlPayInfo: var_lnurlPayInfo,
           lnurlWithdrawInfo: var_lnurlWithdrawInfo,
+          lnurlReceiveMetadata: var_lnurlReceiveMetadata,
         );
       case 3:
         var var_txId = sse_decode_String(deserializer);
@@ -6091,12 +6152,14 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
         var var_tx = sse_decode_String(deserializer);
         var var_vout = sse_decode_u_32(deserializer);
         var var_maxFee = sse_decode_opt_box_autoadd_fee(deserializer);
-        var var_actualFee = sse_decode_u_64(deserializer);
-        return SdkError_DepositClaimFeeExceeded(
+        var var_requiredFeeSats = sse_decode_u_64(deserializer);
+        var var_requiredFeeRateSatPerVbyte = sse_decode_u_64(deserializer);
+        return SdkError_MaxDepositClaimFeeExceeded(
           tx: var_tx,
           vout: var_vout,
           maxFee: var_maxFee,
-          actualFee: var_actualFee,
+          requiredFeeSats: var_requiredFeeSats,
+          requiredFeeRateSatPerVbyte: var_requiredFeeRateSatPerVbyte,
         );
       case 7:
         var var_tx = sse_decode_String(deserializer);
@@ -7111,6 +7174,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  void sse_encode_box_autoadd_lnurl_receive_metadata(LnurlReceiveMetadata self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_lnurl_receive_metadata(self, serializer);
+  }
+
+  @protected
   void sse_encode_box_autoadd_lnurl_withdraw_info(LnurlWithdrawInfo self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_lnurl_withdraw_info(self, serializer);
@@ -7458,17 +7527,19 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   void sse_encode_deposit_claim_error(DepositClaimError self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     switch (self) {
-      case DepositClaimError_DepositClaimFeeExceeded(
+      case DepositClaimError_MaxDepositClaimFeeExceeded(
         tx: final tx,
         vout: final vout,
         maxFee: final maxFee,
-        actualFee: final actualFee,
+        requiredFeeSats: final requiredFeeSats,
+        requiredFeeRateSatPerVbyte: final requiredFeeRateSatPerVbyte,
       ):
         sse_encode_i_32(0, serializer);
         sse_encode_String(tx, serializer);
         sse_encode_u_32(vout, serializer);
         sse_encode_opt_box_autoadd_fee(maxFee, serializer);
-        sse_encode_u_64(actualFee, serializer);
+        sse_encode_u_64(requiredFeeSats, serializer);
+        sse_encode_u_64(requiredFeeRateSatPerVbyte, serializer);
       case DepositClaimError_MissingUtxo(tx: final tx, vout: final vout):
         sse_encode_i_32(1, serializer);
         sse_encode_String(tx, serializer);
@@ -7925,6 +7996,14 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  void sse_encode_lnurl_receive_metadata(LnurlReceiveMetadata self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_String(self.nostrZapRequest, serializer);
+    sse_encode_opt_String(self.nostrZapReceipt, serializer);
+    sse_encode_opt_String(self.senderComment, serializer);
+  }
+
+  @protected
   void sse_encode_lnurl_withdraw_info(LnurlWithdrawInfo self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.withdrawUrl, serializer);
@@ -8101,6 +8180,19 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     sse_encode_bool(self != null, serializer);
     if (self != null) {
       sse_encode_box_autoadd_lnurl_pay_info(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_lnurl_receive_metadata(
+    LnurlReceiveMetadata? self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_lnurl_receive_metadata(self, serializer);
     }
   }
 
@@ -8308,6 +8400,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
         destinationPubkey: final destinationPubkey,
         lnurlPayInfo: final lnurlPayInfo,
         lnurlWithdrawInfo: final lnurlWithdrawInfo,
+        lnurlReceiveMetadata: final lnurlReceiveMetadata,
       ):
         sse_encode_i_32(2, serializer);
         sse_encode_opt_String(description, serializer);
@@ -8317,6 +8410,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
         sse_encode_String(destinationPubkey, serializer);
         sse_encode_opt_box_autoadd_lnurl_pay_info(lnurlPayInfo, serializer);
         sse_encode_opt_box_autoadd_lnurl_withdraw_info(lnurlWithdrawInfo, serializer);
+        sse_encode_opt_box_autoadd_lnurl_receive_metadata(lnurlReceiveMetadata, serializer);
       case PaymentDetails_Withdraw(txId: final txId):
         sse_encode_i_32(3, serializer);
         sse_encode_String(txId, serializer);
@@ -8500,17 +8594,19 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
       case SdkError_ChainServiceError(field0: final field0):
         sse_encode_i_32(5, serializer);
         sse_encode_String(field0, serializer);
-      case SdkError_DepositClaimFeeExceeded(
+      case SdkError_MaxDepositClaimFeeExceeded(
         tx: final tx,
         vout: final vout,
         maxFee: final maxFee,
-        actualFee: final actualFee,
+        requiredFeeSats: final requiredFeeSats,
+        requiredFeeRateSatPerVbyte: final requiredFeeRateSatPerVbyte,
       ):
         sse_encode_i_32(6, serializer);
         sse_encode_String(tx, serializer);
         sse_encode_u_32(vout, serializer);
         sse_encode_opt_box_autoadd_fee(maxFee, serializer);
-        sse_encode_u_64(actualFee, serializer);
+        sse_encode_u_64(requiredFeeSats, serializer);
+        sse_encode_u_64(requiredFeeRateSatPerVbyte, serializer);
       case SdkError_MissingUtxo(tx: final tx, vout: final vout):
         sse_encode_i_32(7, serializer);
         sse_encode_String(tx, serializer);

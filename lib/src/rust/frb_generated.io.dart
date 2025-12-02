@@ -258,6 +258,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayRequestDetails dco_decode_box_autoadd_lnurl_pay_request_details(dynamic raw);
 
   @protected
+  LnurlReceiveMetadata dco_decode_box_autoadd_lnurl_receive_metadata(dynamic raw);
+
+  @protected
   LnurlWithdrawInfo dco_decode_box_autoadd_lnurl_withdraw_info(dynamic raw);
 
   @protected
@@ -546,6 +549,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayResponse dco_decode_lnurl_pay_response(dynamic raw);
 
   @protected
+  LnurlReceiveMetadata dco_decode_lnurl_receive_metadata(dynamic raw);
+
+  @protected
   LnurlWithdrawInfo dco_decode_lnurl_withdraw_info(dynamic raw);
 
   @protected
@@ -607,6 +613,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   LnurlPayInfo? dco_decode_opt_box_autoadd_lnurl_pay_info(dynamic raw);
+
+  @protected
+  LnurlReceiveMetadata? dco_decode_opt_box_autoadd_lnurl_receive_metadata(dynamic raw);
 
   @protected
   LnurlWithdrawInfo? dco_decode_opt_box_autoadd_lnurl_withdraw_info(dynamic raw);
@@ -1060,6 +1069,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayRequestDetails sse_decode_box_autoadd_lnurl_pay_request_details(SseDeserializer deserializer);
 
   @protected
+  LnurlReceiveMetadata sse_decode_box_autoadd_lnurl_receive_metadata(SseDeserializer deserializer);
+
+  @protected
   LnurlWithdrawInfo sse_decode_box_autoadd_lnurl_withdraw_info(SseDeserializer deserializer);
 
   @protected
@@ -1358,6 +1370,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlPayResponse sse_decode_lnurl_pay_response(SseDeserializer deserializer);
 
   @protected
+  LnurlReceiveMetadata sse_decode_lnurl_receive_metadata(SseDeserializer deserializer);
+
+  @protected
   LnurlWithdrawInfo sse_decode_lnurl_withdraw_info(SseDeserializer deserializer);
 
   @protected
@@ -1419,6 +1434,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   LnurlPayInfo? sse_decode_opt_box_autoadd_lnurl_pay_info(SseDeserializer deserializer);
+
+  @protected
+  LnurlReceiveMetadata? sse_decode_opt_box_autoadd_lnurl_receive_metadata(SseDeserializer deserializer);
 
   @protected
   LnurlWithdrawInfo? sse_decode_opt_box_autoadd_lnurl_withdraw_info(SseDeserializer deserializer);
@@ -1915,6 +1933,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
+  void sse_encode_box_autoadd_lnurl_receive_metadata(LnurlReceiveMetadata self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_lnurl_withdraw_info(LnurlWithdrawInfo self, SseSerializer serializer);
 
   @protected
@@ -2248,6 +2269,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_lnurl_pay_response(LnurlPayResponse self, SseSerializer serializer);
 
   @protected
+  void sse_encode_lnurl_receive_metadata(LnurlReceiveMetadata self, SseSerializer serializer);
+
+  @protected
   void sse_encode_lnurl_withdraw_info(LnurlWithdrawInfo self, SseSerializer serializer);
 
   @protected
@@ -2312,6 +2336,12 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_opt_box_autoadd_lnurl_pay_info(LnurlPayInfo? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_box_autoadd_lnurl_receive_metadata(
+    LnurlReceiveMetadata? self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_opt_box_autoadd_lnurl_withdraw_info(LnurlWithdrawInfo? self, SseSerializer serializer);

@@ -55,11 +55,11 @@ extension DepositClaimErrorPatterns on DepositClaimError {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( DepositClaimError_DepositClaimFeeExceeded value)?  depositClaimFeeExceeded,TResult Function( DepositClaimError_MissingUtxo value)?  missingUtxo,TResult Function( DepositClaimError_Generic value)?  generic,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( DepositClaimError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult Function( DepositClaimError_MissingUtxo value)?  missingUtxo,TResult Function( DepositClaimError_Generic value)?  generic,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case DepositClaimError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that);case DepositClaimError_MissingUtxo() when missingUtxo != null:
+case DepositClaimError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that);case DepositClaimError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that);case DepositClaimError_Generic() when generic != null:
 return generic(_that);case _:
   return orElse();
@@ -79,11 +79,11 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( DepositClaimError_DepositClaimFeeExceeded value)  depositClaimFeeExceeded,required TResult Function( DepositClaimError_MissingUtxo value)  missingUtxo,required TResult Function( DepositClaimError_Generic value)  generic,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( DepositClaimError_MaxDepositClaimFeeExceeded value)  maxDepositClaimFeeExceeded,required TResult Function( DepositClaimError_MissingUtxo value)  missingUtxo,required TResult Function( DepositClaimError_Generic value)  generic,}){
 final _that = this;
 switch (_that) {
-case DepositClaimError_DepositClaimFeeExceeded():
-return depositClaimFeeExceeded(_that);case DepositClaimError_MissingUtxo():
+case DepositClaimError_MaxDepositClaimFeeExceeded():
+return maxDepositClaimFeeExceeded(_that);case DepositClaimError_MissingUtxo():
 return missingUtxo(_that);case DepositClaimError_Generic():
 return generic(_that);}
 }
@@ -99,11 +99,11 @@ return generic(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( DepositClaimError_DepositClaimFeeExceeded value)?  depositClaimFeeExceeded,TResult? Function( DepositClaimError_MissingUtxo value)?  missingUtxo,TResult? Function( DepositClaimError_Generic value)?  generic,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( DepositClaimError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult? Function( DepositClaimError_MissingUtxo value)?  missingUtxo,TResult? Function( DepositClaimError_Generic value)?  generic,}){
 final _that = this;
 switch (_that) {
-case DepositClaimError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that);case DepositClaimError_MissingUtxo() when missingUtxo != null:
+case DepositClaimError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that);case DepositClaimError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that);case DepositClaimError_Generic() when generic != null:
 return generic(_that);case _:
   return null;
@@ -122,10 +122,10 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String message)?  generic,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String message)?  generic,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case DepositClaimError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case DepositClaimError_MissingUtxo() when missingUtxo != null:
+case DepositClaimError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case DepositClaimError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that.tx,_that.vout);case DepositClaimError_Generic() when generic != null:
 return generic(_that.message);case _:
   return orElse();
@@ -145,10 +145,10 @@ return generic(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)  depositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String message)  generic,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)  maxDepositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String message)  generic,}) {final _that = this;
 switch (_that) {
-case DepositClaimError_DepositClaimFeeExceeded():
-return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case DepositClaimError_MissingUtxo():
+case DepositClaimError_MaxDepositClaimFeeExceeded():
+return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case DepositClaimError_MissingUtxo():
 return missingUtxo(_that.tx,_that.vout);case DepositClaimError_Generic():
 return generic(_that.message);}
 }
@@ -164,10 +164,10 @@ return generic(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String message)?  generic,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String message)?  generic,}) {final _that = this;
 switch (_that) {
-case DepositClaimError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case DepositClaimError_MissingUtxo() when missingUtxo != null:
+case DepositClaimError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case DepositClaimError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that.tx,_that.vout);case DepositClaimError_Generic() when generic != null:
 return generic(_that.message);case _:
   return null;
@@ -180,46 +180,47 @@ return generic(_that.message);case _:
 /// @nodoc
 
 
-class DepositClaimError_DepositClaimFeeExceeded extends DepositClaimError {
-  const DepositClaimError_DepositClaimFeeExceeded({required this.tx, required this.vout, this.maxFee, required this.actualFee}): super._();
+class DepositClaimError_MaxDepositClaimFeeExceeded extends DepositClaimError {
+  const DepositClaimError_MaxDepositClaimFeeExceeded({required this.tx, required this.vout, this.maxFee, required this.requiredFeeSats, required this.requiredFeeRateSatPerVbyte}): super._();
   
 
  final  String tx;
  final  int vout;
  final  Fee? maxFee;
- final  BigInt actualFee;
+ final  BigInt requiredFeeSats;
+ final  BigInt requiredFeeRateSatPerVbyte;
 
 /// Create a copy of DepositClaimError
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$DepositClaimError_DepositClaimFeeExceededCopyWith<DepositClaimError_DepositClaimFeeExceeded> get copyWith => _$DepositClaimError_DepositClaimFeeExceededCopyWithImpl<DepositClaimError_DepositClaimFeeExceeded>(this, _$identity);
+$DepositClaimError_MaxDepositClaimFeeExceededCopyWith<DepositClaimError_MaxDepositClaimFeeExceeded> get copyWith => _$DepositClaimError_MaxDepositClaimFeeExceededCopyWithImpl<DepositClaimError_MaxDepositClaimFeeExceeded>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DepositClaimError_DepositClaimFeeExceeded&&(identical(other.tx, tx) || other.tx == tx)&&(identical(other.vout, vout) || other.vout == vout)&&(identical(other.maxFee, maxFee) || other.maxFee == maxFee)&&(identical(other.actualFee, actualFee) || other.actualFee == actualFee));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DepositClaimError_MaxDepositClaimFeeExceeded&&(identical(other.tx, tx) || other.tx == tx)&&(identical(other.vout, vout) || other.vout == vout)&&(identical(other.maxFee, maxFee) || other.maxFee == maxFee)&&(identical(other.requiredFeeSats, requiredFeeSats) || other.requiredFeeSats == requiredFeeSats)&&(identical(other.requiredFeeRateSatPerVbyte, requiredFeeRateSatPerVbyte) || other.requiredFeeRateSatPerVbyte == requiredFeeRateSatPerVbyte));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,tx,vout,maxFee,actualFee);
+int get hashCode => Object.hash(runtimeType,tx,vout,maxFee,requiredFeeSats,requiredFeeRateSatPerVbyte);
 
 @override
 String toString() {
-  return 'DepositClaimError.depositClaimFeeExceeded(tx: $tx, vout: $vout, maxFee: $maxFee, actualFee: $actualFee)';
+  return 'DepositClaimError.maxDepositClaimFeeExceeded(tx: $tx, vout: $vout, maxFee: $maxFee, requiredFeeSats: $requiredFeeSats, requiredFeeRateSatPerVbyte: $requiredFeeRateSatPerVbyte)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $DepositClaimError_DepositClaimFeeExceededCopyWith<$Res> implements $DepositClaimErrorCopyWith<$Res> {
-  factory $DepositClaimError_DepositClaimFeeExceededCopyWith(DepositClaimError_DepositClaimFeeExceeded value, $Res Function(DepositClaimError_DepositClaimFeeExceeded) _then) = _$DepositClaimError_DepositClaimFeeExceededCopyWithImpl;
+abstract mixin class $DepositClaimError_MaxDepositClaimFeeExceededCopyWith<$Res> implements $DepositClaimErrorCopyWith<$Res> {
+  factory $DepositClaimError_MaxDepositClaimFeeExceededCopyWith(DepositClaimError_MaxDepositClaimFeeExceeded value, $Res Function(DepositClaimError_MaxDepositClaimFeeExceeded) _then) = _$DepositClaimError_MaxDepositClaimFeeExceededCopyWithImpl;
 @useResult
 $Res call({
- String tx, int vout, Fee? maxFee, BigInt actualFee
+ String tx, int vout, Fee? maxFee, BigInt requiredFeeSats, BigInt requiredFeeRateSatPerVbyte
 });
 
 
@@ -227,21 +228,22 @@ $FeeCopyWith<$Res>? get maxFee;
 
 }
 /// @nodoc
-class _$DepositClaimError_DepositClaimFeeExceededCopyWithImpl<$Res>
-    implements $DepositClaimError_DepositClaimFeeExceededCopyWith<$Res> {
-  _$DepositClaimError_DepositClaimFeeExceededCopyWithImpl(this._self, this._then);
+class _$DepositClaimError_MaxDepositClaimFeeExceededCopyWithImpl<$Res>
+    implements $DepositClaimError_MaxDepositClaimFeeExceededCopyWith<$Res> {
+  _$DepositClaimError_MaxDepositClaimFeeExceededCopyWithImpl(this._self, this._then);
 
-  final DepositClaimError_DepositClaimFeeExceeded _self;
-  final $Res Function(DepositClaimError_DepositClaimFeeExceeded) _then;
+  final DepositClaimError_MaxDepositClaimFeeExceeded _self;
+  final $Res Function(DepositClaimError_MaxDepositClaimFeeExceeded) _then;
 
 /// Create a copy of DepositClaimError
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = freezed,Object? actualFee = null,}) {
-  return _then(DepositClaimError_DepositClaimFeeExceeded(
+@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = freezed,Object? requiredFeeSats = null,Object? requiredFeeRateSatPerVbyte = null,}) {
+  return _then(DepositClaimError_MaxDepositClaimFeeExceeded(
 tx: null == tx ? _self.tx : tx // ignore: cast_nullable_to_non_nullable
 as String,vout: null == vout ? _self.vout : vout // ignore: cast_nullable_to_non_nullable
 as int,maxFee: freezed == maxFee ? _self.maxFee : maxFee // ignore: cast_nullable_to_non_nullable
-as Fee?,actualFee: null == actualFee ? _self.actualFee : actualFee // ignore: cast_nullable_to_non_nullable
+as Fee?,requiredFeeSats: null == requiredFeeSats ? _self.requiredFeeSats : requiredFeeSats // ignore: cast_nullable_to_non_nullable
+as BigInt,requiredFeeRateSatPerVbyte: null == requiredFeeRateSatPerVbyte ? _self.requiredFeeRateSatPerVbyte : requiredFeeRateSatPerVbyte // ignore: cast_nullable_to_non_nullable
 as BigInt,
   ));
 }
@@ -439,7 +441,7 @@ extension SdkErrorPatterns on SdkError {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SdkError_SparkError value)?  sparkError,TResult Function( SdkError_InvalidUuid value)?  invalidUuid,TResult Function( SdkError_InvalidInput value)?  invalidInput,TResult Function( SdkError_NetworkError value)?  networkError,TResult Function( SdkError_StorageError value)?  storageError,TResult Function( SdkError_ChainServiceError value)?  chainServiceError,TResult Function( SdkError_DepositClaimFeeExceeded value)?  depositClaimFeeExceeded,TResult Function( SdkError_MissingUtxo value)?  missingUtxo,TResult Function( SdkError_LnurlError value)?  lnurlError,TResult Function( SdkError_Generic value)?  generic,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SdkError_SparkError value)?  sparkError,TResult Function( SdkError_InvalidUuid value)?  invalidUuid,TResult Function( SdkError_InvalidInput value)?  invalidInput,TResult Function( SdkError_NetworkError value)?  networkError,TResult Function( SdkError_StorageError value)?  storageError,TResult Function( SdkError_ChainServiceError value)?  chainServiceError,TResult Function( SdkError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult Function( SdkError_MissingUtxo value)?  missingUtxo,TResult Function( SdkError_LnurlError value)?  lnurlError,TResult Function( SdkError_Generic value)?  generic,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
@@ -448,8 +450,8 @@ return invalidUuid(_that);case SdkError_InvalidInput() when invalidInput != null
 return invalidInput(_that);case SdkError_NetworkError() when networkError != null:
 return networkError(_that);case SdkError_StorageError() when storageError != null:
 return storageError(_that);case SdkError_ChainServiceError() when chainServiceError != null:
-return chainServiceError(_that);case SdkError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that);case SdkError_MissingUtxo() when missingUtxo != null:
+return chainServiceError(_that);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that);case SdkError_LnurlError() when lnurlError != null:
 return lnurlError(_that);case SdkError_Generic() when generic != null:
 return generic(_that);case _:
@@ -470,7 +472,7 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SdkError_SparkError value)  sparkError,required TResult Function( SdkError_InvalidUuid value)  invalidUuid,required TResult Function( SdkError_InvalidInput value)  invalidInput,required TResult Function( SdkError_NetworkError value)  networkError,required TResult Function( SdkError_StorageError value)  storageError,required TResult Function( SdkError_ChainServiceError value)  chainServiceError,required TResult Function( SdkError_DepositClaimFeeExceeded value)  depositClaimFeeExceeded,required TResult Function( SdkError_MissingUtxo value)  missingUtxo,required TResult Function( SdkError_LnurlError value)  lnurlError,required TResult Function( SdkError_Generic value)  generic,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SdkError_SparkError value)  sparkError,required TResult Function( SdkError_InvalidUuid value)  invalidUuid,required TResult Function( SdkError_InvalidInput value)  invalidInput,required TResult Function( SdkError_NetworkError value)  networkError,required TResult Function( SdkError_StorageError value)  storageError,required TResult Function( SdkError_ChainServiceError value)  chainServiceError,required TResult Function( SdkError_MaxDepositClaimFeeExceeded value)  maxDepositClaimFeeExceeded,required TResult Function( SdkError_MissingUtxo value)  missingUtxo,required TResult Function( SdkError_LnurlError value)  lnurlError,required TResult Function( SdkError_Generic value)  generic,}){
 final _that = this;
 switch (_that) {
 case SdkError_SparkError():
@@ -479,8 +481,8 @@ return invalidUuid(_that);case SdkError_InvalidInput():
 return invalidInput(_that);case SdkError_NetworkError():
 return networkError(_that);case SdkError_StorageError():
 return storageError(_that);case SdkError_ChainServiceError():
-return chainServiceError(_that);case SdkError_DepositClaimFeeExceeded():
-return depositClaimFeeExceeded(_that);case SdkError_MissingUtxo():
+return chainServiceError(_that);case SdkError_MaxDepositClaimFeeExceeded():
+return maxDepositClaimFeeExceeded(_that);case SdkError_MissingUtxo():
 return missingUtxo(_that);case SdkError_LnurlError():
 return lnurlError(_that);case SdkError_Generic():
 return generic(_that);}
@@ -497,7 +499,7 @@ return generic(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SdkError_SparkError value)?  sparkError,TResult? Function( SdkError_InvalidUuid value)?  invalidUuid,TResult? Function( SdkError_InvalidInput value)?  invalidInput,TResult? Function( SdkError_NetworkError value)?  networkError,TResult? Function( SdkError_StorageError value)?  storageError,TResult? Function( SdkError_ChainServiceError value)?  chainServiceError,TResult? Function( SdkError_DepositClaimFeeExceeded value)?  depositClaimFeeExceeded,TResult? Function( SdkError_MissingUtxo value)?  missingUtxo,TResult? Function( SdkError_LnurlError value)?  lnurlError,TResult? Function( SdkError_Generic value)?  generic,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SdkError_SparkError value)?  sparkError,TResult? Function( SdkError_InvalidUuid value)?  invalidUuid,TResult? Function( SdkError_InvalidInput value)?  invalidInput,TResult? Function( SdkError_NetworkError value)?  networkError,TResult? Function( SdkError_StorageError value)?  storageError,TResult? Function( SdkError_ChainServiceError value)?  chainServiceError,TResult? Function( SdkError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult? Function( SdkError_MissingUtxo value)?  missingUtxo,TResult? Function( SdkError_LnurlError value)?  lnurlError,TResult? Function( SdkError_Generic value)?  generic,}){
 final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
@@ -506,8 +508,8 @@ return invalidUuid(_that);case SdkError_InvalidInput() when invalidInput != null
 return invalidInput(_that);case SdkError_NetworkError() when networkError != null:
 return networkError(_that);case SdkError_StorageError() when storageError != null:
 return storageError(_that);case SdkError_ChainServiceError() when chainServiceError != null:
-return chainServiceError(_that);case SdkError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that);case SdkError_MissingUtxo() when missingUtxo != null:
+return chainServiceError(_that);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that);case SdkError_LnurlError() when lnurlError != null:
 return lnurlError(_that);case SdkError_Generic() when generic != null:
 return generic(_that);case _:
@@ -527,7 +529,7 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String field0)?  sparkError,TResult Function( String field0)?  invalidUuid,TResult Function( String field0)?  invalidInput,TResult Function( String field0)?  networkError,TResult Function( String field0)?  storageError,TResult Function( String field0)?  chainServiceError,TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String field0)?  lnurlError,TResult Function( String field0)?  generic,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String field0)?  sparkError,TResult Function( String field0)?  invalidUuid,TResult Function( String field0)?  invalidInput,TResult Function( String field0)?  networkError,TResult Function( String field0)?  storageError,TResult Function( String field0)?  chainServiceError,TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String field0)?  lnurlError,TResult Function( String field0)?  generic,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
 return sparkError(_that.field0);case SdkError_InvalidUuid() when invalidUuid != null:
@@ -535,8 +537,8 @@ return invalidUuid(_that.field0);case SdkError_InvalidInput() when invalidInput 
 return invalidInput(_that.field0);case SdkError_NetworkError() when networkError != null:
 return networkError(_that.field0);case SdkError_StorageError() when storageError != null:
 return storageError(_that.field0);case SdkError_ChainServiceError() when chainServiceError != null:
-return chainServiceError(_that.field0);case SdkError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case SdkError_MissingUtxo() when missingUtxo != null:
+return chainServiceError(_that.field0);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that.tx,_that.vout);case SdkError_LnurlError() when lnurlError != null:
 return lnurlError(_that.field0);case SdkError_Generic() when generic != null:
 return generic(_that.field0);case _:
@@ -557,7 +559,7 @@ return generic(_that.field0);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String field0)  sparkError,required TResult Function( String field0)  invalidUuid,required TResult Function( String field0)  invalidInput,required TResult Function( String field0)  networkError,required TResult Function( String field0)  storageError,required TResult Function( String field0)  chainServiceError,required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)  depositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String field0)  lnurlError,required TResult Function( String field0)  generic,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String field0)  sparkError,required TResult Function( String field0)  invalidUuid,required TResult Function( String field0)  invalidInput,required TResult Function( String field0)  networkError,required TResult Function( String field0)  storageError,required TResult Function( String field0)  chainServiceError,required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)  maxDepositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String field0)  lnurlError,required TResult Function( String field0)  generic,}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError():
 return sparkError(_that.field0);case SdkError_InvalidUuid():
@@ -565,8 +567,8 @@ return invalidUuid(_that.field0);case SdkError_InvalidInput():
 return invalidInput(_that.field0);case SdkError_NetworkError():
 return networkError(_that.field0);case SdkError_StorageError():
 return storageError(_that.field0);case SdkError_ChainServiceError():
-return chainServiceError(_that.field0);case SdkError_DepositClaimFeeExceeded():
-return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case SdkError_MissingUtxo():
+return chainServiceError(_that.field0);case SdkError_MaxDepositClaimFeeExceeded():
+return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case SdkError_MissingUtxo():
 return missingUtxo(_that.tx,_that.vout);case SdkError_LnurlError():
 return lnurlError(_that.field0);case SdkError_Generic():
 return generic(_that.field0);}
@@ -583,7 +585,7 @@ return generic(_that.field0);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String field0)?  sparkError,TResult? Function( String field0)?  invalidUuid,TResult? Function( String field0)?  invalidInput,TResult? Function( String field0)?  networkError,TResult? Function( String field0)?  storageError,TResult? Function( String field0)?  chainServiceError,TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt actualFee)?  depositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String field0)?  lnurlError,TResult? Function( String field0)?  generic,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String field0)?  sparkError,TResult? Function( String field0)?  invalidUuid,TResult? Function( String field0)?  invalidInput,TResult? Function( String field0)?  networkError,TResult? Function( String field0)?  storageError,TResult? Function( String field0)?  chainServiceError,TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String field0)?  lnurlError,TResult? Function( String field0)?  generic,}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
 return sparkError(_that.field0);case SdkError_InvalidUuid() when invalidUuid != null:
@@ -591,8 +593,8 @@ return invalidUuid(_that.field0);case SdkError_InvalidInput() when invalidInput 
 return invalidInput(_that.field0);case SdkError_NetworkError() when networkError != null:
 return networkError(_that.field0);case SdkError_StorageError() when storageError != null:
 return storageError(_that.field0);case SdkError_ChainServiceError() when chainServiceError != null:
-return chainServiceError(_that.field0);case SdkError_DepositClaimFeeExceeded() when depositClaimFeeExceeded != null:
-return depositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.actualFee);case SdkError_MissingUtxo() when missingUtxo != null:
+return chainServiceError(_that.field0);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
+return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that.tx,_that.vout);case SdkError_LnurlError() when lnurlError != null:
 return lnurlError(_that.field0);case SdkError_Generic() when generic != null:
 return generic(_that.field0);case _:
@@ -1002,46 +1004,47 @@ as String,
 /// @nodoc
 
 
-class SdkError_DepositClaimFeeExceeded extends SdkError {
-  const SdkError_DepositClaimFeeExceeded({required this.tx, required this.vout, this.maxFee, required this.actualFee}): super._();
+class SdkError_MaxDepositClaimFeeExceeded extends SdkError {
+  const SdkError_MaxDepositClaimFeeExceeded({required this.tx, required this.vout, this.maxFee, required this.requiredFeeSats, required this.requiredFeeRateSatPerVbyte}): super._();
   
 
  final  String tx;
  final  int vout;
  final  Fee? maxFee;
- final  BigInt actualFee;
+ final  BigInt requiredFeeSats;
+ final  BigInt requiredFeeRateSatPerVbyte;
 
 /// Create a copy of SdkError
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$SdkError_DepositClaimFeeExceededCopyWith<SdkError_DepositClaimFeeExceeded> get copyWith => _$SdkError_DepositClaimFeeExceededCopyWithImpl<SdkError_DepositClaimFeeExceeded>(this, _$identity);
+$SdkError_MaxDepositClaimFeeExceededCopyWith<SdkError_MaxDepositClaimFeeExceeded> get copyWith => _$SdkError_MaxDepositClaimFeeExceededCopyWithImpl<SdkError_MaxDepositClaimFeeExceeded>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkError_DepositClaimFeeExceeded&&(identical(other.tx, tx) || other.tx == tx)&&(identical(other.vout, vout) || other.vout == vout)&&(identical(other.maxFee, maxFee) || other.maxFee == maxFee)&&(identical(other.actualFee, actualFee) || other.actualFee == actualFee));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkError_MaxDepositClaimFeeExceeded&&(identical(other.tx, tx) || other.tx == tx)&&(identical(other.vout, vout) || other.vout == vout)&&(identical(other.maxFee, maxFee) || other.maxFee == maxFee)&&(identical(other.requiredFeeSats, requiredFeeSats) || other.requiredFeeSats == requiredFeeSats)&&(identical(other.requiredFeeRateSatPerVbyte, requiredFeeRateSatPerVbyte) || other.requiredFeeRateSatPerVbyte == requiredFeeRateSatPerVbyte));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,tx,vout,maxFee,actualFee);
+int get hashCode => Object.hash(runtimeType,tx,vout,maxFee,requiredFeeSats,requiredFeeRateSatPerVbyte);
 
 @override
 String toString() {
-  return 'SdkError.depositClaimFeeExceeded(tx: $tx, vout: $vout, maxFee: $maxFee, actualFee: $actualFee)';
+  return 'SdkError.maxDepositClaimFeeExceeded(tx: $tx, vout: $vout, maxFee: $maxFee, requiredFeeSats: $requiredFeeSats, requiredFeeRateSatPerVbyte: $requiredFeeRateSatPerVbyte)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $SdkError_DepositClaimFeeExceededCopyWith<$Res> implements $SdkErrorCopyWith<$Res> {
-  factory $SdkError_DepositClaimFeeExceededCopyWith(SdkError_DepositClaimFeeExceeded value, $Res Function(SdkError_DepositClaimFeeExceeded) _then) = _$SdkError_DepositClaimFeeExceededCopyWithImpl;
+abstract mixin class $SdkError_MaxDepositClaimFeeExceededCopyWith<$Res> implements $SdkErrorCopyWith<$Res> {
+  factory $SdkError_MaxDepositClaimFeeExceededCopyWith(SdkError_MaxDepositClaimFeeExceeded value, $Res Function(SdkError_MaxDepositClaimFeeExceeded) _then) = _$SdkError_MaxDepositClaimFeeExceededCopyWithImpl;
 @useResult
 $Res call({
- String tx, int vout, Fee? maxFee, BigInt actualFee
+ String tx, int vout, Fee? maxFee, BigInt requiredFeeSats, BigInt requiredFeeRateSatPerVbyte
 });
 
 
@@ -1049,21 +1052,22 @@ $FeeCopyWith<$Res>? get maxFee;
 
 }
 /// @nodoc
-class _$SdkError_DepositClaimFeeExceededCopyWithImpl<$Res>
-    implements $SdkError_DepositClaimFeeExceededCopyWith<$Res> {
-  _$SdkError_DepositClaimFeeExceededCopyWithImpl(this._self, this._then);
+class _$SdkError_MaxDepositClaimFeeExceededCopyWithImpl<$Res>
+    implements $SdkError_MaxDepositClaimFeeExceededCopyWith<$Res> {
+  _$SdkError_MaxDepositClaimFeeExceededCopyWithImpl(this._self, this._then);
 
-  final SdkError_DepositClaimFeeExceeded _self;
-  final $Res Function(SdkError_DepositClaimFeeExceeded) _then;
+  final SdkError_MaxDepositClaimFeeExceeded _self;
+  final $Res Function(SdkError_MaxDepositClaimFeeExceeded) _then;
 
 /// Create a copy of SdkError
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = freezed,Object? actualFee = null,}) {
-  return _then(SdkError_DepositClaimFeeExceeded(
+@pragma('vm:prefer-inline') $Res call({Object? tx = null,Object? vout = null,Object? maxFee = freezed,Object? requiredFeeSats = null,Object? requiredFeeRateSatPerVbyte = null,}) {
+  return _then(SdkError_MaxDepositClaimFeeExceeded(
 tx: null == tx ? _self.tx : tx // ignore: cast_nullable_to_non_nullable
 as String,vout: null == vout ? _self.vout : vout // ignore: cast_nullable_to_non_nullable
 as int,maxFee: freezed == maxFee ? _self.maxFee : maxFee // ignore: cast_nullable_to_non_nullable
-as Fee?,actualFee: null == actualFee ? _self.actualFee : actualFee // ignore: cast_nullable_to_non_nullable
+as Fee?,requiredFeeSats: null == requiredFeeSats ? _self.requiredFeeSats : requiredFeeSats // ignore: cast_nullable_to_non_nullable
+as BigInt,requiredFeeRateSatPerVbyte: null == requiredFeeRateSatPerVbyte ? _self.requiredFeeRateSatPerVbyte : requiredFeeRateSatPerVbyte // ignore: cast_nullable_to_non_nullable
 as BigInt,
   ));
 }

@@ -2420,12 +2420,12 @@ return deposit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( SparkInvoicePaymentDetails? invoiceDetails,  SparkHtlcDetails? htlcDetails)?  spark,TResult Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)?  token,TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo)?  lightning,TResult Function( String txId)?  withdraw,TResult Function( String txId)?  deposit,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( SparkInvoicePaymentDetails? invoiceDetails,  SparkHtlcDetails? htlcDetails)?  spark,TResult Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)?  token,TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo,  LnurlReceiveMetadata? lnurlReceiveMetadata)?  lightning,TResult Function( String txId)?  withdraw,TResult Function( String txId)?  deposit,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case PaymentDetails_Spark() when spark != null:
 return spark(_that.invoiceDetails,_that.htlcDetails);case PaymentDetails_Token() when token != null:
 return token(_that.metadata,_that.txHash,_that.invoiceDetails);case PaymentDetails_Lightning() when lightning != null:
-return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo);case PaymentDetails_Withdraw() when withdraw != null:
+return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo,_that.lnurlReceiveMetadata);case PaymentDetails_Withdraw() when withdraw != null:
 return withdraw(_that.txId);case PaymentDetails_Deposit() when deposit != null:
 return deposit(_that.txId);case _:
   return orElse();
@@ -2445,12 +2445,12 @@ return deposit(_that.txId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( SparkInvoicePaymentDetails? invoiceDetails,  SparkHtlcDetails? htlcDetails)  spark,required TResult Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)  token,required TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo)  lightning,required TResult Function( String txId)  withdraw,required TResult Function( String txId)  deposit,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( SparkInvoicePaymentDetails? invoiceDetails,  SparkHtlcDetails? htlcDetails)  spark,required TResult Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)  token,required TResult Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo,  LnurlReceiveMetadata? lnurlReceiveMetadata)  lightning,required TResult Function( String txId)  withdraw,required TResult Function( String txId)  deposit,}) {final _that = this;
 switch (_that) {
 case PaymentDetails_Spark():
 return spark(_that.invoiceDetails,_that.htlcDetails);case PaymentDetails_Token():
 return token(_that.metadata,_that.txHash,_that.invoiceDetails);case PaymentDetails_Lightning():
-return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo);case PaymentDetails_Withdraw():
+return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo,_that.lnurlReceiveMetadata);case PaymentDetails_Withdraw():
 return withdraw(_that.txId);case PaymentDetails_Deposit():
 return deposit(_that.txId);}
 }
@@ -2466,12 +2466,12 @@ return deposit(_that.txId);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( SparkInvoicePaymentDetails? invoiceDetails,  SparkHtlcDetails? htlcDetails)?  spark,TResult? Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)?  token,TResult? Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo)?  lightning,TResult? Function( String txId)?  withdraw,TResult? Function( String txId)?  deposit,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( SparkInvoicePaymentDetails? invoiceDetails,  SparkHtlcDetails? htlcDetails)?  spark,TResult? Function( TokenMetadata metadata,  String txHash,  SparkInvoicePaymentDetails? invoiceDetails)?  token,TResult? Function( String? description,  String? preimage,  String invoice,  String paymentHash,  String destinationPubkey,  LnurlPayInfo? lnurlPayInfo,  LnurlWithdrawInfo? lnurlWithdrawInfo,  LnurlReceiveMetadata? lnurlReceiveMetadata)?  lightning,TResult? Function( String txId)?  withdraw,TResult? Function( String txId)?  deposit,}) {final _that = this;
 switch (_that) {
 case PaymentDetails_Spark() when spark != null:
 return spark(_that.invoiceDetails,_that.htlcDetails);case PaymentDetails_Token() when token != null:
 return token(_that.metadata,_that.txHash,_that.invoiceDetails);case PaymentDetails_Lightning() when lightning != null:
-return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo);case PaymentDetails_Withdraw() when withdraw != null:
+return lightning(_that.description,_that.preimage,_that.invoice,_that.paymentHash,_that.destinationPubkey,_that.lnurlPayInfo,_that.lnurlWithdrawInfo,_that.lnurlReceiveMetadata);case PaymentDetails_Withdraw() when withdraw != null:
 return withdraw(_that.txId);case PaymentDetails_Deposit() when deposit != null:
 return deposit(_that.txId);case _:
   return null;
@@ -2623,7 +2623,7 @@ as SparkInvoicePaymentDetails?,
 
 
 class PaymentDetails_Lightning extends PaymentDetails {
-  const PaymentDetails_Lightning({this.description, this.preimage, required this.invoice, required this.paymentHash, required this.destinationPubkey, this.lnurlPayInfo, this.lnurlWithdrawInfo}): super._();
+  const PaymentDetails_Lightning({this.description, this.preimage, required this.invoice, required this.paymentHash, required this.destinationPubkey, this.lnurlPayInfo, this.lnurlWithdrawInfo, this.lnurlReceiveMetadata}): super._();
   
 
  final  String? description;
@@ -2633,6 +2633,7 @@ class PaymentDetails_Lightning extends PaymentDetails {
  final  String destinationPubkey;
  final  LnurlPayInfo? lnurlPayInfo;
  final  LnurlWithdrawInfo? lnurlWithdrawInfo;
+ final  LnurlReceiveMetadata? lnurlReceiveMetadata;
 
 /// Create a copy of PaymentDetails
 /// with the given fields replaced by the non-null parameter values.
@@ -2644,16 +2645,16 @@ $PaymentDetails_LightningCopyWith<PaymentDetails_Lightning> get copyWith => _$Pa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Lightning&&(identical(other.description, description) || other.description == description)&&(identical(other.preimage, preimage) || other.preimage == preimage)&&(identical(other.invoice, invoice) || other.invoice == invoice)&&(identical(other.paymentHash, paymentHash) || other.paymentHash == paymentHash)&&(identical(other.destinationPubkey, destinationPubkey) || other.destinationPubkey == destinationPubkey)&&(identical(other.lnurlPayInfo, lnurlPayInfo) || other.lnurlPayInfo == lnurlPayInfo)&&(identical(other.lnurlWithdrawInfo, lnurlWithdrawInfo) || other.lnurlWithdrawInfo == lnurlWithdrawInfo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaymentDetails_Lightning&&(identical(other.description, description) || other.description == description)&&(identical(other.preimage, preimage) || other.preimage == preimage)&&(identical(other.invoice, invoice) || other.invoice == invoice)&&(identical(other.paymentHash, paymentHash) || other.paymentHash == paymentHash)&&(identical(other.destinationPubkey, destinationPubkey) || other.destinationPubkey == destinationPubkey)&&(identical(other.lnurlPayInfo, lnurlPayInfo) || other.lnurlPayInfo == lnurlPayInfo)&&(identical(other.lnurlWithdrawInfo, lnurlWithdrawInfo) || other.lnurlWithdrawInfo == lnurlWithdrawInfo)&&(identical(other.lnurlReceiveMetadata, lnurlReceiveMetadata) || other.lnurlReceiveMetadata == lnurlReceiveMetadata));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,description,preimage,invoice,paymentHash,destinationPubkey,lnurlPayInfo,lnurlWithdrawInfo);
+int get hashCode => Object.hash(runtimeType,description,preimage,invoice,paymentHash,destinationPubkey,lnurlPayInfo,lnurlWithdrawInfo,lnurlReceiveMetadata);
 
 @override
 String toString() {
-  return 'PaymentDetails.lightning(description: $description, preimage: $preimage, invoice: $invoice, paymentHash: $paymentHash, destinationPubkey: $destinationPubkey, lnurlPayInfo: $lnurlPayInfo, lnurlWithdrawInfo: $lnurlWithdrawInfo)';
+  return 'PaymentDetails.lightning(description: $description, preimage: $preimage, invoice: $invoice, paymentHash: $paymentHash, destinationPubkey: $destinationPubkey, lnurlPayInfo: $lnurlPayInfo, lnurlWithdrawInfo: $lnurlWithdrawInfo, lnurlReceiveMetadata: $lnurlReceiveMetadata)';
 }
 
 
@@ -2664,7 +2665,7 @@ abstract mixin class $PaymentDetails_LightningCopyWith<$Res> implements $Payment
   factory $PaymentDetails_LightningCopyWith(PaymentDetails_Lightning value, $Res Function(PaymentDetails_Lightning) _then) = _$PaymentDetails_LightningCopyWithImpl;
 @useResult
 $Res call({
- String? description, String? preimage, String invoice, String paymentHash, String destinationPubkey, LnurlPayInfo? lnurlPayInfo, LnurlWithdrawInfo? lnurlWithdrawInfo
+ String? description, String? preimage, String invoice, String paymentHash, String destinationPubkey, LnurlPayInfo? lnurlPayInfo, LnurlWithdrawInfo? lnurlWithdrawInfo, LnurlReceiveMetadata? lnurlReceiveMetadata
 });
 
 
@@ -2681,7 +2682,7 @@ class _$PaymentDetails_LightningCopyWithImpl<$Res>
 
 /// Create a copy of PaymentDetails
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? description = freezed,Object? preimage = freezed,Object? invoice = null,Object? paymentHash = null,Object? destinationPubkey = null,Object? lnurlPayInfo = freezed,Object? lnurlWithdrawInfo = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? description = freezed,Object? preimage = freezed,Object? invoice = null,Object? paymentHash = null,Object? destinationPubkey = null,Object? lnurlPayInfo = freezed,Object? lnurlWithdrawInfo = freezed,Object? lnurlReceiveMetadata = freezed,}) {
   return _then(PaymentDetails_Lightning(
 description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,preimage: freezed == preimage ? _self.preimage : preimage // ignore: cast_nullable_to_non_nullable
@@ -2690,7 +2691,8 @@ as String,paymentHash: null == paymentHash ? _self.paymentHash : paymentHash // 
 as String,destinationPubkey: null == destinationPubkey ? _self.destinationPubkey : destinationPubkey // ignore: cast_nullable_to_non_nullable
 as String,lnurlPayInfo: freezed == lnurlPayInfo ? _self.lnurlPayInfo : lnurlPayInfo // ignore: cast_nullable_to_non_nullable
 as LnurlPayInfo?,lnurlWithdrawInfo: freezed == lnurlWithdrawInfo ? _self.lnurlWithdrawInfo : lnurlWithdrawInfo // ignore: cast_nullable_to_non_nullable
-as LnurlWithdrawInfo?,
+as LnurlWithdrawInfo?,lnurlReceiveMetadata: freezed == lnurlReceiveMetadata ? _self.lnurlReceiveMetadata : lnurlReceiveMetadata // ignore: cast_nullable_to_non_nullable
+as LnurlReceiveMetadata?,
   ));
 }
 

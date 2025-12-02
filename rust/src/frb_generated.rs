@@ -2778,16 +2778,18 @@ const _: fn() = || {
         let _: Vec<crate::models::LocaleOverrides> = CurrencyInfo.locale_overrides;
     }
     match None::<crate::errors::DepositClaimError>.unwrap() {
-        crate::errors::DepositClaimError::DepositClaimFeeExceeded {
+        crate::errors::DepositClaimError::MaxDepositClaimFeeExceeded {
             tx,
             vout,
             max_fee,
-            actual_fee,
+            required_fee_sats,
+            required_fee_rate_sat_per_vbyte,
         } => {
             let _: String = tx;
             let _: u32 = vout;
             let _: Option<crate::models::Fee> = max_fee;
-            let _: u64 = actual_fee;
+            let _: u64 = required_fee_sats;
+            let _: u64 = required_fee_rate_sat_per_vbyte;
         }
         crate::errors::DepositClaimError::MissingUtxo { tx, vout } => {
             let _: String = tx;
@@ -2991,6 +2993,12 @@ const _: fn() = || {
         let _: Option<crate::models::SuccessActionProcessed> = LnurlPayResponse.success_action;
     }
     {
+        let LnurlReceiveMetadata = None::<crate::models::LnurlReceiveMetadata>.unwrap();
+        let _: Option<String> = LnurlReceiveMetadata.nostr_zap_request;
+        let _: Option<String> = LnurlReceiveMetadata.nostr_zap_receipt;
+        let _: Option<String> = LnurlReceiveMetadata.sender_comment;
+    }
+    {
         let LnurlWithdrawInfo = None::<crate::models::LnurlWithdrawInfo>.unwrap();
         let _: String = LnurlWithdrawInfo.withdraw_url;
     }
@@ -3074,6 +3082,7 @@ const _: fn() = || {
             destination_pubkey,
             lnurl_pay_info,
             lnurl_withdraw_info,
+            lnurl_receive_metadata,
         } => {
             let _: Option<String> = description;
             let _: Option<String> = preimage;
@@ -3082,6 +3091,7 @@ const _: fn() = || {
             let _: String = destination_pubkey;
             let _: Option<crate::models::LnurlPayInfo> = lnurl_pay_info;
             let _: Option<crate::models::LnurlWithdrawInfo> = lnurl_withdraw_info;
+            let _: Option<crate::models::LnurlReceiveMetadata> = lnurl_receive_metadata;
         }
         crate::models::PaymentDetails::Withdraw { tx_id } => {
             let _: String = tx_id;
@@ -3206,16 +3216,18 @@ const _: fn() = || {
         crate::errors::SdkError::ChainServiceError(field0) => {
             let _: String = field0;
         }
-        crate::errors::SdkError::DepositClaimFeeExceeded {
+        crate::errors::SdkError::MaxDepositClaimFeeExceeded {
             tx,
             vout,
             max_fee,
-            actual_fee,
+            required_fee_sats,
+            required_fee_rate_sat_per_vbyte,
         } => {
             let _: String = tx;
             let _: u32 = vout;
             let _: Option<crate::models::Fee> = max_fee;
-            let _: u64 = actual_fee;
+            let _: u64 = required_fee_sats;
+            let _: u64 = required_fee_rate_sat_per_vbyte;
         }
         crate::errors::SdkError::MissingUtxo { tx, vout } => {
             let _: String = tx;
@@ -4108,12 +4120,14 @@ impl SseDecode for crate::errors::DepositClaimError {
                 let mut var_tx = <String>::sse_decode(deserializer);
                 let mut var_vout = <u32>::sse_decode(deserializer);
                 let mut var_maxFee = <Option<crate::models::Fee>>::sse_decode(deserializer);
-                let mut var_actualFee = <u64>::sse_decode(deserializer);
-                return crate::errors::DepositClaimError::DepositClaimFeeExceeded {
+                let mut var_requiredFeeSats = <u64>::sse_decode(deserializer);
+                let mut var_requiredFeeRateSatPerVbyte = <u64>::sse_decode(deserializer);
+                return crate::errors::DepositClaimError::MaxDepositClaimFeeExceeded {
                     tx: var_tx,
                     vout: var_vout,
                     max_fee: var_maxFee,
-                    actual_fee: var_actualFee,
+                    required_fee_sats: var_requiredFeeSats,
+                    required_fee_rate_sat_per_vbyte: var_requiredFeeRateSatPerVbyte,
                 };
             }
             1 => {
@@ -4829,6 +4843,20 @@ impl SseDecode for crate::models::LnurlPayResponse {
     }
 }
 
+impl SseDecode for crate::models::LnurlReceiveMetadata {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_nostrZapRequest = <Option<String>>::sse_decode(deserializer);
+        let mut var_nostrZapReceipt = <Option<String>>::sse_decode(deserializer);
+        let mut var_senderComment = <Option<String>>::sse_decode(deserializer);
+        return crate::models::LnurlReceiveMetadata {
+            nostr_zap_request: var_nostrZapRequest,
+            nostr_zap_receipt: var_nostrZapReceipt,
+            sender_comment: var_senderComment,
+        };
+    }
+}
+
 impl SseDecode for crate::models::LnurlWithdrawInfo {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5071,6 +5099,19 @@ impl SseDecode for Option<crate::models::LnurlPayInfo> {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         if (<bool>::sse_decode(deserializer)) {
             return Some(<crate::models::LnurlPayInfo>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<crate::models::LnurlReceiveMetadata> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::models::LnurlReceiveMetadata>::sse_decode(
+                deserializer,
+            ));
         } else {
             return None;
         }
@@ -5325,6 +5366,8 @@ impl SseDecode for crate::models::PaymentDetails {
                     <Option<crate::models::LnurlPayInfo>>::sse_decode(deserializer);
                 let mut var_lnurlWithdrawInfo =
                     <Option<crate::models::LnurlWithdrawInfo>>::sse_decode(deserializer);
+                let mut var_lnurlReceiveMetadata =
+                    <Option<crate::models::LnurlReceiveMetadata>>::sse_decode(deserializer);
                 return crate::models::PaymentDetails::Lightning {
                     description: var_description,
                     preimage: var_preimage,
@@ -5333,6 +5376,7 @@ impl SseDecode for crate::models::PaymentDetails {
                     destination_pubkey: var_destinationPubkey,
                     lnurl_pay_info: var_lnurlPayInfo,
                     lnurl_withdraw_info: var_lnurlWithdrawInfo,
+                    lnurl_receive_metadata: var_lnurlReceiveMetadata,
                 };
             }
             3 => {
@@ -5643,12 +5687,14 @@ impl SseDecode for crate::errors::SdkError {
                 let mut var_tx = <String>::sse_decode(deserializer);
                 let mut var_vout = <u32>::sse_decode(deserializer);
                 let mut var_maxFee = <Option<crate::models::Fee>>::sse_decode(deserializer);
-                let mut var_actualFee = <u64>::sse_decode(deserializer);
-                return crate::errors::SdkError::DepositClaimFeeExceeded {
+                let mut var_requiredFeeSats = <u64>::sse_decode(deserializer);
+                let mut var_requiredFeeRateSatPerVbyte = <u64>::sse_decode(deserializer);
+                return crate::errors::SdkError::MaxDepositClaimFeeExceeded {
                     tx: var_tx,
                     vout: var_vout,
                     max_fee: var_maxFee,
-                    actual_fee: var_actualFee,
+                    required_fee_sats: var_requiredFeeSats,
+                    required_fee_rate_sat_per_vbyte: var_requiredFeeRateSatPerVbyte,
                 };
             }
             7 => {
@@ -7178,17 +7224,19 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::CurrencyInfo>>
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::errors::DepositClaimError> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         match self.0 {
-            crate::errors::DepositClaimError::DepositClaimFeeExceeded {
+            crate::errors::DepositClaimError::MaxDepositClaimFeeExceeded {
                 tx,
                 vout,
                 max_fee,
-                actual_fee,
+                required_fee_sats,
+                required_fee_rate_sat_per_vbyte,
             } => [
                 0.into_dart(),
                 tx.into_into_dart().into_dart(),
                 vout.into_into_dart().into_dart(),
                 max_fee.into_into_dart().into_dart(),
-                actual_fee.into_into_dart().into_dart(),
+                required_fee_sats.into_into_dart().into_dart(),
+                required_fee_rate_sat_per_vbyte.into_into_dart().into_dart(),
             ]
             .into_dart(),
             crate::errors::DepositClaimError::MissingUtxo { tx, vout } => [
@@ -7818,6 +7866,28 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlPayRespons
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::LnurlReceiveMetadata> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.nostr_zap_request.into_into_dart().into_dart(),
+            self.0.nostr_zap_receipt.into_into_dart().into_dart(),
+            self.0.sender_comment.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::LnurlReceiveMetadata>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::LnurlReceiveMetadata>>
+    for crate::models::LnurlReceiveMetadata
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::LnurlReceiveMetadata> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::LnurlWithdrawInfo> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [self.0.withdraw_url.into_into_dart().into_dart()].into_dart()
@@ -8101,6 +8171,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::PaymentDetails>
                 destination_pubkey,
                 lnurl_pay_info,
                 lnurl_withdraw_info,
+                lnurl_receive_metadata,
             } => [
                 2.into_dart(),
                 description.into_into_dart().into_dart(),
@@ -8110,6 +8181,7 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::PaymentDetails>
                 destination_pubkey.into_into_dart().into_dart(),
                 lnurl_pay_info.into_into_dart().into_dart(),
                 lnurl_withdraw_info.into_into_dart().into_dart(),
+                lnurl_receive_metadata.into_into_dart().into_dart(),
             ]
             .into_dart(),
             crate::models::PaymentDetails::Withdraw { tx_id } => {
@@ -8534,17 +8606,19 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::errors::SdkError> {
             crate::errors::SdkError::ChainServiceError(field0) => {
                 [5.into_dart(), field0.into_into_dart().into_dart()].into_dart()
             }
-            crate::errors::SdkError::DepositClaimFeeExceeded {
+            crate::errors::SdkError::MaxDepositClaimFeeExceeded {
                 tx,
                 vout,
                 max_fee,
-                actual_fee,
+                required_fee_sats,
+                required_fee_rate_sat_per_vbyte,
             } => [
                 6.into_dart(),
                 tx.into_into_dart().into_dart(),
                 vout.into_into_dart().into_dart(),
                 max_fee.into_into_dart().into_dart(),
-                actual_fee.into_into_dart().into_dart(),
+                required_fee_sats.into_into_dart().into_dart(),
+                required_fee_rate_sat_per_vbyte.into_into_dart().into_dart(),
             ]
             .into_dart(),
             crate::errors::SdkError::MissingUtxo { tx, vout } => [
@@ -9777,17 +9851,19 @@ impl SseEncode for crate::errors::DepositClaimError {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         match self {
-            crate::errors::DepositClaimError::DepositClaimFeeExceeded {
+            crate::errors::DepositClaimError::MaxDepositClaimFeeExceeded {
                 tx,
                 vout,
                 max_fee,
-                actual_fee,
+                required_fee_sats,
+                required_fee_rate_sat_per_vbyte,
             } => {
                 <i32>::sse_encode(0, serializer);
                 <String>::sse_encode(tx, serializer);
                 <u32>::sse_encode(vout, serializer);
                 <Option<crate::models::Fee>>::sse_encode(max_fee, serializer);
-                <u64>::sse_encode(actual_fee, serializer);
+                <u64>::sse_encode(required_fee_sats, serializer);
+                <u64>::sse_encode(required_fee_rate_sat_per_vbyte, serializer);
             }
             crate::errors::DepositClaimError::MissingUtxo { tx, vout } => {
                 <i32>::sse_encode(1, serializer);
@@ -10333,6 +10409,15 @@ impl SseEncode for crate::models::LnurlPayResponse {
     }
 }
 
+impl SseEncode for crate::models::LnurlReceiveMetadata {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<String>>::sse_encode(self.nostr_zap_request, serializer);
+        <Option<String>>::sse_encode(self.nostr_zap_receipt, serializer);
+        <Option<String>>::sse_encode(self.sender_comment, serializer);
+    }
+}
+
 impl SseEncode for crate::models::LnurlWithdrawInfo {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -10536,6 +10621,16 @@ impl SseEncode for Option<crate::models::LnurlPayInfo> {
         <bool>::sse_encode(self.is_some(), serializer);
         if let Some(value) = self {
             <crate::models::LnurlPayInfo>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<crate::models::LnurlReceiveMetadata> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::models::LnurlReceiveMetadata>::sse_encode(value, serializer);
         }
     }
 }
@@ -10750,6 +10845,7 @@ impl SseEncode for crate::models::PaymentDetails {
                 destination_pubkey,
                 lnurl_pay_info,
                 lnurl_withdraw_info,
+                lnurl_receive_metadata,
             } => {
                 <i32>::sse_encode(2, serializer);
                 <Option<String>>::sse_encode(description, serializer);
@@ -10760,6 +10856,10 @@ impl SseEncode for crate::models::PaymentDetails {
                 <Option<crate::models::LnurlPayInfo>>::sse_encode(lnurl_pay_info, serializer);
                 <Option<crate::models::LnurlWithdrawInfo>>::sse_encode(
                     lnurl_withdraw_info,
+                    serializer,
+                );
+                <Option<crate::models::LnurlReceiveMetadata>>::sse_encode(
+                    lnurl_receive_metadata,
                     serializer,
                 );
             }
@@ -11014,17 +11114,19 @@ impl SseEncode for crate::errors::SdkError {
                 <i32>::sse_encode(5, serializer);
                 <String>::sse_encode(field0, serializer);
             }
-            crate::errors::SdkError::DepositClaimFeeExceeded {
+            crate::errors::SdkError::MaxDepositClaimFeeExceeded {
                 tx,
                 vout,
                 max_fee,
-                actual_fee,
+                required_fee_sats,
+                required_fee_rate_sat_per_vbyte,
             } => {
                 <i32>::sse_encode(6, serializer);
                 <String>::sse_encode(tx, serializer);
                 <u32>::sse_encode(vout, serializer);
                 <Option<crate::models::Fee>>::sse_encode(max_fee, serializer);
-                <u64>::sse_encode(actual_fee, serializer);
+                <u64>::sse_encode(required_fee_sats, serializer);
+                <u64>::sse_encode(required_fee_rate_sat_per_vbyte, serializer);
             }
             crate::errors::SdkError::MissingUtxo { tx, vout } => {
                 <i32>::sse_encode(7, serializer);
