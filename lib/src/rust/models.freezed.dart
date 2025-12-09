@@ -2304,6 +2304,370 @@ as SparkInvoiceDetails,
 }
 
 /// @nodoc
+mixin _$MaxFee {
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaxFee);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MaxFee()';
+}
+
+
+}
+
+/// @nodoc
+class $MaxFeeCopyWith<$Res>  {
+$MaxFeeCopyWith(MaxFee _, $Res Function(MaxFee) __);
+}
+
+
+/// Adds pattern-matching-related methods to [MaxFee].
+extension MaxFeePatterns on MaxFee {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( MaxFee_Fixed value)?  fixed,TResult Function( MaxFee_Rate value)?  rate,TResult Function( MaxFee_NetworkRecommended value)?  networkRecommended,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case MaxFee_Fixed() when fixed != null:
+return fixed(_that);case MaxFee_Rate() when rate != null:
+return rate(_that);case MaxFee_NetworkRecommended() when networkRecommended != null:
+return networkRecommended(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( MaxFee_Fixed value)  fixed,required TResult Function( MaxFee_Rate value)  rate,required TResult Function( MaxFee_NetworkRecommended value)  networkRecommended,}){
+final _that = this;
+switch (_that) {
+case MaxFee_Fixed():
+return fixed(_that);case MaxFee_Rate():
+return rate(_that);case MaxFee_NetworkRecommended():
+return networkRecommended(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( MaxFee_Fixed value)?  fixed,TResult? Function( MaxFee_Rate value)?  rate,TResult? Function( MaxFee_NetworkRecommended value)?  networkRecommended,}){
+final _that = this;
+switch (_that) {
+case MaxFee_Fixed() when fixed != null:
+return fixed(_that);case MaxFee_Rate() when rate != null:
+return rate(_that);case MaxFee_NetworkRecommended() when networkRecommended != null:
+return networkRecommended(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( BigInt amount)?  fixed,TResult Function( BigInt satPerVbyte)?  rate,TResult Function( BigInt leewaySatPerVbyte)?  networkRecommended,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case MaxFee_Fixed() when fixed != null:
+return fixed(_that.amount);case MaxFee_Rate() when rate != null:
+return rate(_that.satPerVbyte);case MaxFee_NetworkRecommended() when networkRecommended != null:
+return networkRecommended(_that.leewaySatPerVbyte);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( BigInt amount)  fixed,required TResult Function( BigInt satPerVbyte)  rate,required TResult Function( BigInt leewaySatPerVbyte)  networkRecommended,}) {final _that = this;
+switch (_that) {
+case MaxFee_Fixed():
+return fixed(_that.amount);case MaxFee_Rate():
+return rate(_that.satPerVbyte);case MaxFee_NetworkRecommended():
+return networkRecommended(_that.leewaySatPerVbyte);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( BigInt amount)?  fixed,TResult? Function( BigInt satPerVbyte)?  rate,TResult? Function( BigInt leewaySatPerVbyte)?  networkRecommended,}) {final _that = this;
+switch (_that) {
+case MaxFee_Fixed() when fixed != null:
+return fixed(_that.amount);case MaxFee_Rate() when rate != null:
+return rate(_that.satPerVbyte);case MaxFee_NetworkRecommended() when networkRecommended != null:
+return networkRecommended(_that.leewaySatPerVbyte);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class MaxFee_Fixed extends MaxFee {
+  const MaxFee_Fixed({required this.amount}): super._();
+  
+
+ final  BigInt amount;
+
+/// Create a copy of MaxFee
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MaxFee_FixedCopyWith<MaxFee_Fixed> get copyWith => _$MaxFee_FixedCopyWithImpl<MaxFee_Fixed>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaxFee_Fixed&&(identical(other.amount, amount) || other.amount == amount));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,amount);
+
+@override
+String toString() {
+  return 'MaxFee.fixed(amount: $amount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MaxFee_FixedCopyWith<$Res> implements $MaxFeeCopyWith<$Res> {
+  factory $MaxFee_FixedCopyWith(MaxFee_Fixed value, $Res Function(MaxFee_Fixed) _then) = _$MaxFee_FixedCopyWithImpl;
+@useResult
+$Res call({
+ BigInt amount
+});
+
+
+
+
+}
+/// @nodoc
+class _$MaxFee_FixedCopyWithImpl<$Res>
+    implements $MaxFee_FixedCopyWith<$Res> {
+  _$MaxFee_FixedCopyWithImpl(this._self, this._then);
+
+  final MaxFee_Fixed _self;
+  final $Res Function(MaxFee_Fixed) _then;
+
+/// Create a copy of MaxFee
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? amount = null,}) {
+  return _then(MaxFee_Fixed(
+amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as BigInt,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class MaxFee_Rate extends MaxFee {
+  const MaxFee_Rate({required this.satPerVbyte}): super._();
+  
+
+ final  BigInt satPerVbyte;
+
+/// Create a copy of MaxFee
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MaxFee_RateCopyWith<MaxFee_Rate> get copyWith => _$MaxFee_RateCopyWithImpl<MaxFee_Rate>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaxFee_Rate&&(identical(other.satPerVbyte, satPerVbyte) || other.satPerVbyte == satPerVbyte));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,satPerVbyte);
+
+@override
+String toString() {
+  return 'MaxFee.rate(satPerVbyte: $satPerVbyte)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MaxFee_RateCopyWith<$Res> implements $MaxFeeCopyWith<$Res> {
+  factory $MaxFee_RateCopyWith(MaxFee_Rate value, $Res Function(MaxFee_Rate) _then) = _$MaxFee_RateCopyWithImpl;
+@useResult
+$Res call({
+ BigInt satPerVbyte
+});
+
+
+
+
+}
+/// @nodoc
+class _$MaxFee_RateCopyWithImpl<$Res>
+    implements $MaxFee_RateCopyWith<$Res> {
+  _$MaxFee_RateCopyWithImpl(this._self, this._then);
+
+  final MaxFee_Rate _self;
+  final $Res Function(MaxFee_Rate) _then;
+
+/// Create a copy of MaxFee
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? satPerVbyte = null,}) {
+  return _then(MaxFee_Rate(
+satPerVbyte: null == satPerVbyte ? _self.satPerVbyte : satPerVbyte // ignore: cast_nullable_to_non_nullable
+as BigInt,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class MaxFee_NetworkRecommended extends MaxFee {
+  const MaxFee_NetworkRecommended({required this.leewaySatPerVbyte}): super._();
+  
+
+ final  BigInt leewaySatPerVbyte;
+
+/// Create a copy of MaxFee
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MaxFee_NetworkRecommendedCopyWith<MaxFee_NetworkRecommended> get copyWith => _$MaxFee_NetworkRecommendedCopyWithImpl<MaxFee_NetworkRecommended>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaxFee_NetworkRecommended&&(identical(other.leewaySatPerVbyte, leewaySatPerVbyte) || other.leewaySatPerVbyte == leewaySatPerVbyte));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,leewaySatPerVbyte);
+
+@override
+String toString() {
+  return 'MaxFee.networkRecommended(leewaySatPerVbyte: $leewaySatPerVbyte)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MaxFee_NetworkRecommendedCopyWith<$Res> implements $MaxFeeCopyWith<$Res> {
+  factory $MaxFee_NetworkRecommendedCopyWith(MaxFee_NetworkRecommended value, $Res Function(MaxFee_NetworkRecommended) _then) = _$MaxFee_NetworkRecommendedCopyWithImpl;
+@useResult
+$Res call({
+ BigInt leewaySatPerVbyte
+});
+
+
+
+
+}
+/// @nodoc
+class _$MaxFee_NetworkRecommendedCopyWithImpl<$Res>
+    implements $MaxFee_NetworkRecommendedCopyWith<$Res> {
+  _$MaxFee_NetworkRecommendedCopyWithImpl(this._self, this._then);
+
+  final MaxFee_NetworkRecommended _self;
+  final $Res Function(MaxFee_NetworkRecommended) _then;
+
+/// Create a copy of MaxFee
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? leewaySatPerVbyte = null,}) {
+  return _then(MaxFee_NetworkRecommended(
+leewaySatPerVbyte: null == leewaySatPerVbyte ? _self.leewaySatPerVbyte : leewaySatPerVbyte // ignore: cast_nullable_to_non_nullable
+as BigInt,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$PaymentDetails {
 
 

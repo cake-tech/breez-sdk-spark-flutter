@@ -2721,7 +2721,7 @@ const _: fn() = || {
         let ClaimDepositRequest = None::<crate::models::ClaimDepositRequest>.unwrap();
         let _: String = ClaimDepositRequest.txid;
         let _: u32 = ClaimDepositRequest.vout;
-        let _: Option<crate::models::Fee> = ClaimDepositRequest.max_fee;
+        let _: Option<crate::models::MaxFee> = ClaimDepositRequest.max_fee;
     }
     {
         let ClaimDepositResponse = None::<crate::models::ClaimDepositResponse>.unwrap();
@@ -2740,7 +2740,7 @@ const _: fn() = || {
         let _: Option<String> = Config.api_key;
         let _: crate::models::Network = Config.network;
         let _: u32 = Config.sync_interval_secs;
-        let _: Option<crate::models::Fee> = Config.max_deposit_claim_fee;
+        let _: Option<crate::models::MaxFee> = Config.max_deposit_claim_fee;
         let _: Option<String> = Config.lnurl_domain;
         let _: bool = Config.prefer_spark_over_lightning;
         let _: Option<Vec<crate::models::ExternalInputParser>> = Config.external_input_parsers;
@@ -3038,6 +3038,19 @@ const _: fn() = || {
         let _: String = LogEntry.line;
         let _: String = LogEntry.level;
     }
+    match None::<crate::models::MaxFee>.unwrap() {
+        crate::models::MaxFee::Fixed { amount } => {
+            let _: u64 = amount;
+        }
+        crate::models::MaxFee::Rate { sat_per_vbyte } => {
+            let _: u64 = sat_per_vbyte;
+        }
+        crate::models::MaxFee::NetworkRecommended {
+            leeway_sat_per_vbyte,
+        } => {
+            let _: u64 = leeway_sat_per_vbyte;
+        }
+    }
     {
         let MessageSuccessActionData = None::<crate::models::MessageSuccessActionData>.unwrap();
         let _: String = MessageSuccessActionData.message;
@@ -3242,11 +3255,6 @@ const _: fn() = || {
     }
     match None::<crate::events::SdkEvent>.unwrap() {
         crate::events::SdkEvent::Synced => {}
-        crate::events::SdkEvent::DataSynced {
-            did_pull_new_records,
-        } => {
-            let _: bool = did_pull_new_records;
-        }
         crate::events::SdkEvent::UnclaimedDeposits { unclaimed_deposits } => {
             let _: Vec<crate::models::DepositInfo> = unclaimed_deposits;
         }
@@ -3976,7 +3984,7 @@ impl SseDecode for crate::models::ClaimDepositRequest {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut var_txid = <String>::sse_decode(deserializer);
         let mut var_vout = <u32>::sse_decode(deserializer);
-        let mut var_maxFee = <Option<crate::models::Fee>>::sse_decode(deserializer);
+        let mut var_maxFee = <Option<crate::models::MaxFee>>::sse_decode(deserializer);
         return crate::models::ClaimDepositRequest {
             txid: var_txid,
             vout: var_vout,
@@ -4021,7 +4029,7 @@ impl SseDecode for crate::models::Config {
         let mut var_apiKey = <Option<String>>::sse_decode(deserializer);
         let mut var_network = <crate::models::Network>::sse_decode(deserializer);
         let mut var_syncIntervalSecs = <u32>::sse_decode(deserializer);
-        let mut var_maxDepositClaimFee = <Option<crate::models::Fee>>::sse_decode(deserializer);
+        let mut var_maxDepositClaimFee = <Option<crate::models::MaxFee>>::sse_decode(deserializer);
         let mut var_lnurlDomain = <Option<String>>::sse_decode(deserializer);
         let mut var_preferSparkOverLightning = <bool>::sse_decode(deserializer);
         let mut var_externalInputParsers =
@@ -4950,6 +4958,34 @@ impl SseDecode for crate::logger::LogEntry {
     }
 }
 
+impl SseDecode for crate::models::MaxFee {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut tag_ = <i32>::sse_decode(deserializer);
+        match tag_ {
+            0 => {
+                let mut var_amount = <u64>::sse_decode(deserializer);
+                return crate::models::MaxFee::Fixed { amount: var_amount };
+            }
+            1 => {
+                let mut var_satPerVbyte = <u64>::sse_decode(deserializer);
+                return crate::models::MaxFee::Rate {
+                    sat_per_vbyte: var_satPerVbyte,
+                };
+            }
+            2 => {
+                let mut var_leewaySatPerVbyte = <u64>::sse_decode(deserializer);
+                return crate::models::MaxFee::NetworkRecommended {
+                    leeway_sat_per_vbyte: var_leewaySatPerVbyte,
+                };
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
 impl SseDecode for crate::models::MessageSuccessActionData {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5123,6 +5159,17 @@ impl SseDecode for Option<crate::models::LnurlWithdrawInfo> {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         if (<bool>::sse_decode(deserializer)) {
             return Some(<crate::models::LnurlWithdrawInfo>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<crate::models::MaxFee> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::models::MaxFee>::sse_decode(deserializer));
         } else {
             return None;
         }
@@ -5729,38 +5776,32 @@ impl SseDecode for crate::events::SdkEvent {
                 return crate::events::SdkEvent::Synced;
             }
             1 => {
-                let mut var_didPullNewRecords = <bool>::sse_decode(deserializer);
-                return crate::events::SdkEvent::DataSynced {
-                    did_pull_new_records: var_didPullNewRecords,
-                };
-            }
-            2 => {
                 let mut var_unclaimedDeposits =
                     <Vec<crate::models::DepositInfo>>::sse_decode(deserializer);
                 return crate::events::SdkEvent::UnclaimedDeposits {
                     unclaimed_deposits: var_unclaimedDeposits,
                 };
             }
-            3 => {
+            2 => {
                 let mut var_claimedDeposits =
                     <Vec<crate::models::DepositInfo>>::sse_decode(deserializer);
                 return crate::events::SdkEvent::ClaimedDeposits {
                     claimed_deposits: var_claimedDeposits,
                 };
             }
-            4 => {
+            3 => {
                 let mut var_payment = <crate::models::Payment>::sse_decode(deserializer);
                 return crate::events::SdkEvent::PaymentSucceeded {
                     payment: var_payment,
                 };
             }
-            5 => {
+            4 => {
                 let mut var_payment = <crate::models::Payment>::sse_decode(deserializer);
                 return crate::events::SdkEvent::PaymentPending {
                     payment: var_payment,
                 };
             }
-            6 => {
+            5 => {
                 let mut var_payment = <crate::models::Payment>::sse_decode(deserializer);
                 return crate::events::SdkEvent::PaymentFailed {
                     payment: var_payment,
@@ -8036,6 +8077,40 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::logger::LogEntry>>
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::MaxFee> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            crate::models::MaxFee::Fixed { amount } => {
+                [0.into_dart(), amount.into_into_dart().into_dart()].into_dart()
+            }
+            crate::models::MaxFee::Rate { sat_per_vbyte } => {
+                [1.into_dart(), sat_per_vbyte.into_into_dart().into_dart()].into_dart()
+            }
+            crate::models::MaxFee::NetworkRecommended {
+                leeway_sat_per_vbyte,
+            } => [
+                2.into_dart(),
+                leeway_sat_per_vbyte.into_into_dart().into_dart(),
+            ]
+            .into_dart(),
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<crate::models::MaxFee>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<crate::models::MaxFee>>
+    for crate::models::MaxFee
+{
+    fn into_into_dart(self) -> FrbWrapper<crate::models::MaxFee> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::models::MessageSuccessActionData> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [self.0.message.into_into_dart().into_dart()].into_dart()
@@ -8655,29 +8730,22 @@ impl flutter_rust_bridge::IntoDart for FrbWrapper<crate::events::SdkEvent> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         match self.0 {
             crate::events::SdkEvent::Synced => [0.into_dart()].into_dart(),
-            crate::events::SdkEvent::DataSynced {
-                did_pull_new_records,
-            } => [
-                1.into_dart(),
-                did_pull_new_records.into_into_dart().into_dart(),
-            ]
-            .into_dart(),
             crate::events::SdkEvent::UnclaimedDeposits { unclaimed_deposits } => [
-                2.into_dart(),
+                1.into_dart(),
                 unclaimed_deposits.into_into_dart().into_dart(),
             ]
             .into_dart(),
             crate::events::SdkEvent::ClaimedDeposits { claimed_deposits } => {
-                [3.into_dart(), claimed_deposits.into_into_dart().into_dart()].into_dart()
+                [2.into_dart(), claimed_deposits.into_into_dart().into_dart()].into_dart()
             }
             crate::events::SdkEvent::PaymentSucceeded { payment } => {
-                [4.into_dart(), payment.into_into_dart().into_dart()].into_dart()
+                [3.into_dart(), payment.into_into_dart().into_dart()].into_dart()
             }
             crate::events::SdkEvent::PaymentPending { payment } => {
-                [5.into_dart(), payment.into_into_dart().into_dart()].into_dart()
+                [4.into_dart(), payment.into_into_dart().into_dart()].into_dart()
             }
             crate::events::SdkEvent::PaymentFailed { payment } => {
-                [6.into_dart(), payment.into_into_dart().into_dart()].into_dart()
+                [5.into_dart(), payment.into_into_dart().into_dart()].into_dart()
             }
             _ => {
                 unimplemented!("");
@@ -9762,7 +9830,7 @@ impl SseEncode for crate::models::ClaimDepositRequest {
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <String>::sse_encode(self.txid, serializer);
         <u32>::sse_encode(self.vout, serializer);
-        <Option<crate::models::Fee>>::sse_encode(self.max_fee, serializer);
+        <Option<crate::models::MaxFee>>::sse_encode(self.max_fee, serializer);
     }
 }
 
@@ -9793,7 +9861,7 @@ impl SseEncode for crate::models::Config {
         <Option<String>>::sse_encode(self.api_key, serializer);
         <crate::models::Network>::sse_encode(self.network, serializer);
         <u32>::sse_encode(self.sync_interval_secs, serializer);
-        <Option<crate::models::Fee>>::sse_encode(self.max_deposit_claim_fee, serializer);
+        <Option<crate::models::MaxFee>>::sse_encode(self.max_deposit_claim_fee, serializer);
         <Option<String>>::sse_encode(self.lnurl_domain, serializer);
         <bool>::sse_encode(self.prefer_spark_over_lightning, serializer);
         <Option<Vec<crate::models::ExternalInputParser>>>::sse_encode(
@@ -10478,6 +10546,31 @@ impl SseEncode for crate::logger::LogEntry {
     }
 }
 
+impl SseEncode for crate::models::MaxFee {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        match self {
+            crate::models::MaxFee::Fixed { amount } => {
+                <i32>::sse_encode(0, serializer);
+                <u64>::sse_encode(amount, serializer);
+            }
+            crate::models::MaxFee::Rate { sat_per_vbyte } => {
+                <i32>::sse_encode(1, serializer);
+                <u64>::sse_encode(sat_per_vbyte, serializer);
+            }
+            crate::models::MaxFee::NetworkRecommended {
+                leeway_sat_per_vbyte,
+            } => {
+                <i32>::sse_encode(2, serializer);
+                <u64>::sse_encode(leeway_sat_per_vbyte, serializer);
+            }
+            _ => {
+                unimplemented!("");
+            }
+        }
+    }
+}
+
 impl SseEncode for crate::models::MessageSuccessActionData {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -10641,6 +10734,16 @@ impl SseEncode for Option<crate::models::LnurlWithdrawInfo> {
         <bool>::sse_encode(self.is_some(), serializer);
         if let Some(value) = self {
             <crate::models::LnurlWithdrawInfo>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<crate::models::MaxFee> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::models::MaxFee>::sse_encode(value, serializer);
         }
     }
 }
@@ -11155,30 +11258,24 @@ impl SseEncode for crate::events::SdkEvent {
             crate::events::SdkEvent::Synced => {
                 <i32>::sse_encode(0, serializer);
             }
-            crate::events::SdkEvent::DataSynced {
-                did_pull_new_records,
-            } => {
-                <i32>::sse_encode(1, serializer);
-                <bool>::sse_encode(did_pull_new_records, serializer);
-            }
             crate::events::SdkEvent::UnclaimedDeposits { unclaimed_deposits } => {
-                <i32>::sse_encode(2, serializer);
+                <i32>::sse_encode(1, serializer);
                 <Vec<crate::models::DepositInfo>>::sse_encode(unclaimed_deposits, serializer);
             }
             crate::events::SdkEvent::ClaimedDeposits { claimed_deposits } => {
-                <i32>::sse_encode(3, serializer);
+                <i32>::sse_encode(2, serializer);
                 <Vec<crate::models::DepositInfo>>::sse_encode(claimed_deposits, serializer);
             }
             crate::events::SdkEvent::PaymentSucceeded { payment } => {
-                <i32>::sse_encode(4, serializer);
+                <i32>::sse_encode(3, serializer);
                 <crate::models::Payment>::sse_encode(payment, serializer);
             }
             crate::events::SdkEvent::PaymentPending { payment } => {
-                <i32>::sse_encode(5, serializer);
+                <i32>::sse_encode(4, serializer);
                 <crate::models::Payment>::sse_encode(payment, serializer);
             }
             crate::events::SdkEvent::PaymentFailed { payment } => {
-                <i32>::sse_encode(6, serializer);
+                <i32>::sse_encode(5, serializer);
                 <crate::models::Payment>::sse_encode(payment, serializer);
             }
             _ => {

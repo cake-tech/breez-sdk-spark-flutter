@@ -18,7 +18,6 @@ sealed class SdkEvent with _$SdkEvent {
   const SdkEvent._();
 
   const factory SdkEvent.synced() = SdkEvent_Synced;
-  const factory SdkEvent.dataSynced({required bool didPullNewRecords}) = SdkEvent_DataSynced;
   const factory SdkEvent.unclaimedDeposits({required List<DepositInfo> unclaimedDeposits}) =
       SdkEvent_UnclaimedDeposits;
   const factory SdkEvent.claimedDeposits({required List<DepositInfo> claimedDeposits}) =

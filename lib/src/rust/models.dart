@@ -487,7 +487,7 @@ class CheckMessageResponse {
 class ClaimDepositRequest {
   final String txid;
   final int vout;
-  final Fee? maxFee;
+  final MaxFee? maxFee;
 
   const ClaimDepositRequest({required this.txid, required this.vout, this.maxFee});
 
@@ -550,7 +550,7 @@ class Config {
   final String? apiKey;
   final Network network;
   final int syncIntervalSecs;
-  final Fee? maxDepositClaimFee;
+  final MaxFee? maxDepositClaimFee;
   final String? lnurlDomain;
   final bool preferSparkOverLightning;
   final List<ExternalInputParser>? externalInputParsers;
@@ -1409,6 +1409,15 @@ class LocalizedName {
           runtimeType == other.runtimeType &&
           locale == other.locale &&
           name == other.name;
+}
+
+@freezed
+sealed class MaxFee with _$MaxFee {
+  const MaxFee._();
+
+  const factory MaxFee.fixed({required BigInt amount}) = MaxFee_Fixed;
+  const factory MaxFee.rate({required BigInt satPerVbyte}) = MaxFee_Rate;
+  const factory MaxFee.networkRecommended({required BigInt leewaySatPerVbyte}) = MaxFee_NetworkRecommended;
 }
 
 class MessageSuccessActionData {

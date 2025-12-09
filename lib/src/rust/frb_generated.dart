@@ -2150,6 +2150,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  MaxFee dco_decode_box_autoadd_max_fee(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_max_fee(raw);
+  }
+
+  @protected
   MessageSuccessActionData dco_decode_box_autoadd_message_success_action_data(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_message_success_action_data(raw);
@@ -2379,7 +2385,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     return ClaimDepositRequest(
       txid: dco_decode_String(arr[0]),
       vout: dco_decode_u_32(arr[1]),
-      maxFee: dco_decode_opt_box_autoadd_fee(arr[2]),
+      maxFee: dco_decode_opt_box_autoadd_max_fee(arr[2]),
     );
   }
 
@@ -2416,7 +2422,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
       apiKey: dco_decode_opt_String(arr[0]),
       network: dco_decode_network(arr[1]),
       syncIntervalSecs: dco_decode_u_32(arr[2]),
-      maxDepositClaimFee: dco_decode_opt_box_autoadd_fee(arr[3]),
+      maxDepositClaimFee: dco_decode_opt_box_autoadd_max_fee(arr[3]),
       lnurlDomain: dco_decode_opt_String(arr[4]),
       preferSparkOverLightning: dco_decode_bool(arr[5]),
       externalInputParsers: dco_decode_opt_list_external_input_parser(arr[6]),
@@ -3021,6 +3027,21 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  MaxFee dco_decode_max_fee(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return MaxFee_Fixed(amount: dco_decode_u_64(raw[1]));
+      case 1:
+        return MaxFee_Rate(satPerVbyte: dco_decode_u_64(raw[1]));
+      case 2:
+        return MaxFee_NetworkRecommended(leewaySatPerVbyte: dco_decode_u_64(raw[1]));
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
   MessageSuccessActionData dco_decode_message_success_action_data(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -3118,6 +3139,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   LnurlWithdrawInfo? dco_decode_opt_box_autoadd_lnurl_withdraw_info(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_box_autoadd_lnurl_withdraw_info(raw);
+  }
+
+  @protected
+  MaxFee? dco_decode_opt_box_autoadd_max_fee(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_max_fee(raw);
   }
 
   @protected
@@ -3491,16 +3518,14 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
       case 0:
         return SdkEvent_Synced();
       case 1:
-        return SdkEvent_DataSynced(didPullNewRecords: dco_decode_bool(raw[1]));
-      case 2:
         return SdkEvent_UnclaimedDeposits(unclaimedDeposits: dco_decode_list_deposit_info(raw[1]));
-      case 3:
+      case 2:
         return SdkEvent_ClaimedDeposits(claimedDeposits: dco_decode_list_deposit_info(raw[1]));
-      case 4:
+      case 3:
         return SdkEvent_PaymentSucceeded(payment: dco_decode_box_autoadd_payment(raw[1]));
-      case 5:
+      case 4:
         return SdkEvent_PaymentPending(payment: dco_decode_box_autoadd_payment(raw[1]));
-      case 6:
+      case 5:
         return SdkEvent_PaymentFailed(payment: dco_decode_box_autoadd_payment(raw[1]));
       default:
         throw Exception("unreachable");
@@ -4502,6 +4527,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  MaxFee sse_decode_box_autoadd_max_fee(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_max_fee(deserializer));
+  }
+
+  @protected
   MessageSuccessActionData sse_decode_box_autoadd_message_success_action_data(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_message_success_action_data(deserializer));
@@ -4735,7 +4766,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_txid = sse_decode_String(deserializer);
     var var_vout = sse_decode_u_32(deserializer);
-    var var_maxFee = sse_decode_opt_box_autoadd_fee(deserializer);
+    var var_maxFee = sse_decode_opt_box_autoadd_max_fee(deserializer);
     return ClaimDepositRequest(txid: var_txid, vout: var_vout, maxFee: var_maxFee);
   }
 
@@ -4766,7 +4797,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     var var_apiKey = sse_decode_opt_String(deserializer);
     var var_network = sse_decode_network(deserializer);
     var var_syncIntervalSecs = sse_decode_u_32(deserializer);
-    var var_maxDepositClaimFee = sse_decode_opt_box_autoadd_fee(deserializer);
+    var var_maxDepositClaimFee = sse_decode_opt_box_autoadd_max_fee(deserializer);
     var var_lnurlDomain = sse_decode_opt_String(deserializer);
     var var_preferSparkOverLightning = sse_decode_bool(deserializer);
     var var_externalInputParsers = sse_decode_opt_list_external_input_parser(deserializer);
@@ -5524,6 +5555,26 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  MaxFee sse_decode_max_fee(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        var var_amount = sse_decode_u_64(deserializer);
+        return MaxFee_Fixed(amount: var_amount);
+      case 1:
+        var var_satPerVbyte = sse_decode_u_64(deserializer);
+        return MaxFee_Rate(satPerVbyte: var_satPerVbyte);
+      case 2:
+        var var_leewaySatPerVbyte = sse_decode_u_64(deserializer);
+        return MaxFee_NetworkRecommended(leewaySatPerVbyte: var_leewaySatPerVbyte);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
   MessageSuccessActionData sse_decode_message_success_action_data(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_message = sse_decode_String(deserializer);
@@ -5678,6 +5729,17 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
 
     if (sse_decode_bool(deserializer)) {
       return (sse_decode_box_autoadd_lnurl_withdraw_info(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  MaxFee? sse_decode_opt_box_autoadd_max_fee(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_max_fee(deserializer));
     } else {
       return null;
     }
@@ -6185,21 +6247,18 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
       case 0:
         return SdkEvent_Synced();
       case 1:
-        var var_didPullNewRecords = sse_decode_bool(deserializer);
-        return SdkEvent_DataSynced(didPullNewRecords: var_didPullNewRecords);
-      case 2:
         var var_unclaimedDeposits = sse_decode_list_deposit_info(deserializer);
         return SdkEvent_UnclaimedDeposits(unclaimedDeposits: var_unclaimedDeposits);
-      case 3:
+      case 2:
         var var_claimedDeposits = sse_decode_list_deposit_info(deserializer);
         return SdkEvent_ClaimedDeposits(claimedDeposits: var_claimedDeposits);
-      case 4:
+      case 3:
         var var_payment = sse_decode_box_autoadd_payment(deserializer);
         return SdkEvent_PaymentSucceeded(payment: var_payment);
-      case 5:
+      case 4:
         var var_payment = sse_decode_box_autoadd_payment(deserializer);
         return SdkEvent_PaymentPending(payment: var_payment);
-      case 6:
+      case 5:
         var var_payment = sse_decode_box_autoadd_payment(deserializer);
         return SdkEvent_PaymentFailed(payment: var_payment);
       default:
@@ -7201,6 +7260,12 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  void sse_encode_box_autoadd_max_fee(MaxFee self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_max_fee(self, serializer);
+  }
+
+  @protected
   void sse_encode_box_autoadd_message_success_action_data(
     MessageSuccessActionData self,
     SseSerializer serializer,
@@ -7450,7 +7515,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.txid, serializer);
     sse_encode_u_32(self.vout, serializer);
-    sse_encode_opt_box_autoadd_fee(self.maxFee, serializer);
+    sse_encode_opt_box_autoadd_max_fee(self.maxFee, serializer);
   }
 
   @protected
@@ -7477,7 +7542,7 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     sse_encode_opt_String(self.apiKey, serializer);
     sse_encode_network(self.network, serializer);
     sse_encode_u_32(self.syncIntervalSecs, serializer);
-    sse_encode_opt_box_autoadd_fee(self.maxDepositClaimFee, serializer);
+    sse_encode_opt_box_autoadd_max_fee(self.maxDepositClaimFee, serializer);
     sse_encode_opt_String(self.lnurlDomain, serializer);
     sse_encode_bool(self.preferSparkOverLightning, serializer);
     sse_encode_opt_list_external_input_parser(self.externalInputParsers, serializer);
@@ -8057,6 +8122,22 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
   }
 
   @protected
+  void sse_encode_max_fee(MaxFee self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case MaxFee_Fixed(amount: final amount):
+        sse_encode_i_32(0, serializer);
+        sse_encode_u_64(amount, serializer);
+      case MaxFee_Rate(satPerVbyte: final satPerVbyte):
+        sse_encode_i_32(1, serializer);
+        sse_encode_u_64(satPerVbyte, serializer);
+      case MaxFee_NetworkRecommended(leewaySatPerVbyte: final leewaySatPerVbyte):
+        sse_encode_i_32(2, serializer);
+        sse_encode_u_64(leewaySatPerVbyte, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_message_success_action_data(MessageSuccessActionData self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.message, serializer);
@@ -8203,6 +8284,16 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     sse_encode_bool(self != null, serializer);
     if (self != null) {
       sse_encode_box_autoadd_lnurl_withdraw_info(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_max_fee(MaxFee? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_max_fee(self, serializer);
     }
   }
 
@@ -8626,23 +8717,20 @@ class BreezSdkSparkLibApiImpl extends BreezSdkSparkLibApiImplPlatform implements
     switch (self) {
       case SdkEvent_Synced():
         sse_encode_i_32(0, serializer);
-      case SdkEvent_DataSynced(didPullNewRecords: final didPullNewRecords):
-        sse_encode_i_32(1, serializer);
-        sse_encode_bool(didPullNewRecords, serializer);
       case SdkEvent_UnclaimedDeposits(unclaimedDeposits: final unclaimedDeposits):
-        sse_encode_i_32(2, serializer);
+        sse_encode_i_32(1, serializer);
         sse_encode_list_deposit_info(unclaimedDeposits, serializer);
       case SdkEvent_ClaimedDeposits(claimedDeposits: final claimedDeposits):
-        sse_encode_i_32(3, serializer);
+        sse_encode_i_32(2, serializer);
         sse_encode_list_deposit_info(claimedDeposits, serializer);
       case SdkEvent_PaymentSucceeded(payment: final payment):
-        sse_encode_i_32(4, serializer);
+        sse_encode_i_32(3, serializer);
         sse_encode_box_autoadd_payment(payment, serializer);
       case SdkEvent_PaymentPending(payment: final payment):
-        sse_encode_i_32(5, serializer);
+        sse_encode_i_32(4, serializer);
         sse_encode_box_autoadd_payment(payment, serializer);
       case SdkEvent_PaymentFailed(payment: final payment):
-        sse_encode_i_32(6, serializer);
+        sse_encode_i_32(5, serializer);
         sse_encode_box_autoadd_payment(payment, serializer);
     }
   }

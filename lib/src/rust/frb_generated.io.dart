@@ -270,6 +270,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlWithdrawRequestDetails dco_decode_box_autoadd_lnurl_withdraw_request_details(dynamic raw);
 
   @protected
+  MaxFee dco_decode_box_autoadd_max_fee(dynamic raw);
+
+  @protected
   MessageSuccessActionData dco_decode_box_autoadd_message_success_action_data(dynamic raw);
 
   @protected
@@ -573,6 +576,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LogEntry dco_decode_log_entry(dynamic raw);
 
   @protected
+  MaxFee dco_decode_max_fee(dynamic raw);
+
+  @protected
   MessageSuccessActionData dco_decode_message_success_action_data(dynamic raw);
 
   @protected
@@ -619,6 +625,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   LnurlWithdrawInfo? dco_decode_opt_box_autoadd_lnurl_withdraw_info(dynamic raw);
+
+  @protected
+  MaxFee? dco_decode_opt_box_autoadd_max_fee(dynamic raw);
 
   @protected
   Payment? dco_decode_opt_box_autoadd_payment(dynamic raw);
@@ -1083,6 +1092,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
+  MaxFee sse_decode_box_autoadd_max_fee(SseDeserializer deserializer);
+
+  @protected
   MessageSuccessActionData sse_decode_box_autoadd_message_success_action_data(SseDeserializer deserializer);
 
   @protected
@@ -1394,6 +1406,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LogEntry sse_decode_log_entry(SseDeserializer deserializer);
 
   @protected
+  MaxFee sse_decode_max_fee(SseDeserializer deserializer);
+
+  @protected
   MessageSuccessActionData sse_decode_message_success_action_data(SseDeserializer deserializer);
 
   @protected
@@ -1440,6 +1455,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   LnurlWithdrawInfo? sse_decode_opt_box_autoadd_lnurl_withdraw_info(SseDeserializer deserializer);
+
+  @protected
+  MaxFee? sse_decode_opt_box_autoadd_max_fee(SseDeserializer deserializer);
 
   @protected
   Payment? sse_decode_opt_box_autoadd_payment(SseDeserializer deserializer);
@@ -1948,6 +1966,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   );
 
   @protected
+  void sse_encode_box_autoadd_max_fee(MaxFee self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_message_success_action_data(
     MessageSuccessActionData self,
     SseSerializer serializer,
@@ -2293,6 +2314,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_log_entry(LogEntry self, SseSerializer serializer);
 
   @protected
+  void sse_encode_max_fee(MaxFee self, SseSerializer serializer);
+
+  @protected
   void sse_encode_message_success_action_data(MessageSuccessActionData self, SseSerializer serializer);
 
   @protected
@@ -2345,6 +2369,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_opt_box_autoadd_lnurl_withdraw_info(LnurlWithdrawInfo? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_box_autoadd_max_fee(MaxFee? self, SseSerializer serializer);
 
   @protected
   void sse_encode_opt_box_autoadd_payment(Payment? self, SseSerializer serializer);
