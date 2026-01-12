@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |spec|
   spec.name                = "breez_sdk_spark_flutter"
-  spec.version             = '0.7.0-dev1'
+  spec.version             = '0.7.1'
   spec.license             = { :file => '../LICENSE' }
   spec.summary             = "Swift bindings to the Breez Spark SDK"
   spec.homepage            = "https://breez.technology"
@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.source_files        = 'Classes/**/*'
   spec.dependency 'Flutter'
 
-  spec.platform            = :ios, '11.0'
+  spec.platform            = :ios, '13.0'
   spec.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   spec.swift_version       = '5.0'
 
