@@ -32,6 +32,7 @@ sealed class SdkError with _$SdkError implements FrbException {
   const SdkError._();
 
   const factory SdkError.sparkError(String field0) = SdkError_SparkError;
+  const factory SdkError.insufficientFunds() = SdkError_InsufficientFunds;
   const factory SdkError.invalidUuid(String field0) = SdkError_InvalidUuid;
   const factory SdkError.invalidInput(String field0) = SdkError_InvalidInput;
   const factory SdkError.networkError(String field0) = SdkError_NetworkError;
@@ -46,5 +47,6 @@ sealed class SdkError with _$SdkError implements FrbException {
   }) = SdkError_MaxDepositClaimFeeExceeded;
   const factory SdkError.missingUtxo({required String tx, required int vout}) = SdkError_MissingUtxo;
   const factory SdkError.lnurlError(String field0) = SdkError_LnurlError;
+  const factory SdkError.signer(String field0) = SdkError_Signer;
   const factory SdkError.generic(String field0) = SdkError_Generic;
 }

@@ -784,6 +784,42 @@ sealed class Fee with _$Fee {
   const factory Fee.rate({required BigInt satPerVbyte}) = Fee_Rate;
 }
 
+class FetchTokenConversionLimitsRequest {
+  final TokenConversionType conversionType;
+  final String? tokenIdentifier;
+
+  const FetchTokenConversionLimitsRequest({required this.conversionType, this.tokenIdentifier});
+
+  @override
+  int get hashCode => conversionType.hashCode ^ tokenIdentifier.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FetchTokenConversionLimitsRequest &&
+          runtimeType == other.runtimeType &&
+          conversionType == other.conversionType &&
+          tokenIdentifier == other.tokenIdentifier;
+}
+
+class FetchTokenConversionLimitsResponse {
+  final BigInt? minFromAmount;
+  final BigInt? minToAmount;
+
+  const FetchTokenConversionLimitsResponse({this.minFromAmount, this.minToAmount});
+
+  @override
+  int get hashCode => minFromAmount.hashCode ^ minToAmount.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FetchTokenConversionLimitsResponse &&
+          runtimeType == other.runtimeType &&
+          minFromAmount == other.minFromAmount &&
+          minToAmount == other.minToAmount;
+}
+
 class FiatCurrency {
   final String id;
   final CurrencyInfo info;
@@ -945,6 +981,26 @@ sealed class InputType with _$InputType {
   const factory InputType.sparkInvoice(SparkInvoiceDetails field0) = InputType_SparkInvoice;
 }
 
+class KeySetConfig {
+  final KeySetType keySetType;
+  final bool useAddressIndex;
+  final int? accountNumber;
+
+  const KeySetConfig({required this.keySetType, required this.useAddressIndex, this.accountNumber});
+
+  @override
+  int get hashCode => keySetType.hashCode ^ useAddressIndex.hashCode ^ accountNumber.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is KeySetConfig &&
+          runtimeType == other.runtimeType &&
+          keySetType == other.keySetType &&
+          useAddressIndex == other.useAddressIndex &&
+          accountNumber == other.accountNumber;
+}
+
 enum KeySetType { default_, taproot, nativeSegwit, wrappedSegwit, legacy }
 
 class LightningAddressDetails {
@@ -1026,7 +1082,7 @@ class ListPaymentsRequest {
   final List<PaymentType>? typeFilter;
   final List<PaymentStatus>? statusFilter;
   final AssetFilter? assetFilter;
-  final List<SparkHtlcStatus>? sparkHtlcStatusFilter;
+  final List<PaymentDetailsFilter>? paymentDetailsFilter;
   final BigInt? fromTimestamp;
   final BigInt? toTimestamp;
   final int? offset;
@@ -1037,7 +1093,7 @@ class ListPaymentsRequest {
     this.typeFilter,
     this.statusFilter,
     this.assetFilter,
-    this.sparkHtlcStatusFilter,
+    this.paymentDetailsFilter,
     this.fromTimestamp,
     this.toTimestamp,
     this.offset,
@@ -1050,7 +1106,7 @@ class ListPaymentsRequest {
       typeFilter.hashCode ^
       statusFilter.hashCode ^
       assetFilter.hashCode ^
-      sparkHtlcStatusFilter.hashCode ^
+      paymentDetailsFilter.hashCode ^
       fromTimestamp.hashCode ^
       toTimestamp.hashCode ^
       offset.hashCode ^
@@ -1065,7 +1121,7 @@ class ListPaymentsRequest {
           typeFilter == other.typeFilter &&
           statusFilter == other.statusFilter &&
           assetFilter == other.assetFilter &&
-          sparkHtlcStatusFilter == other.sparkHtlcStatusFilter &&
+          paymentDetailsFilter == other.paymentDetailsFilter &&
           fromTimestamp == other.fromTimestamp &&
           toTimestamp == other.toTimestamp &&
           offset == other.offset &&
@@ -1552,11 +1608,13 @@ sealed class PaymentDetails with _$PaymentDetails {
   const factory PaymentDetails.spark({
     SparkInvoicePaymentDetails? invoiceDetails,
     SparkHtlcDetails? htlcDetails,
+    TokenConversionInfo? tokenConversionInfo,
   }) = PaymentDetails_Spark;
   const factory PaymentDetails.token({
     required TokenMetadata metadata,
     required String txHash,
     SparkInvoicePaymentDetails? invoiceDetails,
+    TokenConversionInfo? tokenConversionInfo,
   }) = PaymentDetails_Token;
   const factory PaymentDetails.lightning({
     String? description,
@@ -1570,6 +1628,18 @@ sealed class PaymentDetails with _$PaymentDetails {
   }) = PaymentDetails_Lightning;
   const factory PaymentDetails.withdraw({required String txId}) = PaymentDetails_Withdraw;
   const factory PaymentDetails.deposit({required String txId}) = PaymentDetails_Deposit;
+}
+
+@freezed
+sealed class PaymentDetailsFilter with _$PaymentDetailsFilter {
+  const PaymentDetailsFilter._();
+
+  const factory PaymentDetailsFilter.spark({
+    List<SparkHtlcStatus>? htlcStatus,
+    bool? conversionRefundNeeded,
+  }) = PaymentDetailsFilter_Spark;
+  const factory PaymentDetailsFilter.token({bool? conversionRefundNeeded, String? txHash}) =
+      PaymentDetailsFilter_Token;
 }
 
 enum PaymentMethod { lightning, spark, token, deposit, withdraw, unknown }
@@ -1667,11 +1737,18 @@ class PrepareSendPaymentRequest {
   final String paymentRequest;
   final BigInt? amount;
   final String? tokenIdentifier;
+  final TokenConversionOptions? tokenConversionOptions;
 
-  const PrepareSendPaymentRequest({required this.paymentRequest, this.amount, this.tokenIdentifier});
+  const PrepareSendPaymentRequest({
+    required this.paymentRequest,
+    this.amount,
+    this.tokenIdentifier,
+    this.tokenConversionOptions,
+  });
 
   @override
-  int get hashCode => paymentRequest.hashCode ^ amount.hashCode ^ tokenIdentifier.hashCode;
+  int get hashCode =>
+      paymentRequest.hashCode ^ amount.hashCode ^ tokenIdentifier.hashCode ^ tokenConversionOptions.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1680,18 +1757,32 @@ class PrepareSendPaymentRequest {
           runtimeType == other.runtimeType &&
           paymentRequest == other.paymentRequest &&
           amount == other.amount &&
-          tokenIdentifier == other.tokenIdentifier;
+          tokenIdentifier == other.tokenIdentifier &&
+          tokenConversionOptions == other.tokenConversionOptions;
 }
 
 class PrepareSendPaymentResponse {
   final SendPaymentMethod paymentMethod;
   final BigInt amount;
   final String? tokenIdentifier;
+  final TokenConversionOptions? tokenConversionOptions;
+  final BigInt? tokenConversionFee;
 
-  const PrepareSendPaymentResponse({required this.paymentMethod, required this.amount, this.tokenIdentifier});
+  const PrepareSendPaymentResponse({
+    required this.paymentMethod,
+    required this.amount,
+    this.tokenIdentifier,
+    this.tokenConversionOptions,
+    this.tokenConversionFee,
+  });
 
   @override
-  int get hashCode => paymentMethod.hashCode ^ amount.hashCode ^ tokenIdentifier.hashCode;
+  int get hashCode =>
+      paymentMethod.hashCode ^
+      amount.hashCode ^
+      tokenIdentifier.hashCode ^
+      tokenConversionOptions.hashCode ^
+      tokenConversionFee.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1700,7 +1791,9 @@ class PrepareSendPaymentResponse {
           runtimeType == other.runtimeType &&
           paymentMethod == other.paymentMethod &&
           amount == other.amount &&
-          tokenIdentifier == other.tokenIdentifier;
+          tokenIdentifier == other.tokenIdentifier &&
+          tokenConversionOptions == other.tokenConversionOptions &&
+          tokenConversionFee == other.tokenConversionFee;
 }
 
 class Rate {
@@ -2273,6 +2366,61 @@ class TokenBalance {
           runtimeType == other.runtimeType &&
           balance == other.balance &&
           tokenMetadata == other.tokenMetadata;
+}
+
+class TokenConversionInfo {
+  final String poolId;
+  final String? paymentId;
+  final BigInt? fee;
+  final String? refundIdentifier;
+
+  const TokenConversionInfo({required this.poolId, this.paymentId, this.fee, this.refundIdentifier});
+
+  @override
+  int get hashCode => poolId.hashCode ^ paymentId.hashCode ^ fee.hashCode ^ refundIdentifier.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TokenConversionInfo &&
+          runtimeType == other.runtimeType &&
+          poolId == other.poolId &&
+          paymentId == other.paymentId &&
+          fee == other.fee &&
+          refundIdentifier == other.refundIdentifier;
+}
+
+class TokenConversionOptions {
+  final TokenConversionType conversionType;
+  final int? maxSlippageBps;
+  final int? completionTimeoutSecs;
+
+  const TokenConversionOptions({
+    required this.conversionType,
+    this.maxSlippageBps,
+    this.completionTimeoutSecs,
+  });
+
+  @override
+  int get hashCode => conversionType.hashCode ^ maxSlippageBps.hashCode ^ completionTimeoutSecs.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TokenConversionOptions &&
+          runtimeType == other.runtimeType &&
+          conversionType == other.conversionType &&
+          maxSlippageBps == other.maxSlippageBps &&
+          completionTimeoutSecs == other.completionTimeoutSecs;
+}
+
+@freezed
+sealed class TokenConversionType with _$TokenConversionType {
+  const TokenConversionType._();
+
+  const factory TokenConversionType.fromBitcoin() = TokenConversionType_FromBitcoin;
+  const factory TokenConversionType.toBitcoin({required String fromTokenIdentifier}) =
+      TokenConversionType_ToBitcoin;
 }
 
 class TokenMetadata {
