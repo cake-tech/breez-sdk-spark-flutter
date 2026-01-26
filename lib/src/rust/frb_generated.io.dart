@@ -120,6 +120,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   BitcoinNetwork dco_decode_bitcoin_network(dynamic raw);
 
   @protected
+  BitcoinPayAmount dco_decode_bitcoin_pay_amount(dynamic raw);
+
+  @protected
   Bolt11Invoice dco_decode_bolt_11_invoice(dynamic raw);
 
   @protected
@@ -208,6 +211,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   ConnectRequest dco_decode_box_autoadd_connect_request(dynamic raw);
+
+  @protected
+  ConversionDetails dco_decode_box_autoadd_conversion_details(dynamic raw);
 
   @protected
   ConversionEstimate dco_decode_box_autoadd_conversion_estimate(dynamic raw);
@@ -301,6 +307,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   OptimizationEvent dco_decode_box_autoadd_optimization_event(dynamic raw);
+
+  @protected
+  PayAmount dco_decode_box_autoadd_pay_amount(dynamic raw);
 
   @protected
   Payment dco_decode_box_autoadd_payment(dynamic raw);
@@ -420,6 +429,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   ConnectRequest dco_decode_connect_request(dynamic raw);
 
   @protected
+  ConversionDetails dco_decode_conversion_details(dynamic raw);
+
+  @protected
   ConversionEstimate dco_decode_conversion_estimate(dynamic raw);
 
   @protected
@@ -433,6 +445,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   ConversionStatus dco_decode_conversion_status(dynamic raw);
+
+  @protected
+  ConversionStep dco_decode_conversion_step(dynamic raw);
 
   @protected
   ConversionType dco_decode_conversion_type(dynamic raw);
@@ -600,6 +615,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlErrorDetails dco_decode_lnurl_error_details(dynamic raw);
 
   @protected
+  LnurlInfo dco_decode_lnurl_info(dynamic raw);
+
+  @protected
   LnurlPayInfo dco_decode_lnurl_pay_info(dynamic raw);
 
   @protected
@@ -666,6 +684,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   bool? dco_decode_opt_box_autoadd_bool(dynamic raw);
 
   @protected
+  ConversionDetails? dco_decode_opt_box_autoadd_conversion_details(dynamic raw);
+
+  @protected
   ConversionEstimate? dco_decode_opt_box_autoadd_conversion_estimate(dynamic raw);
 
   @protected
@@ -702,6 +723,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   MaxFee? dco_decode_opt_box_autoadd_max_fee(dynamic raw);
 
   @protected
+  PayAmount? dco_decode_opt_box_autoadd_pay_amount(dynamic raw);
+
+  @protected
   Payment? dco_decode_opt_box_autoadd_payment(dynamic raw);
 
   @protected
@@ -727,6 +751,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   Symbol? dco_decode_opt_box_autoadd_symbol(dynamic raw);
+
+  @protected
+  TokenMetadata? dco_decode_opt_box_autoadd_token_metadata(dynamic raw);
 
   @protected
   int? dco_decode_opt_box_autoadd_u_32(dynamic raw);
@@ -757,6 +784,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   OptimizationProgress dco_decode_optimization_progress(dynamic raw);
+
+  @protected
+  PayAmount dco_decode_pay_amount(dynamic raw);
 
   @protected
   Payment dco_decode_payment(dynamic raw);
@@ -1017,6 +1047,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   BitcoinNetwork sse_decode_bitcoin_network(SseDeserializer deserializer);
 
   @protected
+  BitcoinPayAmount sse_decode_bitcoin_pay_amount(SseDeserializer deserializer);
+
+  @protected
   Bolt11Invoice sse_decode_bolt_11_invoice(SseDeserializer deserializer);
 
   @protected
@@ -1113,6 +1146,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   ConnectRequest sse_decode_box_autoadd_connect_request(SseDeserializer deserializer);
+
+  @protected
+  ConversionDetails sse_decode_box_autoadd_conversion_details(SseDeserializer deserializer);
 
   @protected
   ConversionEstimate sse_decode_box_autoadd_conversion_estimate(SseDeserializer deserializer);
@@ -1212,6 +1248,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   OptimizationEvent sse_decode_box_autoadd_optimization_event(SseDeserializer deserializer);
+
+  @protected
+  PayAmount sse_decode_box_autoadd_pay_amount(SseDeserializer deserializer);
 
   @protected
   Payment sse_decode_box_autoadd_payment(SseDeserializer deserializer);
@@ -1339,6 +1378,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   ConnectRequest sse_decode_connect_request(SseDeserializer deserializer);
 
   @protected
+  ConversionDetails sse_decode_conversion_details(SseDeserializer deserializer);
+
+  @protected
   ConversionEstimate sse_decode_conversion_estimate(SseDeserializer deserializer);
 
   @protected
@@ -1352,6 +1394,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   ConversionStatus sse_decode_conversion_status(SseDeserializer deserializer);
+
+  @protected
+  ConversionStep sse_decode_conversion_step(SseDeserializer deserializer);
 
   @protected
   ConversionType sse_decode_conversion_type(SseDeserializer deserializer);
@@ -1519,6 +1564,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   LnurlErrorDetails sse_decode_lnurl_error_details(SseDeserializer deserializer);
 
   @protected
+  LnurlInfo sse_decode_lnurl_info(SseDeserializer deserializer);
+
+  @protected
   LnurlPayInfo sse_decode_lnurl_pay_info(SseDeserializer deserializer);
 
   @protected
@@ -1585,6 +1633,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   bool? sse_decode_opt_box_autoadd_bool(SseDeserializer deserializer);
 
   @protected
+  ConversionDetails? sse_decode_opt_box_autoadd_conversion_details(SseDeserializer deserializer);
+
+  @protected
   ConversionEstimate? sse_decode_opt_box_autoadd_conversion_estimate(SseDeserializer deserializer);
 
   @protected
@@ -1621,6 +1672,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   MaxFee? sse_decode_opt_box_autoadd_max_fee(SseDeserializer deserializer);
 
   @protected
+  PayAmount? sse_decode_opt_box_autoadd_pay_amount(SseDeserializer deserializer);
+
+  @protected
   Payment? sse_decode_opt_box_autoadd_payment(SseDeserializer deserializer);
 
   @protected
@@ -1648,6 +1702,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   Symbol? sse_decode_opt_box_autoadd_symbol(SseDeserializer deserializer);
+
+  @protected
+  TokenMetadata? sse_decode_opt_box_autoadd_token_metadata(SseDeserializer deserializer);
 
   @protected
   int? sse_decode_opt_box_autoadd_u_32(SseDeserializer deserializer);
@@ -1678,6 +1735,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   OptimizationProgress sse_decode_optimization_progress(SseDeserializer deserializer);
+
+  @protected
+  PayAmount sse_decode_pay_amount(SseDeserializer deserializer);
 
   @protected
   Payment sse_decode_payment(SseDeserializer deserializer);
@@ -1950,6 +2010,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_bitcoin_network(BitcoinNetwork self, SseSerializer serializer);
 
   @protected
+  void sse_encode_bitcoin_pay_amount(BitcoinPayAmount self, SseSerializer serializer);
+
+  @protected
   void sse_encode_bolt_11_invoice(Bolt11Invoice self, SseSerializer serializer);
 
   @protected
@@ -2056,6 +2119,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_box_autoadd_connect_request(ConnectRequest self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_conversion_details(ConversionDetails self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_conversion_estimate(ConversionEstimate self, SseSerializer serializer);
@@ -2182,6 +2248,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_box_autoadd_optimization_event(OptimizationEvent self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_pay_amount(PayAmount self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_payment(Payment self, SseSerializer serializer);
@@ -2325,6 +2394,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_connect_request(ConnectRequest self, SseSerializer serializer);
 
   @protected
+  void sse_encode_conversion_details(ConversionDetails self, SseSerializer serializer);
+
+  @protected
   void sse_encode_conversion_estimate(ConversionEstimate self, SseSerializer serializer);
 
   @protected
@@ -2338,6 +2410,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_conversion_status(ConversionStatus self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_conversion_step(ConversionStep self, SseSerializer serializer);
 
   @protected
   void sse_encode_conversion_type(ConversionType self, SseSerializer serializer);
@@ -2523,6 +2598,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_lnurl_error_details(LnurlErrorDetails self, SseSerializer serializer);
 
   @protected
+  void sse_encode_lnurl_info(LnurlInfo self, SseSerializer serializer);
+
+  @protected
   void sse_encode_lnurl_pay_info(LnurlPayInfo self, SseSerializer serializer);
 
   @protected
@@ -2589,6 +2667,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_opt_box_autoadd_bool(bool? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_conversion_details(ConversionDetails? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_conversion_estimate(ConversionEstimate? self, SseSerializer serializer);
 
   @protected
@@ -2631,6 +2712,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_opt_box_autoadd_max_fee(MaxFee? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_pay_amount(PayAmount? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_payment(Payment? self, SseSerializer serializer);
 
   @protected
@@ -2664,6 +2748,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
   void sse_encode_opt_box_autoadd_symbol(Symbol? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_token_metadata(TokenMetadata? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_u_32(int? self, SseSerializer serializer);
 
   @protected
@@ -2692,6 +2779,9 @@ abstract class BreezSdkSparkLibApiImplPlatform extends BaseApiImpl<BreezSdkSpark
 
   @protected
   void sse_encode_optimization_progress(OptimizationProgress self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_pay_amount(PayAmount self, SseSerializer serializer);
 
   @protected
   void sse_encode_payment(Payment self, SseSerializer serializer);

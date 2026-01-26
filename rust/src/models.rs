@@ -130,6 +130,7 @@ pub struct _GetInfoRequest {
 
 #[frb(mirror(GetInfoResponse))]
 pub struct _GetInfoResponse {
+    pub identity_pubkey: String,
     pub balance_sats: u64,
     pub token_balances: HashMap<String, TokenBalance>,
 }
@@ -288,37 +289,55 @@ pub enum _OnchainConfirmationSpeed {
     Slow,
 }
 
+#[frb(mirror(PayAmount))]
+pub enum _PayAmount {
+    Bitcoin {
+        amount_sats: u64,
+    },
+    Token {
+        amount: u128,
+        token_identifier: String,
+    },
+    Drain,
+}
+
+#[frb(mirror(BitcoinPayAmount))]
+pub enum _BitcoinPayAmount {
+    Bitcoin { amount_sats: u64 },
+    Drain,
+}
+
 #[frb(mirror(PrepareLnurlPayRequest))]
 pub struct _PrepareLnurlPayRequest {
-    pub amount_sats: u64,
+    pub pay_amount: BitcoinPayAmount,
     pub pay_request: LnurlPayRequestDetails,
     pub comment: Option<String>,
     pub validate_success_action_url: Option<bool>,
+    pub conversion_options: Option<ConversionOptions>,
 }
 
 #[frb(mirror(PrepareLnurlPayResponse))]
 pub struct _PrepareLnurlPayResponse {
-    pub amount_sats: u64,
+    pub pay_amount: BitcoinPayAmount,
     pub comment: Option<String>,
     pub pay_request: LnurlPayRequestDetails,
     pub fee_sats: u64,
     pub invoice_details: Bolt11InvoiceDetails,
     pub success_action: Option<SuccessAction>,
+    pub conversion_estimate: Option<ConversionEstimate>,
 }
 
 #[frb(mirror(PrepareSendPaymentRequest))]
 pub struct _PrepareSendPaymentRequest {
     pub payment_request: String,
-    pub amount: Option<u128>,
-    pub token_identifier: Option<String>,
+    pub pay_amount: Option<PayAmount>,
     pub conversion_options: Option<ConversionOptions>,
 }
 
 #[frb(mirror(PrepareSendPaymentResponse))]
 pub struct _PrepareSendPaymentResponse {
     pub payment_method: SendPaymentMethod,
-    pub amount: u128,
-    pub token_identifier: Option<String>,
+    pub pay_amount: PayAmount,
     pub conversion_estimate: Option<ConversionEstimate>,
 }
 
@@ -514,6 +533,22 @@ pub struct _Payment {
     pub timestamp: u64,
     pub method: PaymentMethod,
     pub details: Option<PaymentDetails>,
+    pub conversion_details: Option<ConversionDetails>,
+}
+
+#[frb(mirror(ConversionDetails))]
+pub struct _ConversionDetails {
+    pub from: ConversionStep,
+    pub to: ConversionStep,
+}
+
+#[frb(mirror(ConversionStep))]
+pub struct _ConversionStep {
+    pub payment_id: String,
+    pub amount: u128,
+    pub fee: u128,
+    pub method: PaymentMethod,
+    pub token_metadata: Option<TokenMetadata>,
 }
 
 #[frb(mirror(PaymentDetails))]
@@ -803,11 +838,17 @@ pub struct _RegisterLightningAddressRequest {
     pub description: Option<String>,
 }
 
+#[frb(mirror(LnurlInfo))]
+pub struct _LnurlInfo {
+    pub url: String,
+    pub bech32: String,
+}
+
 #[frb(mirror(LightningAddressInfo))]
 pub struct _LightningAddressInfo {
     pub description: String,
     pub lightning_address: String,
-    pub lnurl: String,
+    pub lnurl: LnurlInfo,
     pub username: String,
 }
 
