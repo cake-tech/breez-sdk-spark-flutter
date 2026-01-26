@@ -156,14 +156,6 @@ class BitcoinAddressDetails {
 
 enum BitcoinNetwork { bitcoin, testnet3, testnet4, signet, regtest }
 
-@freezed
-sealed class BitcoinPayAmount with _$BitcoinPayAmount {
-  const BitcoinPayAmount._();
-
-  const factory BitcoinPayAmount.bitcoin({required BigInt amountSats}) = BitcoinPayAmount_Bitcoin;
-  const factory BitcoinPayAmount.drain() = BitcoinPayAmount_Drain;
-}
-
 class Bolt11Invoice {
   final String bolt11;
   final PaymentRequestSource source;
@@ -633,21 +625,6 @@ class ConnectRequest {
           storageDir == other.storageDir;
 }
 
-class ConversionDetails {
-  final ConversionStep from;
-  final ConversionStep to;
-
-  const ConversionDetails({required this.from, required this.to});
-
-  @override
-  int get hashCode => from.hashCode ^ to.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConversionDetails && runtimeType == other.runtimeType && from == other.from && to == other.to;
-}
-
 class ConversionEstimate {
   final ConversionOptions options;
   final BigInt amount;
@@ -729,37 +706,6 @@ sealed class ConversionPurpose with _$ConversionPurpose {
 }
 
 enum ConversionStatus { completed, refundNeeded, refunded }
-
-class ConversionStep {
-  final String paymentId;
-  final BigInt amount;
-  final BigInt fee;
-  final PaymentMethod method;
-  final TokenMetadata? tokenMetadata;
-
-  const ConversionStep({
-    required this.paymentId,
-    required this.amount,
-    required this.fee,
-    required this.method,
-    this.tokenMetadata,
-  });
-
-  @override
-  int get hashCode =>
-      paymentId.hashCode ^ amount.hashCode ^ fee.hashCode ^ method.hashCode ^ tokenMetadata.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConversionStep &&
-          runtimeType == other.runtimeType &&
-          paymentId == other.paymentId &&
-          amount == other.amount &&
-          fee == other.fee &&
-          method == other.method &&
-          tokenMetadata == other.tokenMetadata;
-}
 
 @freezed
 sealed class ConversionType with _$ConversionType {
@@ -1026,25 +972,19 @@ class GetInfoRequest {
 }
 
 class GetInfoResponse {
-  final String identityPubkey;
   final BigInt balanceSats;
   final Map<String, TokenBalance> tokenBalances;
 
-  const GetInfoResponse({
-    required this.identityPubkey,
-    required this.balanceSats,
-    required this.tokenBalances,
-  });
+  const GetInfoResponse({required this.balanceSats, required this.tokenBalances});
 
   @override
-  int get hashCode => identityPubkey.hashCode ^ balanceSats.hashCode ^ tokenBalances.hashCode;
+  int get hashCode => balanceSats.hashCode ^ tokenBalances.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is GetInfoResponse &&
           runtimeType == other.runtimeType &&
-          identityPubkey == other.identityPubkey &&
           balanceSats == other.balanceSats &&
           tokenBalances == other.tokenBalances;
 }
@@ -1174,7 +1114,7 @@ class LightningAddressDetails {
 class LightningAddressInfo {
   final String description;
   final String lightningAddress;
-  final LnurlInfo lnurl;
+  final String lnurl;
   final String username;
 
   const LightningAddressInfo({
@@ -1363,21 +1303,6 @@ class LnurlErrorDetails {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is LnurlErrorDetails && runtimeType == other.runtimeType && reason == other.reason;
-}
-
-class LnurlInfo {
-  final String url;
-  final String bech32;
-
-  const LnurlInfo({required this.url, required this.bech32});
-
-  @override
-  int get hashCode => url.hashCode ^ bech32.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is LnurlInfo && runtimeType == other.runtimeType && url == other.url && bech32 == other.bech32;
 }
 
 class LnurlPayInfo {
@@ -1742,15 +1667,6 @@ class OptimizationProgress {
           totalRounds == other.totalRounds;
 }
 
-@freezed
-sealed class PayAmount with _$PayAmount {
-  const PayAmount._();
-
-  const factory PayAmount.bitcoin({required BigInt amountSats}) = PayAmount_Bitcoin;
-  const factory PayAmount.token({required BigInt amount, required String tokenIdentifier}) = PayAmount_Token;
-  const factory PayAmount.drain() = PayAmount_Drain;
-}
-
 class Payment {
   final String id;
   final PaymentType paymentType;
@@ -1760,7 +1676,6 @@ class Payment {
   final BigInt timestamp;
   final PaymentMethod method;
   final PaymentDetails? details;
-  final ConversionDetails? conversionDetails;
 
   const Payment({
     required this.id,
@@ -1771,7 +1686,6 @@ class Payment {
     required this.timestamp,
     required this.method,
     this.details,
-    this.conversionDetails,
   });
 
   @override
@@ -1783,8 +1697,7 @@ class Payment {
       fees.hashCode ^
       timestamp.hashCode ^
       method.hashCode ^
-      details.hashCode ^
-      conversionDetails.hashCode;
+      details.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1798,8 +1711,7 @@ class Payment {
           fees == other.fees &&
           timestamp == other.timestamp &&
           method == other.method &&
-          details == other.details &&
-          conversionDetails == other.conversionDetails;
+          details == other.details;
 }
 
 @freezed
@@ -1868,92 +1780,88 @@ enum PaymentStatus { completed, pending, failed }
 enum PaymentType { send, receive }
 
 class PrepareLnurlPayRequest {
-  final BitcoinPayAmount payAmount;
+  final BigInt amountSats;
   final LnurlPayRequestDetails payRequest;
   final String? comment;
   final bool? validateSuccessActionUrl;
-  final ConversionOptions? conversionOptions;
 
   const PrepareLnurlPayRequest({
-    required this.payAmount,
+    required this.amountSats,
     required this.payRequest,
     this.comment,
     this.validateSuccessActionUrl,
-    this.conversionOptions,
   });
 
   @override
   int get hashCode =>
-      payAmount.hashCode ^
-      payRequest.hashCode ^
-      comment.hashCode ^
-      validateSuccessActionUrl.hashCode ^
-      conversionOptions.hashCode;
+      amountSats.hashCode ^ payRequest.hashCode ^ comment.hashCode ^ validateSuccessActionUrl.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is PrepareLnurlPayRequest &&
           runtimeType == other.runtimeType &&
-          payAmount == other.payAmount &&
+          amountSats == other.amountSats &&
           payRequest == other.payRequest &&
           comment == other.comment &&
-          validateSuccessActionUrl == other.validateSuccessActionUrl &&
-          conversionOptions == other.conversionOptions;
+          validateSuccessActionUrl == other.validateSuccessActionUrl;
 }
 
 class PrepareLnurlPayResponse {
-  final BitcoinPayAmount payAmount;
+  final BigInt amountSats;
   final String? comment;
   final LnurlPayRequestDetails payRequest;
   final BigInt feeSats;
   final Bolt11InvoiceDetails invoiceDetails;
   final SuccessAction? successAction;
-  final ConversionEstimate? conversionEstimate;
 
   const PrepareLnurlPayResponse({
-    required this.payAmount,
+    required this.amountSats,
     this.comment,
     required this.payRequest,
     required this.feeSats,
     required this.invoiceDetails,
     this.successAction,
-    this.conversionEstimate,
   });
 
   @override
   int get hashCode =>
-      payAmount.hashCode ^
+      amountSats.hashCode ^
       comment.hashCode ^
       payRequest.hashCode ^
       feeSats.hashCode ^
       invoiceDetails.hashCode ^
-      successAction.hashCode ^
-      conversionEstimate.hashCode;
+      successAction.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is PrepareLnurlPayResponse &&
           runtimeType == other.runtimeType &&
-          payAmount == other.payAmount &&
+          amountSats == other.amountSats &&
           comment == other.comment &&
           payRequest == other.payRequest &&
           feeSats == other.feeSats &&
           invoiceDetails == other.invoiceDetails &&
-          successAction == other.successAction &&
-          conversionEstimate == other.conversionEstimate;
+          successAction == other.successAction;
 }
 
 class PrepareSendPaymentRequest {
   final String paymentRequest;
-  final PayAmount? payAmount;
+  final BigInt? amount;
+  final String? tokenIdentifier;
   final ConversionOptions? conversionOptions;
 
-  const PrepareSendPaymentRequest({required this.paymentRequest, this.payAmount, this.conversionOptions});
+  const PrepareSendPaymentRequest({
+    required this.paymentRequest,
+    this.amount,
+    this.tokenIdentifier,
+    this.conversionOptions,
+  });
 
   @override
-  int get hashCode => paymentRequest.hashCode ^ payAmount.hashCode ^ conversionOptions.hashCode;
+  int get hashCode =>
+      paymentRequest.hashCode ^ amount.hashCode ^ tokenIdentifier.hashCode ^ conversionOptions.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1961,23 +1869,27 @@ class PrepareSendPaymentRequest {
       other is PrepareSendPaymentRequest &&
           runtimeType == other.runtimeType &&
           paymentRequest == other.paymentRequest &&
-          payAmount == other.payAmount &&
+          amount == other.amount &&
+          tokenIdentifier == other.tokenIdentifier &&
           conversionOptions == other.conversionOptions;
 }
 
 class PrepareSendPaymentResponse {
   final SendPaymentMethod paymentMethod;
-  final PayAmount payAmount;
+  final BigInt amount;
+  final String? tokenIdentifier;
   final ConversionEstimate? conversionEstimate;
 
   const PrepareSendPaymentResponse({
     required this.paymentMethod,
-    required this.payAmount,
+    required this.amount,
+    this.tokenIdentifier,
     this.conversionEstimate,
   });
 
   @override
-  int get hashCode => paymentMethod.hashCode ^ payAmount.hashCode ^ conversionEstimate.hashCode;
+  int get hashCode =>
+      paymentMethod.hashCode ^ amount.hashCode ^ tokenIdentifier.hashCode ^ conversionEstimate.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -1985,7 +1897,8 @@ class PrepareSendPaymentResponse {
       other is PrepareSendPaymentResponse &&
           runtimeType == other.runtimeType &&
           paymentMethod == other.paymentMethod &&
-          payAmount == other.payAmount &&
+          amount == other.amount &&
+          tokenIdentifier == other.tokenIdentifier &&
           conversionEstimate == other.conversionEstimate;
 }
 

@@ -441,7 +441,7 @@ extension SdkErrorPatterns on SdkError {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SdkError_SparkError value)?  sparkError,TResult Function( SdkError_InsufficientFunds value)?  insufficientFunds,TResult Function( SdkError_InvalidUuid value)?  invalidUuid,TResult Function( SdkError_InvalidInput value)?  invalidInput,TResult Function( SdkError_NetworkError value)?  networkError,TResult Function( SdkError_StorageError value)?  storageError,TResult Function( SdkError_ChainServiceError value)?  chainServiceError,TResult Function( SdkError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult Function( SdkError_MissingUtxo value)?  missingUtxo,TResult Function( SdkError_LnurlError value)?  lnurlError,TResult Function( SdkError_DrainNotSupported value)?  drainNotSupported,TResult Function( SdkError_DrainExceedsLnurlMax value)?  drainExceedsLnurlMax,TResult Function( SdkError_Signer value)?  signer,TResult Function( SdkError_Generic value)?  generic,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SdkError_SparkError value)?  sparkError,TResult Function( SdkError_InsufficientFunds value)?  insufficientFunds,TResult Function( SdkError_InvalidUuid value)?  invalidUuid,TResult Function( SdkError_InvalidInput value)?  invalidInput,TResult Function( SdkError_NetworkError value)?  networkError,TResult Function( SdkError_StorageError value)?  storageError,TResult Function( SdkError_ChainServiceError value)?  chainServiceError,TResult Function( SdkError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult Function( SdkError_MissingUtxo value)?  missingUtxo,TResult Function( SdkError_LnurlError value)?  lnurlError,TResult Function( SdkError_Signer value)?  signer,TResult Function( SdkError_Generic value)?  generic,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
@@ -454,9 +454,7 @@ return storageError(_that);case SdkError_ChainServiceError() when chainServiceEr
 return chainServiceError(_that);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
 return maxDepositClaimFeeExceeded(_that);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that);case SdkError_LnurlError() when lnurlError != null:
-return lnurlError(_that);case SdkError_DrainNotSupported() when drainNotSupported != null:
-return drainNotSupported(_that);case SdkError_DrainExceedsLnurlMax() when drainExceedsLnurlMax != null:
-return drainExceedsLnurlMax(_that);case SdkError_Signer() when signer != null:
+return lnurlError(_that);case SdkError_Signer() when signer != null:
 return signer(_that);case SdkError_Generic() when generic != null:
 return generic(_that);case _:
   return orElse();
@@ -476,7 +474,7 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SdkError_SparkError value)  sparkError,required TResult Function( SdkError_InsufficientFunds value)  insufficientFunds,required TResult Function( SdkError_InvalidUuid value)  invalidUuid,required TResult Function( SdkError_InvalidInput value)  invalidInput,required TResult Function( SdkError_NetworkError value)  networkError,required TResult Function( SdkError_StorageError value)  storageError,required TResult Function( SdkError_ChainServiceError value)  chainServiceError,required TResult Function( SdkError_MaxDepositClaimFeeExceeded value)  maxDepositClaimFeeExceeded,required TResult Function( SdkError_MissingUtxo value)  missingUtxo,required TResult Function( SdkError_LnurlError value)  lnurlError,required TResult Function( SdkError_DrainNotSupported value)  drainNotSupported,required TResult Function( SdkError_DrainExceedsLnurlMax value)  drainExceedsLnurlMax,required TResult Function( SdkError_Signer value)  signer,required TResult Function( SdkError_Generic value)  generic,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SdkError_SparkError value)  sparkError,required TResult Function( SdkError_InsufficientFunds value)  insufficientFunds,required TResult Function( SdkError_InvalidUuid value)  invalidUuid,required TResult Function( SdkError_InvalidInput value)  invalidInput,required TResult Function( SdkError_NetworkError value)  networkError,required TResult Function( SdkError_StorageError value)  storageError,required TResult Function( SdkError_ChainServiceError value)  chainServiceError,required TResult Function( SdkError_MaxDepositClaimFeeExceeded value)  maxDepositClaimFeeExceeded,required TResult Function( SdkError_MissingUtxo value)  missingUtxo,required TResult Function( SdkError_LnurlError value)  lnurlError,required TResult Function( SdkError_Signer value)  signer,required TResult Function( SdkError_Generic value)  generic,}){
 final _that = this;
 switch (_that) {
 case SdkError_SparkError():
@@ -489,9 +487,7 @@ return storageError(_that);case SdkError_ChainServiceError():
 return chainServiceError(_that);case SdkError_MaxDepositClaimFeeExceeded():
 return maxDepositClaimFeeExceeded(_that);case SdkError_MissingUtxo():
 return missingUtxo(_that);case SdkError_LnurlError():
-return lnurlError(_that);case SdkError_DrainNotSupported():
-return drainNotSupported(_that);case SdkError_DrainExceedsLnurlMax():
-return drainExceedsLnurlMax(_that);case SdkError_Signer():
+return lnurlError(_that);case SdkError_Signer():
 return signer(_that);case SdkError_Generic():
 return generic(_that);}
 }
@@ -507,7 +503,7 @@ return generic(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SdkError_SparkError value)?  sparkError,TResult? Function( SdkError_InsufficientFunds value)?  insufficientFunds,TResult? Function( SdkError_InvalidUuid value)?  invalidUuid,TResult? Function( SdkError_InvalidInput value)?  invalidInput,TResult? Function( SdkError_NetworkError value)?  networkError,TResult? Function( SdkError_StorageError value)?  storageError,TResult? Function( SdkError_ChainServiceError value)?  chainServiceError,TResult? Function( SdkError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult? Function( SdkError_MissingUtxo value)?  missingUtxo,TResult? Function( SdkError_LnurlError value)?  lnurlError,TResult? Function( SdkError_DrainNotSupported value)?  drainNotSupported,TResult? Function( SdkError_DrainExceedsLnurlMax value)?  drainExceedsLnurlMax,TResult? Function( SdkError_Signer value)?  signer,TResult? Function( SdkError_Generic value)?  generic,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SdkError_SparkError value)?  sparkError,TResult? Function( SdkError_InsufficientFunds value)?  insufficientFunds,TResult? Function( SdkError_InvalidUuid value)?  invalidUuid,TResult? Function( SdkError_InvalidInput value)?  invalidInput,TResult? Function( SdkError_NetworkError value)?  networkError,TResult? Function( SdkError_StorageError value)?  storageError,TResult? Function( SdkError_ChainServiceError value)?  chainServiceError,TResult? Function( SdkError_MaxDepositClaimFeeExceeded value)?  maxDepositClaimFeeExceeded,TResult? Function( SdkError_MissingUtxo value)?  missingUtxo,TResult? Function( SdkError_LnurlError value)?  lnurlError,TResult? Function( SdkError_Signer value)?  signer,TResult? Function( SdkError_Generic value)?  generic,}){
 final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
@@ -520,9 +516,7 @@ return storageError(_that);case SdkError_ChainServiceError() when chainServiceEr
 return chainServiceError(_that);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
 return maxDepositClaimFeeExceeded(_that);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that);case SdkError_LnurlError() when lnurlError != null:
-return lnurlError(_that);case SdkError_DrainNotSupported() when drainNotSupported != null:
-return drainNotSupported(_that);case SdkError_DrainExceedsLnurlMax() when drainExceedsLnurlMax != null:
-return drainExceedsLnurlMax(_that);case SdkError_Signer() when signer != null:
+return lnurlError(_that);case SdkError_Signer() when signer != null:
 return signer(_that);case SdkError_Generic() when generic != null:
 return generic(_that);case _:
   return null;
@@ -541,7 +535,7 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String field0)?  sparkError,TResult Function()?  insufficientFunds,TResult Function( String field0)?  invalidUuid,TResult Function( String field0)?  invalidInput,TResult Function( String field0)?  networkError,TResult Function( String field0)?  storageError,TResult Function( String field0)?  chainServiceError,TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String field0)?  lnurlError,TResult Function()?  drainNotSupported,TResult Function( BigInt balanceSats,  BigInt maxSendableSats)?  drainExceedsLnurlMax,TResult Function( String field0)?  signer,TResult Function( String field0)?  generic,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String field0)?  sparkError,TResult Function()?  insufficientFunds,TResult Function( String field0)?  invalidUuid,TResult Function( String field0)?  invalidInput,TResult Function( String field0)?  networkError,TResult Function( String field0)?  storageError,TResult Function( String field0)?  chainServiceError,TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult Function( String tx,  int vout)?  missingUtxo,TResult Function( String field0)?  lnurlError,TResult Function( String field0)?  signer,TResult Function( String field0)?  generic,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
 return sparkError(_that.field0);case SdkError_InsufficientFunds() when insufficientFunds != null:
@@ -553,9 +547,7 @@ return storageError(_that.field0);case SdkError_ChainServiceError() when chainSe
 return chainServiceError(_that.field0);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
 return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that.tx,_that.vout);case SdkError_LnurlError() when lnurlError != null:
-return lnurlError(_that.field0);case SdkError_DrainNotSupported() when drainNotSupported != null:
-return drainNotSupported();case SdkError_DrainExceedsLnurlMax() when drainExceedsLnurlMax != null:
-return drainExceedsLnurlMax(_that.balanceSats,_that.maxSendableSats);case SdkError_Signer() when signer != null:
+return lnurlError(_that.field0);case SdkError_Signer() when signer != null:
 return signer(_that.field0);case SdkError_Generic() when generic != null:
 return generic(_that.field0);case _:
   return orElse();
@@ -575,7 +567,7 @@ return generic(_that.field0);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String field0)  sparkError,required TResult Function()  insufficientFunds,required TResult Function( String field0)  invalidUuid,required TResult Function( String field0)  invalidInput,required TResult Function( String field0)  networkError,required TResult Function( String field0)  storageError,required TResult Function( String field0)  chainServiceError,required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)  maxDepositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String field0)  lnurlError,required TResult Function()  drainNotSupported,required TResult Function( BigInt balanceSats,  BigInt maxSendableSats)  drainExceedsLnurlMax,required TResult Function( String field0)  signer,required TResult Function( String field0)  generic,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String field0)  sparkError,required TResult Function()  insufficientFunds,required TResult Function( String field0)  invalidUuid,required TResult Function( String field0)  invalidInput,required TResult Function( String field0)  networkError,required TResult Function( String field0)  storageError,required TResult Function( String field0)  chainServiceError,required TResult Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)  maxDepositClaimFeeExceeded,required TResult Function( String tx,  int vout)  missingUtxo,required TResult Function( String field0)  lnurlError,required TResult Function( String field0)  signer,required TResult Function( String field0)  generic,}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError():
 return sparkError(_that.field0);case SdkError_InsufficientFunds():
@@ -587,9 +579,7 @@ return storageError(_that.field0);case SdkError_ChainServiceError():
 return chainServiceError(_that.field0);case SdkError_MaxDepositClaimFeeExceeded():
 return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case SdkError_MissingUtxo():
 return missingUtxo(_that.tx,_that.vout);case SdkError_LnurlError():
-return lnurlError(_that.field0);case SdkError_DrainNotSupported():
-return drainNotSupported();case SdkError_DrainExceedsLnurlMax():
-return drainExceedsLnurlMax(_that.balanceSats,_that.maxSendableSats);case SdkError_Signer():
+return lnurlError(_that.field0);case SdkError_Signer():
 return signer(_that.field0);case SdkError_Generic():
 return generic(_that.field0);}
 }
@@ -605,7 +595,7 @@ return generic(_that.field0);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String field0)?  sparkError,TResult? Function()?  insufficientFunds,TResult? Function( String field0)?  invalidUuid,TResult? Function( String field0)?  invalidInput,TResult? Function( String field0)?  networkError,TResult? Function( String field0)?  storageError,TResult? Function( String field0)?  chainServiceError,TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String field0)?  lnurlError,TResult? Function()?  drainNotSupported,TResult? Function( BigInt balanceSats,  BigInt maxSendableSats)?  drainExceedsLnurlMax,TResult? Function( String field0)?  signer,TResult? Function( String field0)?  generic,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String field0)?  sparkError,TResult? Function()?  insufficientFunds,TResult? Function( String field0)?  invalidUuid,TResult? Function( String field0)?  invalidInput,TResult? Function( String field0)?  networkError,TResult? Function( String field0)?  storageError,TResult? Function( String field0)?  chainServiceError,TResult? Function( String tx,  int vout,  Fee? maxFee,  BigInt requiredFeeSats,  BigInt requiredFeeRateSatPerVbyte)?  maxDepositClaimFeeExceeded,TResult? Function( String tx,  int vout)?  missingUtxo,TResult? Function( String field0)?  lnurlError,TResult? Function( String field0)?  signer,TResult? Function( String field0)?  generic,}) {final _that = this;
 switch (_that) {
 case SdkError_SparkError() when sparkError != null:
 return sparkError(_that.field0);case SdkError_InsufficientFunds() when insufficientFunds != null:
@@ -617,9 +607,7 @@ return storageError(_that.field0);case SdkError_ChainServiceError() when chainSe
 return chainServiceError(_that.field0);case SdkError_MaxDepositClaimFeeExceeded() when maxDepositClaimFeeExceeded != null:
 return maxDepositClaimFeeExceeded(_that.tx,_that.vout,_that.maxFee,_that.requiredFeeSats,_that.requiredFeeRateSatPerVbyte);case SdkError_MissingUtxo() when missingUtxo != null:
 return missingUtxo(_that.tx,_that.vout);case SdkError_LnurlError() when lnurlError != null:
-return lnurlError(_that.field0);case SdkError_DrainNotSupported() when drainNotSupported != null:
-return drainNotSupported();case SdkError_DrainExceedsLnurlMax() when drainExceedsLnurlMax != null:
-return drainExceedsLnurlMax(_that.balanceSats,_that.maxSendableSats);case SdkError_Signer() when signer != null:
+return lnurlError(_that.field0);case SdkError_Signer() when signer != null:
 return signer(_that.field0);case SdkError_Generic() when generic != null:
 return generic(_that.field0);case _:
   return null;
@@ -1271,106 +1259,6 @@ class _$SdkError_LnurlErrorCopyWithImpl<$Res>
   return _then(SdkError_LnurlError(
 null == field0 ? _self.field0 : field0 // ignore: cast_nullable_to_non_nullable
 as String,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class SdkError_DrainNotSupported extends SdkError {
-  const SdkError_DrainNotSupported(): super._();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkError_DrainNotSupported);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SdkError.drainNotSupported()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class SdkError_DrainExceedsLnurlMax extends SdkError {
-  const SdkError_DrainExceedsLnurlMax({required this.balanceSats, required this.maxSendableSats}): super._();
-  
-
- final  BigInt balanceSats;
- final  BigInt maxSendableSats;
-
-/// Create a copy of SdkError
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SdkError_DrainExceedsLnurlMaxCopyWith<SdkError_DrainExceedsLnurlMax> get copyWith => _$SdkError_DrainExceedsLnurlMaxCopyWithImpl<SdkError_DrainExceedsLnurlMax>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SdkError_DrainExceedsLnurlMax&&(identical(other.balanceSats, balanceSats) || other.balanceSats == balanceSats)&&(identical(other.maxSendableSats, maxSendableSats) || other.maxSendableSats == maxSendableSats));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,balanceSats,maxSendableSats);
-
-@override
-String toString() {
-  return 'SdkError.drainExceedsLnurlMax(balanceSats: $balanceSats, maxSendableSats: $maxSendableSats)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SdkError_DrainExceedsLnurlMaxCopyWith<$Res> implements $SdkErrorCopyWith<$Res> {
-  factory $SdkError_DrainExceedsLnurlMaxCopyWith(SdkError_DrainExceedsLnurlMax value, $Res Function(SdkError_DrainExceedsLnurlMax) _then) = _$SdkError_DrainExceedsLnurlMaxCopyWithImpl;
-@useResult
-$Res call({
- BigInt balanceSats, BigInt maxSendableSats
-});
-
-
-
-
-}
-/// @nodoc
-class _$SdkError_DrainExceedsLnurlMaxCopyWithImpl<$Res>
-    implements $SdkError_DrainExceedsLnurlMaxCopyWith<$Res> {
-  _$SdkError_DrainExceedsLnurlMaxCopyWithImpl(this._self, this._then);
-
-  final SdkError_DrainExceedsLnurlMax _self;
-  final $Res Function(SdkError_DrainExceedsLnurlMax) _then;
-
-/// Create a copy of SdkError
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? balanceSats = null,Object? maxSendableSats = null,}) {
-  return _then(SdkError_DrainExceedsLnurlMax(
-balanceSats: null == balanceSats ? _self.balanceSats : balanceSats // ignore: cast_nullable_to_non_nullable
-as BigInt,maxSendableSats: null == maxSendableSats ? _self.maxSendableSats : maxSendableSats // ignore: cast_nullable_to_non_nullable
-as BigInt,
   ));
 }
 
